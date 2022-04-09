@@ -1,6 +1,6 @@
 # M-PIC
 
-An aggregator-type web app that helps users manage their photos from various photo-sharing platforms like FaceBook, InstaGram, Twitter, Reddit, Unsplash.
+An aggregator-type web app that helps users manage their photos from various photo-sharing platforms like Facebook, Instagram, Twitter, Reddit, Unsplash.
 
 ## Team
 
