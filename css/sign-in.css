@@ -1,11 +1,94 @@
-div {
+.main-container {
+  min-height: 100vh;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: space-evenly;
 }
 
-img {
+.form {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form form {
+  background: var(--light-pink);
+  border: 1.5px solid var(--light-black);
+  border-radius: 5px;
+  padding: 2rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form h1 {
+  font-size: 6rem;
+  margin: 4rem 0;
+}
+
+.form h2 {
+  font-size: 3rem;
+  margin: 0;
+  padding-bottom: 1rem;
+}
+
+.form h1,
+.form h2 {
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+  font-weight: normal;
+}
+
+.form a {
   display: block;
-  height: 100px;
+  text-align: center;
+}
+
+.inputs div {
+  display: flex;
+  align-items: center;
+}
+
+.inputs div label {
+  white-space: nowrap;
+}
+
+.inputs div input {
+  width: fit-content;
+}
+
+.form input,
+.form label {
+  text-align: center;
+  font-size: 1.5rem;
+  background: none;
+  padding: 0;
+}
+
+.form input {
+  border: 0;
+}
+
+.form input:nth-child(odd)::after {
+  border-right: 1px solid var(--light-black);
+  border-bottom: 1px solid var(--light-black);
+}
+
+.form input:nth-child(even)::before {
+  border-left: 1px solid var(--light-black);
+  border-bottom: 1px solid var(--light-black);
+}
+
+.form button,
+.form a {
+  font-size: 2rem;
+  padding: .6rem;
+  line-height: 1;
+  border: 1px solid var(--light-black);
+  border-radius: 100vh;
+}
+
+.form button {
+  color: var(--light-white);
+  background: var(--light-black);
 }

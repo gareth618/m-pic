@@ -1,30 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Loop:ital@0;1&display=swap');
 
 :root {
-  --light-element-1: #FEC7D7;
-  --light-element-2: #0E172C;
-  --light-element-3: #0E172C;
-  --light-element-4: #0E172C;
-  --light-element-5: #FFFFFE;
-  --light-illustration-1: #0E172C;
-  --light-illustration-2: #F9F8FC;
-  --light-illustration-3: #FEC7D7;
-  --light-illustration-4: #D9D4E7;
-  --light-illustration-5: #A786DF;
-  --dark-element-1: #232946;
-  --dark-element-2: #FFFFFE;
-  --dark-element-3: #B8C1EC;
-  --dark-element-4: #EEBBC3;
-  --dark-element-5: #232946;
-  --dark-illustration-1: #121629;
-  --dark-illustration-2: #B8C1EC;
-  --dark-illustration-3: #EEBBC3;
-  --dark-illustration-4: #FFFFFE;
-  --dark-illustration-5: #EEBBC3;
+  --white: #FFFFFE;
+  --light-pink: #FEC7D7;
+  --light-grey: #D9D4E7;
+  --light-white: #F9F8FC;
+  --light-black: #0E172C;
+  --light-purple: #A786DF;
+  --dark-purple: #B8C1EC;
+  --dark-black: #121629;
+  --dark-blue: #232946;
+  --dark-pink: #EEBBC3;
+  --text: var(--light-black);
+  --background: var(--white);
 }
 
 * {
   box-sizing: border-box;
+  outline: none;
 }
 
 html {
@@ -32,6 +25,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.618;
   font-family: 'Zen Loop', cursive;
+  /* font-weight: bold; */
+  color: var(--text);
 }
 
 h1,
@@ -54,4 +49,19 @@ a {
 
 button {
   cursor: pointer;
+}
+
+label,
+input,
+button {
+  font-family: 'Zen Loop', cursive;
+  color: var(--text);
+  /* font-weight: bold; */
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+input::placeholder {
+  color: var(--text);
 }
