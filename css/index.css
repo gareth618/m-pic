@@ -11,8 +11,20 @@
   --dark-black: #121629;
   --dark-blue: #232946;
   --dark-pink: #EEBBC3;
-  --text: var(--light-black);
-  --background: var(--white);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: var(--light-black);
+    --background: var(--white);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: var(--white);
+    --background: var(--dark-blue);
+  }
 }
 
 * {
@@ -40,6 +52,7 @@ h6 {
 
 body {
   margin: 0;
+  background: var(--background);
 }
 
 a {
