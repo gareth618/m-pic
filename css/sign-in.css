@@ -56,11 +56,16 @@
   background: var(--light-black);
 }
 
-.inputs div {
+.inputs > div {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   position: relative;
   height: 3.2rem;
+}
+
+.inputs > div:not(:last-child) {
+  margin-bottom: -1px;
 }
 
 .inputs input,
@@ -77,64 +82,59 @@
   top: 1.1rem;
 }
 
-.inputs div:nth-child(odd) i {
-  right: 0;
+.inputs > div:nth-child(odd) i {
+  right: 1rem;
 }
 
-.inputs div:nth-child(even) i {
-  left: 0;
+.inputs > div:nth-child(even) i {
+  left: 1rem;
 }
 
-/* .sign-in a {
-  display: block;
-  text-align: center;
-}
-
-.inputs div {
+.inputs > div div:nth-child(2) {
   display: flex;
   align-items: center;
-}
-
-.inputs div label {
-  white-space: nowrap;
-}
-
-.inputs div input {
-  width: fit-content;
-}
-
-.sign-in input,
-.sign-in label {
-  text-align: center;
-  font-size: 1.5rem;
-  background: none;
-  padding: 0;
-}
-
-.sign-in input {
-  border: 0;
-}
-
-.sign-in input:nth-child(odd)::after {
-  border-right: 1px solid var(--light-black);
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid var(--light-black);
   border-bottom: 1px solid var(--light-black);
 }
 
-.sign-in input:nth-child(even)::before {
-  border-left: 1px solid var(--light-black);
-  border-bottom: 1px solid var(--light-black);
+.inputs > div:nth-child(odd) div:first-child {
+  width: 2rem;
+  height: 3.2rem;
 }
 
-.sign-in button,
-.sign-in a {
-  font-size: 2rem;
-  padding: .6rem;
-  line-height: 1;
+.inputs > div:nth-child(odd) div:last-child {
+  width: 2rem;
+  height: 3.2rem;
   border: 1px solid var(--light-black);
-  border-radius: 100vh;
+  border-left: 0;
+  border-top-right-radius: 100vh;
+  border-bottom-right-radius: 100vh;
 }
 
-.sign-in button {
-  color: var(--light-white);
-  background: var(--light-black);
-} */
+.inputs > div:nth-child(even) div:last-child {
+  width: 2rem;
+  height: 3.2rem;
+}
+
+.inputs > div:nth-child(even) div:first-child {
+  width: 2rem;
+  height: 3.2rem;
+  border: 1px solid var(--light-black);
+  border-right: 0;
+  border-top-left-radius: 100vh;
+  border-bottom-left-radius: 100vh;
+}
+
+.inputs > div:first-child div:first-child {
+  border-top: 1px solid var(--light-black);
+}
+
+.inputs > div:last-child:nth-child(odd) div:first-child {
+  border-bottom: 1px solid var(--light-black);
+}
+
+.inputs > div:last-child:nth-child(even) div:last-child {
+  border-bottom: 1px solid var(--light-black);
+}
