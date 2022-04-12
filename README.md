@@ -11,7 +11,7 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 - Iulian Oleniuc (2B3)
 - Elisabeta Dima (2B3)
 
-## 💡 pages
+## 📚 pages
 
 - sign in
 - sign up
@@ -23,3 +23,19 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 ## 🎨 design
 
 the design is available on [figma](https://www.figma.com/file/FPE0X6J8mfUDaEQ6Sg8xH9/web)… it's private 😛
+
+```html
+<i class="fa-solid fa-envelope"></i>
+<i class="fa-brands fa-facebook"></i>
+<i class="fa-solid fa-user-large"></i>
+<i class="fa-brands fa-instagram"></i>
+<i class="fa-solid fa-lock"></i>
+<i class="fa-solid fa-image"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-brands fa-reddit-alien"></i>
+<i class="fa-solid fa-square-check"></i>
+<i class="fa-solid fa-heart"></i>
+<i class="fa-solid fa-arrow-right-arrow-left"></i>
+<i class="fa-brands fa-twitter"></i>
+<i class="fa-brands fa-unsplash"></i>
+```
