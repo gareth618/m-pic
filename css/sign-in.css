@@ -163,6 +163,10 @@
   line-height: 1.2;
 }
 
+.description p:last-child {
+  margin-bottom: 0;
+}
+
 .left {
   width: 625px;
   text-align: right;
@@ -170,10 +174,11 @@
 
 .right {
   color: var(--description-words);
+  list-style-type: none;
 }
 
-.right {
-  list-style-type: none;
+.right li:last-child {
+  margin-bottom: 0;
 }
 
 @media (min-width: 1001px) {
