@@ -25,7 +25,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.618;
   font-family: 'Zen Loop', cursive;
-  /* font-weight: bold; */
   color: var(--text);
 }
 
@@ -54,14 +53,18 @@ button {
 label,
 input,
 button {
-  font-family: 'Zen Loop', cursive;
-  color: var(--text);
-  /* font-weight: bold; */
   display: block;
+  padding: 0;
   width: 100%;
+  color: var(--text);
+  font-family: 'Zen Loop', cursive;
   border: none;
 }
 
 input::placeholder {
   color: var(--text);
+}
+
+img {
+  display: block;
 }
