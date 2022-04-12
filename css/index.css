@@ -16,14 +16,24 @@
 @media (prefers-color-scheme: light) {
   :root {
     --text: var(--light-black);
+    --white-text: var(--light-white);
     --background: var(--white);
+    --description-bg: var(--light-white);
+    --description-words: var(--light-purple);
+    --pink: var(--light-pink);
+    --black: var(--light-black);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --text: var(--white);
+    --white-text: var(--white);
     --background: var(--dark-blue);
+    --description-bg: var(--dark-black);
+    --description-words: var(--dark-pink);
+    --pink: var(--dark-pink);
+    --black: var(--dark-black);
   }
 }
 
@@ -70,15 +80,19 @@ button {
   display: block;
   padding: 0;
   width: 100%;
-  color: var(--text);
+  color: var(--black);
   font-family: 'Zen Loop', cursive;
   border: none;
 }
 
 input::placeholder {
-  color: var(--text);
+  color: var(--black);
 }
 
 img {
   display: block;
+}
+
+i {
+  color: var(--black);
 }
