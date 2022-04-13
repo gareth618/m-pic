@@ -1,0 +1,50 @@
+header {
+  background: var(--pink);
+  border-bottom: 1px solid var(--black);
+  padding: .5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  color: var(--black);
+}
+
+header h1 {
+  margin: 0;
+  white-space: nowrap;
+  font-size: 2rem;
+}
+
+header input {
+  width: 50%;
+  background: var(--white);
+  font-size: 1.5rem;
+  border: 1px solid var(--black);
+  border-radius: 100vh;
+  text-align: center;
+  padding: .2rem;
+}
+
+header input::placeholder {
+  text-align: center;
+}
+
+nav button {
+  font-size: 1.5rem;
+  background: var(--pink);
+  border: 1px solid var(--black);
+  border-radius: 100vh;
+  padding: .2rem 1.5rem;
+}
+
+nav ul {
+  list-style-type: none;
+  display: none;
+}
+
+nav:focus-within ul {
+  display: block;
+}
