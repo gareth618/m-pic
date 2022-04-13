@@ -181,8 +181,16 @@
   margin-bottom: 0;
 }
 
+.typewrite {
+  color: var(--description-words);
+}
+
+.typewrite > .wrap { 
+  border-right: 0.03em solid var(--description-words); 
+}
+
 @media (min-width: 1001px) {
-  .keyboard {
+  .typewrite {
     display: none;
   }
 }
