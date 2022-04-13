@@ -17,7 +17,7 @@
   padding: 2rem;
   background: var(--pink);
   border: 1.5px solid var(--black);
-  border-radius: 5px;
+  border-radius: 1rem;
 }
 
 .sign h1 {

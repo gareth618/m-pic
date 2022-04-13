@@ -1,56 +1,46 @@
-var TxtType = function(el, toRotate, period) {
-  this.toRotate = toRotate;
-  this.el = el;
-  this.loopNum = 0;
-  this.period = parseInt(period, 10) || 2000;
-  this.txt = '';
-  this.tick();
-  this.isDeleting = false;
-};
-
-TxtType.prototype.tick = function() {
-  var i = this.loopNum % this.toRotate.length;
-  var fullTxt = this.toRotate[i];
-
-  if (this.isDeleting) {
-    this.txt = fullTxt.substring(0, this.txt.length - 1);
-  } else {
-    this.txt = fullTxt.substring(0, this.txt.length + 1);
-  }
-
-  this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-
-  var that = this;
-  var delta = 200 - Math.random() * 100;
-
-  if (this.isDeleting) { delta /= 2; }
-
-  if (!this.isDeleting && this.txt === fullTxt) {
-    delta = this.period;
-    this.isDeleting = true;
-  } else if (this.isDeleting && this.txt === '') {
-    this.isDeleting = false;
-    this.loopNum++;
-    delta = 500;
-  }
-
-  setTimeout(function() {
-    that.tick();
-  }, delta);
-};
-
-window.onload = function() {
-  var elements = document.getElementsByClassName('typewrite');
-  for (var i = 0; i < elements.length; i++) {
-    var toRotate = elements[i].getAttribute('data-type');
-    var period = elements[i].getAttribute('data-period');
-    if (toRotate) {
-      new TxtType(elements[i], JSON.parse(toRotate), period);
+window.onload = () => {
+  for (const el of document.getElementsByClassName('typewrite-words')) {
+    const states = [];
+    for (const word of el.getAttribute('data-words').split(', ')) {
+      let delta = 500;
+      for (let i = 1; i <= word.length; i++) {
+        states.push([word.substring(0, i), delta]);
+        delta /= 1.25;
+      }
+      states.push([word, 3000]);
+      for (let i = word.length; i >= 0; i--) {
+        states.push([word.substring(0, i), 100]);
+      }
+      states.push(['', 500]);
     }
+    let index = 0;
+    const write = () => {
+      const [text, delta] = states[index];
+      el.innerText = text;
+      index = (index + 1) % states.length;
+      setTimeout(write, delta);
+    };
+    write();
   }
-  // INJECT CSS
-  // var css = document.createElement("style");
-  // css.type = "text/css";
-  // css.innerHTML = ".typewrite > .wrap { border-right: 0.03em solid #A786DF }";
-  // document.body.appendChild(css);
+};
+
+let wrote = false;
+
+window.onscroll = () => {
+  if (!wrote && document.getElementById('description').getBoundingClientRect().top < 0) {
+    let delay = 500;
+    for (const el of document.getElementsByClassName('typewrite-word')) {
+      const word = el.getAttribute('data-word');
+      for (let i = 1; i <= word.length; i++) {
+        setTimeout(() => {
+          el.innerHTML
+            = `<span>${word.substring(0, i)}</span>`
+            + `<span>${word.substring(i)}</span>`;
+        }, delay);
+        delay += 100;
+      }
+      delay += 500;
+    }
+    wrote = true;
+  }
 };
