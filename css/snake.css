@@ -1,0 +1,113 @@
+.snake > div {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  position: relative;
+  height: 3.2rem;
+}
+
+.snake > div:not(:last-child) {
+  margin-bottom: -1px;
+}
+
+.snake > div > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
+}
+
+.snake > div > div:nth-child(2) > * {
+  line-height: 1;
+  font-size: 1.5rem;
+  text-align: center;
+  white-space: nowrap;
+  background: none;
+}
+
+.snake > div > i {
+  position: absolute;
+  top: 1.1rem;
+}
+
+.snake > div:nth-child(odd) > i {
+  right: 1rem;
+}
+
+.snake > div:nth-child(even) > i {
+  left: 1rem;
+}
+
+.snake > div:nth-child(odd) > div:first-child {
+  width: 3.5rem;
+  height: 3.2rem;
+}
+
+.snake > div:nth-child(odd) > div:last-child {
+  width: 3.5rem;
+  height: 3.2rem;
+  border: 1px solid var(--black);
+  border-left: 0;
+  border-top-right-radius: 100vh;
+  border-bottom-right-radius: 100vh;
+}
+
+.snake > div:nth-child(even) > div:last-child {
+  width: 3.5rem;
+  height: 3.2rem;
+}
+
+.snake > div:nth-child(even) > div:first-child {
+  width: 3.5rem;
+  height: 3.2rem;
+  border: 1px solid var(--black);
+  border-right: 0;
+  border-top-left-radius: 100vh;
+  border-bottom-left-radius: 100vh;
+}
+
+.snake > div:first-child > div:first-child {
+  border-top: 1px solid var(--black);
+}
+
+.snake > div:last-child:nth-child(odd) > div:first-child {
+  border-bottom: 1px solid var(--black);
+}
+
+.snake > div:last-child:nth-child(even) > div:last-child {
+  border-bottom: 1px solid var(--black);
+}
+
+#checkbox {
+  cursor: pointer;
+  transition-duration: .1s;
+  transition-property: top, left, right, font-size;
+}
+
+#checkbox.fa-shake {
+  top: .9rem;
+  font-size: 1.4rem;
+  outline: none;
+}
+
+.snake > div:nth-child(odd) > #checkbox.fa-shake {
+  right: .8rem;
+}
+
+.snake > div:nth-child(even) > #checkbox.fa-shake {
+  left: .8rem;
+}
+
+.snake > div > i:not(#checkbox).fa-bounce {
+  display: none;
+}
+
+.snake > div:focus-within > i:not(#checkbox).fa-bounce {
+  display: initial;
+}
+
+.snake > div:focus-within > i:not(#checkbox):not(.fa-bounce) {
+  display: none;
+}

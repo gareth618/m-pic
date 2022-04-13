@@ -42,6 +42,15 @@
   outline: none;
 }
 
+*:not(input):focus {
+  outline: none;
+}
+
+*:not(input):focus-visible {
+  outline: 1px dotted var(--black);
+  outline-offset: .1rem;
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

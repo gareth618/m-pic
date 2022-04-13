@@ -1,7 +1,7 @@
 let checked = false;
 const checkbox = document.getElementById('checkbox').classList;
 
-function toggleChecked() {
+function toggleChecked(event) {
   if (checked) {
     checkbox.remove('fa-square-check');
     checkbox.add('fa-square-xmark');
@@ -16,4 +16,7 @@ function toggleChecked() {
   setTimeout(() => {
     checkbox.remove('fa-shake');
   }, 500);
+  if (event != null) {
+    event.preventDefault();
+  }
 }

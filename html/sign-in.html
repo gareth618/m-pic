@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="an aggregator-type app for photos stored in various photo-sharing platforms" />
-    <link rel="icon" href="../assets/favicon-light.ico" id="light-icon" />
-    <link rel="icon" href="../assets/favicon-dark.ico" id="dark-icon" />
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/sign.css">
-    <script src="https://kit.fontawesome.com/c225e559b0.js" crossorigin="anonymous"></script>
-    <script src="../js/typewriter.js" defer></script>
-    <script src="../js/checkbox.js" defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="an aggregator-type app for photos stored in various photo-sharing platforms">
+
     <title>M-PIC | sign in</title>
+    <link rel="icon" href="../assets/favicon-light.ico" id="light-icon">
+    <link rel="icon" href="../assets/favicon-dark.ico" id="dark-icon">
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/welcome.css">
+    <link rel="stylesheet" href="../css/description.css">
+    <link rel="stylesheet" href="../css/snake.css">
+
+    <script src="https://kit.fontawesome.com/c225e559b0.js" crossorigin="anonymous" defer></script>
+    <script src="../js/favicon.js" defer></script>
+    <script src="../js/checkbox.js" defer></script>
+    <script src="../js/typewriter.js" defer></script>
   </head>
 
   <body>
-    <section class="main-section">
+    <section class="welcome">
       <div class="sign">
         <h1>M-PIC</h1>
         <form>
           <h2>sign in</h2>
-          <div class="inputs">
+          <div class="snake">
             <div>
               <div></div>
               <div><input type="email" placeholder="email"></div>
@@ -39,7 +45,7 @@
             <div>
               <div></div>
               <div><label for="remember-me">remember me</label></div>
-              <i id="checkbox" class="fa-solid fa-square-xmark" onclick="toggleChecked()"></i>
+              <i id="checkbox" class="fa-solid fa-square-xmark" tabindex="0" onclick="toggleChecked()" onkeypress="toggleChecked(event)"></i>
               <div></div>
             </div>
           </div>

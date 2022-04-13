@@ -1,12 +1,12 @@
-matcher = window.matchMedia('(prefers-color-scheme: dark)');
-matcher.addListener(onUpdate);
-onUpdate();
+const lightIcon = document.getElementById('light-icon');
+const darkIcon = document.getElementById('dark-icon');
 
-lightIcon = document.querySelector('link#light-icon');
-darkIcon = document.querySelector('link#dark-icon');
+const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+matcher.addEventListener('change', event => changeTheme(event.matches ? 'dark' : 'light'));
+changeTheme(matcher.matches ? 'dark' : 'light');
 
-function onUpdate() {
-  if (matcher.matches) {
+function changeTheme(theme) {
+  if (theme === 'dark') {
     lightIcon.remove();
     document.head.append(darkIcon);
   }
