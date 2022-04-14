@@ -1,3 +1,4 @@
+const prevOnLoad1 = window.onload;
 window.onload = () => {
   for (const el of document.getElementsByClassName('typewrite-words')) {
     const states = [];
@@ -23,11 +24,12 @@ window.onload = () => {
     };
     write();
   }
-
+  
   for (const el of document.getElementsByClassName('typewrite-word')) {
     const word = el.getAttribute('data-word');
     el.innerHTML = `<span></span><span>${word}</span>`;
   }
+  prevOnLoad1();
 };
 
 let wrote = false;

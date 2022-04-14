@@ -1,6 +1,8 @@
 .welcome {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10rem;
   padding: 4.3rem 3rem;
 }
 
@@ -59,4 +61,29 @@
 
 .sign a {
   color: var(--black);
+}
+
+#photos {
+  display: flex;
+  gap: 30px;
+}
+
+#photos > div {
+  height: 570px;
+  overflow-y: hidden;
+}
+
+#photos > div > div {
+  margin-bottom: 30px;
+  width: 100px;
+  height: 160px;
+  border-radius: .25rem;
+}
+
+#photos > div.reversed {
+  transform: rotate(180deg);
+}
+
+#photos > div.reversed > div {
+  transform: rotate(180deg);
 }
