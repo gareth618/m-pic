@@ -50,19 +50,20 @@ nav:focus-within ul {
 }
 
 main {
-  display: block;
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding: 3rem;
   color: var(--text);
 }
 
-main .profile {
+main > div {
   width: 150px;
   text-align: center;
-  padding: .8rem;
+  padding: 1rem;
   background: var(--darker-bg);
-  border: 1px solid var(--text);
-  border-radius: 3px;
+  border: 1px solid var(--black);
+  border-radius: .5rem;
 }
 
 main .fa-brands {
@@ -76,18 +77,29 @@ main h3 {
   margin: 0;
 }
 
-main .status {
+.status {
   display: flex;
   justify-content: space-around;
 }
 
-main .status p {
-  font-size: 1.2rem;
-  line-height: .8;
-  margin: 0;
+.status div {
+  position: relative;
+  height: 3.2rem;
+  margin-top: .2rem;
 }
 
-main .status i {
+.status p {
+  position: absolute;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: .8;
+  margin: 0;
+  top: 1.6rem;
+  left: -1rem;
+  right: -1rem;
+}
+
+.status i {
   font-size: 1rem;
   color: var(--text);
 }
@@ -95,7 +107,6 @@ main .status i {
 .buttons {
   display: flex;
   justify-content: space-around;
-  margin-top: .5rem;
 }
 
 .buttons button {
@@ -108,7 +119,7 @@ main .status i {
 .buttons .edit {
   color: var(--black);
   background: var(--pink);
-  border: 1px solid var(--darker-bg);
+  border: 1px solid var(--edit-border);
   border-radius: 100vh;
 }
 

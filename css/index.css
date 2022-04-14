@@ -21,6 +21,7 @@
     --darker-bg: var(--light-white);
     --description-words: var(--light-purple);
     --profile-brands: var(--light-black);
+    --edit-border: var(--light-black);
     --pink: var(--light-pink);
     --black: var(--light-black);
   }
@@ -34,6 +35,7 @@
     --darker-bg: var(--dark-black);
     --description-words: var(--dark-pink);
     --profile-brands: var(--dark-purple);
+    --edit-border: var(--dark-pink);
     --pink: var(--dark-pink);
     --black: var(--dark-black);
   }
