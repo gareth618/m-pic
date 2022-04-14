@@ -22,6 +22,7 @@
     --description-words: var(--light-purple);
     --profile-brands: var(--light-black);
     --edit-border: var(--light-black);
+    --sign-out: var(--light-purple);
     --pink: var(--light-pink);
     --black: var(--light-black);
   }
@@ -36,6 +37,7 @@
     --description-words: var(--dark-pink);
     --profile-brands: var(--dark-purple);
     --edit-border: var(--dark-pink);
+    --sign-out: var(--dark-purple);
     --pink: var(--dark-pink);
     --black: var(--dark-black);
   }
@@ -70,7 +72,7 @@ h4,
 h5,
 h6 {
   line-height: 1.2;
-  font-weight: normal; 
+  font-weight: normal;
 }
 
 body {
@@ -116,5 +118,11 @@ i {
 
 ::-webkit-scrollbar-thumb {
   background: var(--pink);
-  border-radius: 100vh;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
 }
