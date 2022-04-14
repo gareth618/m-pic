@@ -109,3 +109,12 @@ img {
 i {
   color: var(--black);
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pink);
+  border-radius: 100vh;
+}

@@ -7,7 +7,8 @@ window.onload = () => {
     }
     const scroll = () => {
       column.scrollTop++;
-      if (column.scrollTop % 190 === 0) {
+      const height = column.children[0].clientHeight;
+      if (column.scrollTop % Math.floor(height + height / 7) === 0) {
         column.appendChild(column.children[0].cloneNode());
         column.removeChild(column.children[0]);
       }
@@ -15,5 +16,7 @@ window.onload = () => {
     };
     scroll();
   });
-  prevOnLoad2();
+  if (prevOnLoad2 != null) {
+    prevOnLoad2();
+  }
 };

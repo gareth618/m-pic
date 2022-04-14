@@ -24,19 +24,21 @@ window.onload = () => {
     };
     write();
   }
-  
+
   for (const el of document.getElementsByClassName('typewrite-word')) {
     const word = el.getAttribute('data-word');
     el.innerHTML = `<span></span><span>${word}</span>`;
   }
-  prevOnLoad1();
+  if (prevOnLoad1 != null) {
+    prevOnLoad1();
+  }
 };
 
 let wrote = false;
 
 window.onscroll = () => {
-  if (!wrote && document.getElementById('description').getBoundingClientRect().top < 0) {
-    let delay = 500;
+  if (!wrote && document.getElementById('sign').getBoundingClientRect().top < 0) {
+    let delta = 500;
     for (const el of document.getElementsByClassName('typewrite-word')) {
       const word = el.getAttribute('data-word');
       for (let i = 1; i <= word.length; i++) {
@@ -44,10 +46,10 @@ window.onscroll = () => {
           el.innerHTML
             = `<span>${word.substring(0, i)}</span>`
             + `<span>${word.substring(i)}</span>`;
-        }, delay);
-        delay += 100;
+        }, delta);
+        delta += 100;
       }
-      delay += 500;
+      delta += 500;
     }
     wrote = true;
   }
