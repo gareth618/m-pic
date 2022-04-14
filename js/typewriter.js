@@ -8,11 +8,12 @@ window.onload = () => {
         delta /= 1.25;
       }
       states.push([word, 3000]);
-      for (let i = word.length; i >= 0; i--) {
+      for (let i = word.length; i >= 1; i--) {
         states.push([word.substring(0, i), 100]);
       }
       states.push(['', 500]);
     }
+
     let index = 0;
     const write = () => {
       const [text, delta] = states[index];
@@ -21,6 +22,11 @@ window.onload = () => {
       setTimeout(write, delta);
     };
     write();
+  }
+
+  for (const el of document.getElementsByClassName('typewrite-word')) {
+    const word = el.getAttribute('data-word');
+    el.innerHTML = `<span></span><span>${word}</span>`;
   }
 };
 
