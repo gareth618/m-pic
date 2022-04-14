@@ -18,8 +18,9 @@
     --text: var(--light-black);
     --white-text: var(--light-white);
     --background: var(--white);
-    --description-bg: var(--light-white);
+    --darker-bg: var(--light-white);
     --description-words: var(--light-purple);
+    --profile-brands: var(--light-black);
     --pink: var(--light-pink);
     --black: var(--light-black);
   }
@@ -30,8 +31,9 @@
     --text: var(--white);
     --white-text: var(--white);
     --background: var(--dark-blue);
-    --description-bg: var(--dark-black);
+    --darker-bg: var(--dark-black);
     --description-words: var(--dark-pink);
+    --profile-brands: var(--dark-purple);
     --pink: var(--dark-pink);
     --black: var(--dark-black);
   }
