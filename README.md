@@ -24,21 +24,4 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 
 the design is available on [figma](https://www.figma.com/file/FPE0X6J8mfUDaEQ6Sg8xH9/web)
 
-```html
-<i class="fa-solid fa-envelope"></i>
-<i class="fa-brands fa-facebook"></i>
-<i class="fa-solid fa-user-large"></i>
-<i class="fa-brands fa-instagram"></i>
-<i class="fa-solid fa-lock"></i>
-<i class="fa-solid fa-image"></i>
-<i class="fa-solid fa-star"></i>
-<i class="fa-brands fa-reddit-alien"></i>
-<i class="fa-solid fa-square-xmark"></i>
-<i class="fa-solid fa-square-check"></i>
-<i class="fa-solid fa-heart"></i>
-<i class="fa-solid fa-arrow-right-arrow-left"></i>
-<i class="fa-brands fa-twitter"></i>
-<i class="fa-brands fa-unsplash"></i>
-```
-
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6360b353-ce76-4a7c-a391-939a84fa2b8f/deploy-status)](https://m-pic.netlify.app/html/sign-in.html)
