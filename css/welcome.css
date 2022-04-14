@@ -89,7 +89,18 @@
   transform: rotate(180deg);
 }
 
+.sign-up #sign {
+  margin: 0;
+}
+
+.sign-up #photos > div {
+  height: 100vh;
+}
+
 @media (max-width: 1000px) {
+  .sign-up #sign {
+    margin: 3rem 0;
+  }
   #photos {
     display: none;
   }
