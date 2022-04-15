@@ -1,8 +1,7 @@
 .welcome {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: min(8%, 8rem);
 }
 
 .sign {
@@ -70,14 +69,20 @@
   height: clamp(700px, 100vh, 1000px);
   overflow-y: hidden;
   outline: none;
+  border-radius: .25rem;
+  transition: transform .3s;
 }
 
-#photos > div.reversed {
-  transform: rotate(180deg);
+#photos > div:nth-child(1):hover {
+  transform: rotateX(+45deg) rotateY(30deg);
 }
 
-#photos > div.reversed > * {
-  transform: rotate(180deg);
+#photos > div:nth-child(2):hover {
+  transform: rotateX(0) rotateY(30deg);
+}
+
+#photos > div:nth-child(3):hover {
+  transform: rotateX(-45deg) rotateY(30deg);
 }
 
 #photos > div > * {
@@ -89,13 +94,34 @@
 
 #photos > div > img {
   object-fit: cover;
+  user-select: none;
+}
+
+@media (min-width: 1500px) {
+  .welcome {
+    gap: 8rem;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 1000px) {
+  #photos > div:nth-child(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  #photos > div:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  #photos > div:nth-child(1) {
+    display: none;
+  }
   .welcome {
     padding: 4.3rem 3rem;
-  }
-  #photos {
-    display: none;
+    justify-content: center;
   }
 }

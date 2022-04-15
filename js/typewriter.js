@@ -51,7 +51,7 @@ let doneWord = false;
 
 function checkScrolled() {
   if (doneWord) return;
-  if (document.getElementById('description').getBoundingClientRect().top > window.innerHeight - 200) return;
+  if (document.getElementById('description').getBoundingClientRect().bottom > window.innerHeight + 100) return;
   animateWord();
   doneWord = true;
 }

@@ -96,6 +96,9 @@
   .right {
     display: none;
   }
+}
+
+@media (max-width: 600px) {
   #description::before {
     background: var(--background);
   }
