@@ -1,34 +1,34 @@
-.description {
+#description {
   display: flex;
   justify-content: center;
   padding: 4.3rem 3rem;
-  background: var(--darker-bg);
   position: relative;
+  background: var(--darker-bg);
 }
 
-.description::before {
+#description::before {
   content: '';
-  width: 100%;
-  height: 4rem;
   display: block;
   position: absolute;
-  background: linear-gradient(to top, var(--background), transparent);
   top: -4rem;
+  width: 100%;
+  height: 4rem;
+  background: linear-gradient(to top, var(--background), transparent);
 }
 
-.description h1,
-.description ul {
+#description h1,
+#description ul {
   margin: 0;
   font-size: 6rem;
   line-height: 1.3;
 }
 
-.description p {
+#description p {
   font-size: 2.15rem;
   line-height: 1.2;
 }
 
-.description p:last-child {
+#description p:last-child {
   margin-bottom: 0;
 }
 
@@ -95,5 +95,8 @@
   }
   .right {
     display: none;
+  }
+  #description::before {
+    background: var(--background);
   }
 }

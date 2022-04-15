@@ -7,8 +7,8 @@
     <meta name="description" content="an aggregator-type app for photos stored in various photo-sharing platforms">
 
     <title>M-PIC | sign in</title>
-    <link rel="icon" href="../assets/favicon-light.ico" id="light-icon">
-    <link rel="icon" href="../assets/favicon-dark.ico" id="dark-icon">
+    <link rel="icon" href="../assets/favicons/light.ico" id="light-icon">
+    <link rel="icon" href="../assets/favicons/dark.ico" id="dark-icon">
 
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/welcome.css">
@@ -24,7 +24,7 @@
 
   <body>
     <section class="welcome">
-      <div id="sign">
+      <div class="sign">
         <h1>M-PIC</h1>
         <form>
           <h2>sign in</h2>
@@ -45,8 +45,8 @@
             </div>
             <div>
               <div></div>
-              <div><label for="remember-me">remember me</label></div>
-              <i id="checkbox" class="fa-solid fa-square-xmark" tabindex="0" onclick="toggleChecked()" onkeypress="toggleChecked(event)"></i>
+              <div><label>remember me</label></div>
+              <i tabindex="0" id="checkbox" class="fa-solid fa-square-xmark" onclick="toggleChecked()" onkeypress="toggleChecked(event)"></i>
               <div></div>
             </div>
           </div>
@@ -56,44 +56,44 @@
       </div>
 
       <div id="photos">
-        <div>
-          <img src="../assets/photos/butterfly.webp" alt="butterfly">
-          <img src="../assets/photos/yellow-flower.webp" alt="yellow-flower">
-          <img src="../assets/photos/cat.webp" alt="cat">
+        <div tabindex="-1">
+          <img draggable="false" src="../assets/photos/butterfly.webp" alt="butterfly">
+          <img draggable="false" src="../assets/photos/yellow-flower.webp" alt="yellow flower">
+          <img draggable="false" src="../assets/photos/cat.webp" alt="cat">
           <div style="background: var(--white-text)"></div>
-          <img src="../assets/photos/landscape-blue.webp" alt="landscape-blue">
-          <img src="../assets/photos/snail-on-flower.webp" alt="snail-on-flower" style="object-position: -65px center;">
-          <img src="../assets/photos/duck-standing.webp" alt="duck-standing" style="object-position: -100px center;">
+          <img draggable="false" src="../assets/photos/landscape-blue.webp" alt="landscape blue">
+          <img draggable="false" src="../assets/photos/snail-on-flower.webp" alt="snail on flower" style="object-position: -65px center">
+          <img draggable="false" src="../assets/photos/duck-standing.webp" alt="duck standing" style="object-position: -100px center">
           <div style="background: var(--black)"></div>
-          <img src="../assets/photos/green-leaves.webp" alt="green-leaves">
-          <img src="../assets/photos/bench.webp" alt="bench">
-          <img src="../assets/photos/light-heart.webp" alt="light-heart">
+          <img draggable="false" src="../assets/photos/green-leaves.webp" alt="green leaves">
+          <img draggable="false" src="../assets/photos/bench.webp" alt="bench">
+          <img draggable="false" src="../assets/photos/light-heart.webp" alt="light heart">
           <div style="background: var(--pink)"></div>
         </div>
-        <div>
-          <img src="../assets/photos/heart-drawing.webp" alt="heart-drawing" style="object-position: -108px center;">
-          <img src="../assets/photos/street-lights.webp" alt="street-lights">
-          <img src="../assets/photos/ship-on-water.webp" alt="ship-on-water" style="object-position: -80px center;">
+        <div tabindex="-1">
+          <img draggable="false" src="../assets/photos/heart-drawing.webp" alt="heart drawing" style="object-position: -108px center">
+          <img draggable="false" src="../assets/photos/street-lights.webp" alt="street lights">
+          <img draggable="false" src="../assets/photos/ship-on-water.webp" alt="ship on water" style="object-position: -80px center">
           <div style="background: var(--purple)"></div>
-          <img src="../assets/photos/flowers-in-hair.webp" alt="flowers-in-hair" style="object-position: -50px center;">
-          <img src="../assets/photos/landscape.webp" alt="landscape" style="object-position: -30px center;">
-          <img src="../assets/photos/red-cloud-and-tower.webp" alt="red-cloud-and-tower">
+          <img draggable="false" src="../assets/photos/flowers-in-hair.webp" alt="flowers in hair" style="object-position: -50px center">
+          <img draggable="false" src="../assets/photos/landscape.webp" alt="landscape" style="object-position: -30px center">
+          <img draggable="false" src="../assets/photos/red-cloud-and-tower.webp" alt="red cloud and tower">
           <div style="background: var(--black)"></div>
         </div>
-        <div>
-          <img src="../assets/photos/duck-swimming.webp" alt="duck-swimming" style="object-position: -80px center;">
-          <img src="../assets/photos/waterfall.webp" alt="waterfall">
-          <img src="../assets/photos/orange-butterfly.webp" alt="orange-butterfly">
+        <div tabindex="-1">
+          <img draggable="false" src="../assets/photos/duck-swimming.webp" alt="duck swimming" style="object-position: -80px center">
+          <img draggable="false" src="../assets/photos/waterfall.webp" alt="waterfall">
+          <img draggable="false" src="../assets/photos/orange-butterfly.webp" alt="orange butterfly">
           <div style="background: var(--pink)"></div>
-          <img src="../assets/photos/copou-sunset.webp" alt="copou-sunset" style="object-position: -125px center;">
-          <img src="../assets/photos/lights.webp" alt="lights" style="object-position: -42px center;">
-          <img src="../assets/photos/cave.webp" alt="cave">
+          <img draggable="false" src="../assets/photos/copou-sunset.webp" alt="copou sunset" style="object-position: -125px center">
+          <img draggable="false" src="../assets/photos/lights.webp" alt="lights" style="object-position: -42px center">
+          <img draggable="false" src="../assets/photos/cave.webp" alt="cave">
           <div style="background: var(--grey)"></div>
         </div>
       </div>
     </section>
 
-    <section class="description">
+    <section id="description">
       <div class="left">
         <h1>M-PIC is about</h1>
         <h1 class="typewrite-words" data-words="memories, friendship, exploration, sharing, life"></h1>

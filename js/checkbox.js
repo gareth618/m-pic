@@ -16,7 +16,5 @@ function toggleChecked(event) {
   setTimeout(() => {
     checkbox.remove('fa-shake');
   }, 500);
-  if (event != null) {
-    event.preventDefault();
-  }
+  event?.preventDefault();
 }

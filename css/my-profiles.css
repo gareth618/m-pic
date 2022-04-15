@@ -46,7 +46,7 @@ nav button {
   border: 1px solid var(--black);
   border-radius: 100vh;
   padding: .2rem 1.5rem;
-  z-index: 20;
+  z-index: 2;
   position: absolute;
   left: 0;
   right: 0;
@@ -60,7 +60,7 @@ nav ul {
   right: 0;
   margin: 0;
   padding: 1.2rem 0 .2rem 0;
-  z-index: 10;
+  z-index: 1;
   visibility: hidden;
   background: var(--darker-bg);
   border: 1px solid var(--black);

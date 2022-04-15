@@ -1,11 +1,7 @@
-const matcher = window.matchMedia('(prefers-color-scheme: dark)');
-matcher.addEventListener('change', event => changeTheme(event.matches ? 'dark' : 'light'));
-changeTheme(matcher.matches ? 'dark' : 'light');
-
-function changeTheme(theme) {
+function changeTheme(dark) {
   const lightIcon = document.getElementById('light-icon');
   const darkIcon = document.getElementById('dark-icon');
-  if (theme === 'dark') {
+  if (dark) {
     lightIcon.remove();
     document.head.append(darkIcon);
   }
@@ -14,3 +10,7 @@ function changeTheme(theme) {
     darkIcon.remove();
   }
 }
+
+const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+changeTheme(matcher.matches);
+matcher.addEventListener('change', event => changeTheme(event.matches));

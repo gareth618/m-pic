@@ -1,5 +1,27 @@
-const prevOnLoad1 = window.onload;
-window.onload = () => {
+function initWord() {
+  for (const el of document.getElementsByClassName('typewrite-word')) {
+    const word = el.getAttribute('data-word');
+    el.innerHTML = `<span></span><span>${word}</span>`;
+  }
+}
+
+function animateWord() {
+  let delta = 500;
+  for (const el of document.getElementsByClassName('typewrite-word')) {
+    const word = el.getAttribute('data-word');
+    for (let i = 1; i <= word.length; i++) {
+      setTimeout(() => {
+        el.innerHTML
+          = `<span>${word.substring(0, i)}</span>`
+          + `<span>${word.substring(i)}</span>`;
+      }, delta);
+      delta += 100;
+    }
+    delta += 500;
+  }
+}
+
+function animateWords() {
   for (const el of document.getElementsByClassName('typewrite-words')) {
     const states = [];
     for (const word of el.getAttribute('data-words').split(', ')) {
@@ -14,7 +36,6 @@ window.onload = () => {
       }
       states.push(['', 500]);
     }
-
     let index = 0;
     const write = () => {
       const [text, delta] = states[index];
@@ -24,33 +45,27 @@ window.onload = () => {
     };
     write();
   }
+}
 
-  for (const el of document.getElementsByClassName('typewrite-word')) {
-    const word = el.getAttribute('data-word');
-    el.innerHTML = `<span></span><span>${word}</span>`;
-  }
-  if (prevOnLoad1 != null) {
-    prevOnLoad1();
-  }
+let doneWord = false;
+
+function checkScrolled() {
+  if (doneWord) return;
+  if (document.getElementById('description').getBoundingClientRect().top > window.innerHeight - 200) return;
+  animateWord();
+  doneWord = true;
+}
+
+const onloadTypewriterJS = window.onload || (() => { });
+window.onload = () => {
+  animateWords();
+  initWord();
+  checkScrolled();
+  onloadTypewriterJS();
 };
 
-let wrote = false;
-
+const onscrollTypewriterJS = window.onscroll || (() => { });
 window.onscroll = () => {
-  if (!wrote && document.getElementById('sign').getBoundingClientRect().top < 0) {
-    let delta = 500;
-    for (const el of document.getElementsByClassName('typewrite-word')) {
-      const word = el.getAttribute('data-word');
-      for (let i = 1; i <= word.length; i++) {
-        setTimeout(() => {
-          el.innerHTML
-            = `<span>${word.substring(0, i)}</span>`
-            + `<span>${word.substring(i)}</span>`;
-        }, delta);
-        delta += 100;
-      }
-      delta += 500;
-    }
-    wrote = true;
-  }
+  checkScrolled();
+  onscrollTypewriterJS();
 };

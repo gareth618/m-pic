@@ -51,10 +51,6 @@
 }
 
 *:not(input):focus {
-  outline: none;
-}
-
-*:not(input):focus-visible {
   outline: 1px dotted var(--black);
   outline-offset: .1rem;
 }
@@ -62,9 +58,9 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
   line-height: 1.618;
   font-family: 'Zen Loop', cursive;
-  color: var(--text);
 }
 
 h1,
@@ -91,8 +87,8 @@ button {
   cursor: pointer;
 }
 
-label,
 input,
+label,
 button {
   display: block;
   padding: 0;
@@ -103,7 +99,8 @@ button {
 }
 
 input::placeholder {
-  color: var(--black);
+  opacity: 1;
+  color: inherit;
 }
 
 img {
@@ -115,16 +112,21 @@ i {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--pink);
 }
 
+::-webkit-scrollbar-corner {
+  background: none;
+}
+
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
-  -webkit-appearance:none;
+  -webkit-appearance: none;
 }
