@@ -74,6 +74,11 @@
   overflow-y: hidden;
 }
 
+#photos img {
+  object-fit: cover;
+}
+
+#photos img,
 #photos > div > div {
   margin-bottom: 30px;
   width: 150px;
@@ -85,7 +90,7 @@
   transform: rotate(180deg);
 }
 
-#photos > div.reversed > div {
+#photos > div.reversed > img {
   transform: rotate(180deg);
 }
 

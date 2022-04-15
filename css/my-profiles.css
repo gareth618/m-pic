@@ -76,7 +76,7 @@ nav li {
 }
 
 nav li:last-child {
-  color: var(--sign-out);
+  color: var(--purple);
 }
 
 nav:focus-within ul {

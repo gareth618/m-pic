@@ -22,8 +22,9 @@
     --description-words: var(--light-purple);
     --profile-brands: var(--light-black);
     --edit-border: var(--light-black);
-    --sign-out: var(--light-purple);
     --pink: var(--light-pink);
+    --purple: var(--light-purple);
+    --grey: var(--light-grey);
     --black: var(--light-black);
   }
 }
@@ -37,8 +38,9 @@
     --description-words: var(--dark-pink);
     --profile-brands: var(--dark-purple);
     --edit-border: var(--dark-pink);
-    --sign-out: var(--dark-purple);
     --pink: var(--dark-pink);
+    --purple: var(--dark-purple);
+    --grey: var(--dark-purple);
     --black: var(--dark-black);
   }
 }
