@@ -7,16 +7,109 @@
     <meta name="description" content="an aggregator-type app for photos stored in various photo-sharing platforms">
 
     <title>M-PIC | my photos</title>
-    <link rel="icon" id="favicon">
+    <link rel="icon" href="../assets/favicons/light.ico" id="favicon">
 
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/my-photos.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/snake.css">
 
     <script src="https://kit.fontawesome.com/c225e559b0.js" crossorigin="anonymous" defer></script>
     <script src="../js/favicon.js" defer></script>
+    <script src="../js/buttons.js" defer></script>
   </head>
 
-  <body>
-    my photos
-  </body>
+  <header>
+    <div>
+      <h1 class="fixed">M-PIC</h1>
+      <button class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
+      <input type="search" placeholder="search">
+      <nav>
+        <button class="fixed" onclick="onClickBtn('menu')">me</button>
+        <div id="menu">
+          <ul>
+            <li><a href="my-profiles.html">my profiles</a></li>
+            <li><a href="sign-in.html">sign out</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <aside id="aside">
+    <h2>my photos</h2>
+    <div class="snake">
+      <div>
+        <div></div>
+        <div><button onclick="onClick(event)">all</button></div>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star fa-bounce"></i>
+        <div></div>
+      </div>
+      <div>
+        <div></div>
+        <div><button onclick="onClick(event)">facebook</button></div>
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-facebook fa-bounce"></i>
+        <div></div>
+      </div>
+      <div>
+        <div></div>
+        <div><button onclick="onClick(event)">instagram</button></div>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-instagram fa-bounce"></i>
+        <div></div>
+      </div>
+      <div>
+        <div></div>
+        <div><button onclick="onClick(event)">twitter</button></div>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-twitter fa-bounce"></i>
+        <div></div>
+      </div>
+      <div>
+        <div></div>
+        <div><button onclick="onClick(event)">reddit</button></div>
+        <i class="fa-brands fa-reddit-alien"></i>
+        <i class="fa-brands fa-reddit-alien fa-bounce"></i>
+        <div></div>
+      </div>
+      <div>
+        <div></div>
+        <div><button onclick="onClick(event)">unsplash</button></div>
+        <i class="fa-brands fa-unsplash"></i>
+        <i class="fa-brands fa-unsplash fa-bounce"></i>
+        <div></div>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <img alt="photo" width="100px" src="../assets/photos/butterfly.webp">
+    <img alt="photo" width="50px" src="../assets/photos/yellow-flower.webp">
+    <img alt="photo" width="100px" src="../assets/photos/cat.webp">
+    <img alt="photo" width="150px" src="../assets/photos/landscape-blue.webp">
+    <img alt="photo" width="50px" src="../assets/photos/snail-on-flower.webp">
+    <img alt="photo" width="250px" src="../assets/photos/duck-standing.webp">
+    <img alt="photo" width="100px" src="../assets/photos/green-leaves.webp">
+    <img alt="photo" width="200px" src="../assets/photos/bench.webp">
+    <img alt="photo" width="100px" src="../assets/photos/light-heart.webp">
+    <img alt="photo" width="100px" src="../assets/photos/butterfly.webp">
+    <img alt="photo" width="50px" src="../assets/photos/yellow-flower.webp">
+    <img alt="photo" width="100px" src="../assets/photos/cat.webp">
+    <img alt="photo" width="150px" src="../assets/photos/landscape-blue.webp">
+    <img alt="photo" width="50px" src="../assets/photos/snail-on-flower.webp">
+    <img alt="photo" width="250px" src="../assets/photos/duck-standing.webp">
+    <img alt="photo" width="100px" src="../assets/photos/green-leaves.webp">
+    <img alt="photo" width="200px" src="../assets/photos/bench.webp">
+    <img alt="photo" width="100px" src="../assets/photos/light-heart.webp">
+    <img alt="photo" width="100px" src="../assets/photos/butterfly.webp">
+    <img alt="photo" width="50px" src="../assets/photos/yellow-flower.webp">
+    <img alt="photo" width="100px" src="../assets/photos/cat.webp">
+    <img alt="photo" width="150px" src="../assets/photos/landscape-blue.webp">
+    <img alt="photo" width="50px" src="../assets/photos/snail-on-flower.webp">
+    <img alt="photo" width="250px" src="../assets/photos/duck-standing.webp">
+    <img alt="photo" width="100px" src="../assets/photos/green-leaves.webp">
+    <img alt="photo" width="200px" src="../assets/photos/bench.webp">
+    <img alt="photo" width="100px" src="../assets/photos/light-heart.webp">
+  </main>
 </html>

@@ -90,7 +90,8 @@ nav div {
   height: 0;
   overflow: hidden;
   border-radius: 0 0 .25rem .25rem;
-  transition: height .3s;
+  transition-duration: .3s;
+  transition-property: height, visibility;
 }
 
 nav div.active {
@@ -152,6 +153,15 @@ main {
   margin-left: var(--aside-width);
   padding: 0 3rem 3rem 3rem;
   color: var(--text);
+}
+
+main:not(#profiles) {
+  gap: 1rem;
+}
+
+main img {
+  height: 200px;
+  border-radius: .25rem;
 }
 
 main > div {
