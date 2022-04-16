@@ -17,6 +17,7 @@
     <script src="https://kit.fontawesome.com/c225e559b0.js" crossorigin="anonymous" defer></script>
     <script src="../js/favicon.js" defer></script>
     <script src="../js/profiles.js" defer></script>
+    <script src="../js/buttons.js" defer></script>
   </head>
 
   <body>
@@ -27,11 +28,13 @@
         </h1>
         <input type="search" placeholder="search">
         <nav>
-          <button class="fixed">me</button>
-          <ul>
-            <li><a href="my-photos.html">my photos</a></li>
-            <li><a href="#">sign out</a></li>
-          </ul>
+          <button id="me" class="fixed" onclick="onClickMe()">me</button>
+          <div id="menu">
+            <ul>
+              <li><a href="my-photos.html">my photos</a></li>
+              <li><a href="#">sign out</a></li>
+            </ul>
+          </div>
         </nav>
       </div>
     </header>
@@ -41,42 +44,42 @@
       <div class="snake">
         <div>
           <div></div>
-          <div><button>all</button></div>
+          <div><button onclick="onClick(event)">all</button></div>
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star fa-bounce"></i>
           <div></div>
         </div>
         <div>
           <div></div>
-          <div><button>facebook</button></div>
+          <div><button onclick="onClick(event)">facebook</button></div>
           <i class="fa-brands fa-facebook"></i>
           <i class="fa-brands fa-facebook fa-bounce"></i>
           <div></div>
         </div>
         <div>
           <div></div>
-          <div><button>instagram</button></div>
+          <div><button onclick="onClick(event)">instagram</button></div>
           <i class="fa-brands fa-instagram"></i>
           <i class="fa-brands fa-instagram fa-bounce"></i>
           <div></div>
         </div>
         <div>
           <div></div>
-          <div><button>twitter</button></div>
+          <div><button onclick="onClick(event)">twitter</button></div>
           <i class="fa-brands fa-twitter"></i>
           <i class="fa-brands fa-twitter fa-bounce"></i>
           <div></div>
         </div>
         <div>
           <div></div>
-          <div><button>reddit</button></div>
+          <div><button onclick="onClick(event)">reddit</button></div>
           <i class="fa-brands fa-reddit-alien"></i>
           <i class="fa-brands fa-reddit-alien fa-bounce"></i>
           <div></div>
         </div>
         <div>
           <div></div>
-          <div><button>unsplash</button></div>
+          <div><button onclick="onClick(event)">unsplash</button></div>
           <i class="fa-brands fa-unsplash"></i>
           <i class="fa-brands fa-unsplash fa-bounce"></i>
           <div></div>

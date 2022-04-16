@@ -12,7 +12,7 @@ header {
   width: 100%;
 }
 
-header div {
+header > div {
   position: relative;
   display: flex;
   justify-content: center;
@@ -69,23 +69,29 @@ nav button {
   border-radius: 100vh;
 }
 
-nav ul {
+nav div {
   position: absolute;
   top: 1.1rem;
   left: 0;
   right: 0;
   z-index: 1;
+  height: 0;
+  overflow: hidden;
+  border-radius: 0 0 .25rem .25rem;
+  transition: height .3s;
+}
+
+nav div.active {
+  height: 5rem;
+}
+
+nav ul {
   margin: 0;
   padding: 1.2rem 0 .2rem 0;
   background: var(--darker-bg);
   border: 1px solid var(--black);
   border-radius: 0 0 .25rem .25rem;
-  display: none;
   list-style-type: none;
-}
-
-nav:focus-within ul {
-  display: initial;
 }
 
 nav li {
