@@ -2,7 +2,7 @@ const onloadPhotosJS = window.onload || (() => { });
 window.onload = () => {
   const columns = [...document.getElementById('photos').children];
   columns.forEach((column, index) => {
-    column.scrollTop = 240;
+    column.scrollTop = 480;
     let offset = 0;
     const scroll = () => {
       offset = (offset + 1) % 240;

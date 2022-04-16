@@ -111,19 +111,6 @@ i {
   color: var(--black);
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--pink);
-}
-
-::-webkit-scrollbar-corner {
-  background: none;
-}
-
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,

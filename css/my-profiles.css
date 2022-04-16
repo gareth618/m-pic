@@ -8,6 +8,9 @@ header {
   width: 100%;
   color: var(--black);
   height: 3rem;
+  position: fixed;
+  top: 0;
+  z-index: 3;
 }
 
 header h1 {
@@ -81,11 +84,6 @@ nav li:last-child {
 
 nav:focus-within ul {
   visibility: visible;
-}
-
-.scrollable {
-  height: calc(100vh - 3rem);
-  overflow-y: auto;
 }
 
 main {
