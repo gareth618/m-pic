@@ -1,14 +1,5 @@
 function changeTheme(dark) {
-  const lightIcon = document.getElementById('light-icon');
-  const darkIcon = document.getElementById('dark-icon');
-  if (dark) {
-    lightIcon.remove();
-    document.head.append(darkIcon);
-  }
-  else {
-    document.head.append(lightIcon);
-    darkIcon.remove();
-  }
+  document.getElementById('favicon').href = `../assets/favicons/${dark ? 'dark' : 'light'}.ico`;
 }
 
 const matcher = window.matchMedia('(prefers-color-scheme: dark)');
