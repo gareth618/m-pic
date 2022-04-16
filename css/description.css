@@ -32,6 +32,27 @@
   margin-bottom: 0;
 }
 
+#description p span {
+  color: transparent;
+  font-weight: bold;
+  animation-name: bg;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+@keyframes bg {
+  from {
+    background-color: var(--pink);
+  }
+  to {
+    background-color: var(--purple);
+  }
+}
+
 .left {
   width: 625px;
   text-align: right;

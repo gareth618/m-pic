@@ -1,3 +1,16 @@
+.snake {
+  --snake: var(--text);
+}
+
+.fixed .snake {
+  --snake: var(--black);
+}
+
+.snake i,
+.snake button {
+  color: var(--snake);
+}
+
 .snake > div {
   display: flex;
   flex-wrap: nowrap;
@@ -15,8 +28,8 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  border-top: 1px solid var(--black);
-  border-bottom: 1px solid var(--black);
+  border-top: 1px solid var(--snake);
+  border-bottom: 1px solid var(--snake);
 }
 
 .snake > div > div:nth-child(2) > * {
@@ -48,7 +61,7 @@
 .snake > div:nth-child(odd) > div:last-child {
   width: 3.5rem;
   height: 3.2rem;
-  border: 1px solid var(--black);
+  border: 1px solid var(--snake);
   border-left: 0;
   border-top-right-radius: 100vh;
   border-bottom-right-radius: 100vh;
@@ -62,22 +75,22 @@
 .snake > div:nth-child(even) > div:first-child {
   width: 3.5rem;
   height: 3.2rem;
-  border: 1px solid var(--black);
+  border: 1px solid var(--snake);
   border-right: 0;
   border-top-left-radius: 100vh;
   border-bottom-left-radius: 100vh;
 }
 
 .snake > div:first-child > div:first-child {
-  border-top: 1px solid var(--black);
+  border-top: 1px solid var(--snake);
 }
 
 .snake > div:last-child:nth-child(odd) > div:first-child {
-  border-bottom: 1px solid var(--black);
+  border-bottom: 1px solid var(--snake);
 }
 
 .snake > div:last-child:nth-child(even) > div:last-child {
-  border-bottom: 1px solid var(--black);
+  border-bottom: 1px solid var(--snake);
 }
 
 #checkbox {

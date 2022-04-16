@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="an aggregator-type app for photos stored in various photo-sharing platforms">
 
     <title>M-PIC | my profiles</title>
@@ -20,15 +20,19 @@
 
   <body>
     <header>
-      <h1>M-PIC</h1>
-      <input type="search" placeholder="search">
-      <nav>
-        <button>me</button>
-        <ul>
-          <li><a href="my-photos.html">my photos</a></li>
-          <li><a href="#">sign out</a></li>
-        </ul>
-      </nav>
+      <div>
+        <h1 class="fixed">
+          <a href="sign-in.html">M-PIC</a>
+        </h1>
+        <input type="search" placeholder="search">
+        <nav>
+          <button class="fixed">me</button>
+          <ul>
+            <li><a href="my-photos.html">my photos</a></li>
+            <li><a href="#">sign out</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <aside>
@@ -79,73 +83,7 @@
       </div>
     </aside>
 
-    <main>
-      <div>
-        <i class="fa-brands fa-facebook"></i>
-        <h3>gareth618</h3>
-        <div class="status">
-          <div>
-            <i class="fa-solid fa-image"></i>
-            <p>13</p>
-          </div>
-          <div>
-            <i class="fa-solid fa-user-large"></i>
-            <p>6180</p>
-          </div>
-          <div>
-            <i class="fa-solid fa-heart"></i>
-            <p>31415</p>
-          </div>
-        </div>
-        <div class="buttons">
-          <button class="edit">edit</button>
-          <button class="delete">delete</button>
-        </div>
-      </div>
-      <div>
-        <i class="fa-brands fa-instagram"></i>
-        <h3>gareth618</h3>
-        <div class="status">
-          <div>
-            <i class="fa-solid fa-image"></i>
-            <p>13</p>
-          </div>
-          <div>
-            <i class="fa-solid fa-user-large"></i>
-            <p>6180</p>
-          </div>
-          <div>
-            <i class="fa-solid fa-heart"></i>
-            <p>31415</p>
-          </div>
-        </div>
-        <div class="buttons">
-          <button class="edit">edit</button>
-          <button class="delete">delete</button>
-        </div>
-      </div>
-      <div>
-        <i class="fa-brands fa-unsplash"></i>
-        <h3>gareth618</h3>
-        <div class="status">
-          <div>
-            <i class="fa-solid fa-image"></i>
-            <p>13</p>
-          </div>
-          <div>
-            <i class="fa-solid fa-user-large"></i>
-            <p>6180</p>
-          </div>
-          <div>
-            <i class="fa-solid fa-heart"></i>
-            <p>31415</p>
-          </div>
-        </div>
-        <div class="buttons">
-          <button class="edit">edit</button>
-          <button class="delete">delete</button>
-        </div>
-      </div>
+    <main id="profiles">
     </main>
   </body>
 </html>

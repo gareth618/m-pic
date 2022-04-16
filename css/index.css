@@ -51,7 +51,17 @@
 }
 
 *:not(input):focus {
-  outline: 1px dotted var(--black);
+  outline: 2px dotted var(--text);
+  outline-offset: .1rem;
+}
+
+.fixed:not(input):focus {
+  outline: 2px dotted var(--black);
+  outline-offset: .1rem;
+}
+
+.fixed *:not(input):focus {
+  outline: 2px dotted var(--black);
   outline-offset: .1rem;
 }
 
