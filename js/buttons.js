@@ -1,5 +1,5 @@
-function onClickMe() {
-  document.getElementById('menu').classList.toggle('active');
+function onClickBtn(id) {
+  document.getElementById(id).classList.toggle('active');
 }
 
 function onClick(event) {

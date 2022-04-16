@@ -1,7 +1,7 @@
 body {
   --header-height: 3rem;
   --title-height: 6rem;
-  --aside-width: 300px;
+  --aside-width: min(300px, 100%);
   --padding: min(5%, 2rem);
 }
 
@@ -24,12 +24,23 @@ header > div {
   border-bottom: 1.5px solid var(--black);
 }
 
-header h1 {
+header > div > h1,
+header > div > button {
   position: absolute;
   left: var(--padding);
   margin: 0;
+  width: fit-content;
   font-size: 2rem;
   white-space: nowrap;
+  background: none;
+}
+
+header > div > h1 {
+  cursor: default;
+}
+
+header > div > button {
+  display: none;
 }
 
 header input {
@@ -75,6 +86,7 @@ nav div {
   left: 0;
   right: 0;
   z-index: 1;
+  visibility: hidden;
   height: 0;
   overflow: hidden;
   border-radius: 0 0 .25rem .25rem;
@@ -82,6 +94,7 @@ nav div {
 }
 
 nav div.active {
+  visibility: visible;
   height: 5rem;
 }
 
@@ -117,6 +130,7 @@ aside {
   padding: 0 var(--padding);
   width: var(--aside-width);
   height: 100%;
+  background: var(--background);
 }
 
 aside h2 {
@@ -161,15 +175,15 @@ main .fa-brands {
   transition: transform 1s;
 }
 
-main > div:hover {
+main > div:is(:hover, :focus-within) {
   transform: scale(1.1);
 }
 
-main > div:hover .fa-brands {
+main > div:is(:hover, :focus-within) .fa-brands {
   transform: rotate(360deg);
 }
 
-main > div:hover .fa-solid {
+main > div:is(:hover, :focus-within) .fa-solid {
   color: var(--profile-brands);
 }
 
@@ -230,4 +244,30 @@ main h3 {
   color: var(--text);
   background: var(--darker-bg);
   border: 1px solid var(--text);
+}
+
+@media (max-width: 550px) {
+  header::after {
+    display: none;
+  }
+  header > div > button {
+    display: initial;
+  }
+  header > div > h1 {
+    display: none;
+  }
+  aside {
+    left: calc(var(--aside-width) * -1);
+    background: linear-gradient(to right, var(--darker-bg), var(--background));
+    border-right: 1px solid var(--black);
+    transition: left .3s;
+  }
+  aside.active {
+    left: 0;
+  }
+  main {
+    gap: 1rem;
+    padding: 1rem;
+    margin: var(--header-height) 0 0 0;
+  }
 }

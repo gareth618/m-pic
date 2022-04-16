@@ -23,23 +23,22 @@
   <body>
     <header>
       <div>
-        <h1 class="fixed">
-          <a href="sign-in.html">M-PIC</a>
-        </h1>
+        <h1 class="fixed">M-PIC</h1>
+        <button class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
         <input type="search" placeholder="search">
         <nav>
-          <button id="me" class="fixed" onclick="onClickMe()">me</button>
+          <button class="fixed" onclick="onClickBtn('menu')">me</button>
           <div id="menu">
             <ul>
               <li><a href="my-photos.html">my photos</a></li>
-              <li><a href="#">sign out</a></li>
+              <li><a href="sign-in.html">sign out</a></li>
             </ul>
           </div>
         </nav>
       </div>
     </header>
 
-    <aside>
+    <aside id="aside">
       <h2>my profiles</h2>
       <div class="snake">
         <div>
