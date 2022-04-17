@@ -35,7 +35,7 @@ window.onload = () => {
         </div>
       </div>
     `;
-  }
+  };
   document.getElementById('profiles').innerHTML = html;
   onloadProfilesJS();
 };

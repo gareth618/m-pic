@@ -85,14 +85,15 @@
   transform: rotateX(-45deg) rotateY(30deg);
 }
 
-#photos > div > * {
+#photos > div div,
+#photos > div img {
   margin-bottom: 30px;
   width: 150px;
   height: 210px;
   border-radius: .25rem;
 }
 
-#photos > div > img {
+#photos > div img {
   object-fit: cover;
   user-select: none;
 }
