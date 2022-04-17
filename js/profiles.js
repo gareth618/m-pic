@@ -30,7 +30,7 @@ window.onload = () => {
           </div>
         </div>
         <div class="buttons">
-          <button class="edit">edit</button>
+          <button class="view">view</button>
           <button class="delete">delete</button>
         </div>
       </div>

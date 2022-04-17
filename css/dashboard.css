@@ -244,7 +244,7 @@ main h3 {
   border-radius: 100vh;
 }
 
-.edit {
+.view {
   color: var(--black);
   background: var(--pink);
   border: 1px solid var(--edit-border);
