@@ -31,13 +31,7 @@
           value: !0
       });
       var a = {
-          NYT: '\n  <dd property="schema:citation" typeof="schema:ScholarlyArticle"\n      resource="http://www.scribd.com/doc/224608514/The-Full-New-York-Times-Innovation-Report">\n    <cite property="schema:name"><a href="http://www.scribd.com/doc/224608514/The-Full-New-York-Times-Innovation-Report">The\n      Full New York Times Innovation Report</a></cite>,\n    by\n    <span property="schema:author" typeof="schema:Person">\n      <span property="schema:name">New York Times</span>\n    </span>;\n    <time property="schema:datePublished" datetime="2014-03" datatype="xsd:gYearMonth">2014 Mar</time>.\n  </dd>\n  ',
-          HTML: '\n  <dd property="schema:citation" typeof="schema:WebPage"\n      resource="http://www.w3.org/TR/html5/">\n    <cite property="schema:name"><a href="http://www.w3.org/TR/html5/">One of the HTML\n    Specifications</a></cite>.\n  </dd>\n  ',
-          "WAI-ARIA": '\n  <dd property="schema:citation" typeof="schema:WebPage"\n      resource="https://www.w3.org/TR/wai-aria/complete">\n    <cite property="schema:name"><a href="https://www.w3.org/TR/wai-aria/complete">Accessible Rich\n    Internet Applications (WAI-ARIA) 1.0</a></cite>.\n  </dd>\n  ',
-          "DPUB-ARIA": '\n  <dd property="schema:citation" typeof="schema:WebPage"\n      resource="http://w3c.github.io/aria/aria/dpub.html">\n    <cite property="schema:name"><a href="http://w3c.github.io/aria/aria/dpub.html">Digital\n    Publishing WAI-ARIA Module 1.0</a></cite>.\n  </dd>\n  ',
-          RDFa: '\n  <dd property="schema:citation" typeof="schema:WebPage"\n      resource="https://www.w3.org/TR/rdfa-primer/">\n    <cite property="schema:name"><a href="https://www.w3.org/TR/rdfa-primer/">RDFa 1.1\n    Primer</a></cite>.\n  </dd>\n  ',
-          "schema.org": '\n  <dd property="schema:citation" typeof="schema:WebPage"\n      resource="http://schema.org/">\n    <cite property="schema:name"><a href="http://schema.org/">schema.org</a></cite>.\n  </dd>\n  ',
-          CSL: '\n  <dd property="schema:citation" typeof="schema:WebPage"\n      resource="http://citationstyles.org/">\n    <cite property="schema:name"><a href="http://citationstyles.org/">Citation Styles\n    Language</a></cite>.\n  </dd>\n  '
+          'Scholarly HTML': '\n  <dd property="schema:citation" typeof="schema:WebPage"\n      resource="https://w3c.github.io/scholarly-html/">\n    <cite property="schema:name"><a href="https://w3c.github.io/scholarly-html/">Documentation</a></cite>.\n  </dd>\n  ',
       };
       s["default"] = a
   }
