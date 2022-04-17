@@ -15,11 +15,8 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 
 - [x] [sign in](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Fhtml%2Fsign-in.html)
 - [x] [sign up](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Fhtml%2Fsign-up.html)
-- [ ] [my photos](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Fhtml%2Fmy-photos.html)
-- [ ] [my profiles](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Fhtml%2Fmy-profiles.html)
-- [ ] view photo
-- [ ] upload photo
-- [ ] add profile
+- [x] [my photos](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Fhtml%2Fmy-photos.html)
+- [x] [my profiles](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Fhtml%2Fmy-profiles.html)
 
 ## 🎨 design
 
