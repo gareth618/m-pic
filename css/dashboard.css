@@ -148,11 +148,17 @@ aside .snake {
 main {
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 2.5rem;
   margin-top: calc(var(--header-height) + var(--title-height));
   margin-left: var(--aside-width);
   padding: 0 3rem 3rem 3rem;
   color: var(--text);
+}
+
+main#profiles {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fill, 150px);
 }
 
 main:not(#profiles) {
