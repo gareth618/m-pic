@@ -1,5 +1,5 @@
 function changeTheme(dark) {
-  document.getElementById('favicon').href = `../assets/favicons/${dark ? 'dark' : 'light'}.ico`;
+  document.getElementById('favicon').href = `../assets/favicons/${dark ? 'dark' : 'light'}.svg`;
 }
 
 const matcher = window.matchMedia('(prefers-color-scheme: dark)');

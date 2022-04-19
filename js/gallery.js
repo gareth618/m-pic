@@ -13,4 +13,5 @@ window.onload = () => {
     `;
   }
   gallery.innerHTML = html;
+  onloadGalleryJS();
 };
