@@ -8,12 +8,9 @@ body {
 header {
   position: fixed;
   top: 0;
-  z-index: 3;
-  width: 100%;
-}
-
-header > div {
-  position: relative;
+  left: 0;
+  right: 0;
+  z-index: 4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,8 +21,8 @@ header > div {
   border-bottom: 1.5px solid var(--black);
 }
 
-header > div > h1,
-header > div > button {
+header > h1,
+header > button {
   position: absolute;
   left: var(--padding);
   margin: 0;
@@ -35,15 +32,15 @@ header > div > button {
   background: none;
 }
 
-header > div > h1 {
+header > h1 {
   cursor: default;
 }
 
-header > div > button {
+header > button {
   display: none;
 }
 
-header input {
+header > input {
   padding: 0 .5rem;
   width: 50%;
   height: 2.2rem;
@@ -52,13 +49,6 @@ header input {
   background: var(--white);
   border: 1px solid var(--black);
   border-radius: 100vh;
-}
-
-header::after {
-  content: '';
-  display: block;
-  height: var(--title-height);
-  background: linear-gradient(to bottom, var(--background), 90%, transparent);
 }
 
 nav {
@@ -72,7 +62,7 @@ nav button {
   position: absolute;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 3;
   padding: .2rem 1.5rem;
   font-size: 1.5rem;
   background: var(--pink);
@@ -80,12 +70,12 @@ nav button {
   border-radius: 100vh;
 }
 
-nav div {
+#menu {
   position: absolute;
   top: 1.1rem;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   visibility: hidden;
   height: 0;
   overflow: hidden;
@@ -94,12 +84,12 @@ nav div {
   transition-property: height, visibility;
 }
 
-nav div.active {
+#menu.active {
   visibility: visible;
   height: 5rem;
 }
 
-nav ul {
+#menu ul {
   margin: 0;
   padding: 1.2rem 0 .2rem 0;
   background: var(--darker-bg);
@@ -108,17 +98,17 @@ nav ul {
   list-style-type: none;
 }
 
-nav li {
+#menu li {
   display: block;
   color: var(--text);
   text-align: center;
 }
 
-nav li:last-child {
+#menu li:last-child {
   color: var(--purple);
 }
 
-nav a {
+#menu a {
   line-height: 1.3;
   font-size: 1.2rem;
   padding: 0 .15rem;
@@ -127,11 +117,13 @@ nav a {
 aside {
   position: fixed;
   top: var(--header-height);
-  z-index: 4;
+  left: 0;
+  bottom: 0;
+  z-index: 5;
   padding: 0 var(--padding);
   width: var(--aside-width);
-  height: 100%;
   background: var(--background);
+  overflow: auto;
 }
 
 aside h2 {
@@ -145,20 +137,34 @@ aside .snake {
   color: var(--text);
 }
 
+.scroller {
+  position: fixed;
+  top: var(--header-height);
+  left: var(--aside-width);
+  right: 0;
+  bottom: 0;
+}
+
+main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 8px;
+  z-index: 1;
+  height: var(--title-height);
+  background: linear-gradient(to bottom, var(--background), 90%, transparent);
+}
+
 main {
   display: flex;
   flex-wrap: wrap;
   gap: 2.5rem;
-  margin-top: calc(var(--header-height) + var(--title-height));
-  margin-left: var(--aside-width);
-  padding: 0 3rem 3rem 3rem;
+  padding: var(--title-height) 3rem 3rem 3rem;
+  width: 100%;
+  height: 100%;
   color: var(--text);
-}
-
-main#profiles {
-  display: grid;
-  justify-content: space-evenly;
-  grid-template-columns: repeat(auto-fill, 150px);
+  overflow: auto;
 }
 
 main:not(#profiles) {
@@ -170,7 +176,13 @@ main img {
   border-radius: .25rem;
 }
 
-main > div {
+#profiles {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fill, 150px);
+}
+
+#profiles > div {
   padding: 1rem;
   width: 150px;
   text-align: center;
@@ -181,29 +193,29 @@ main > div {
   cursor: default;
 }
 
-main .fa-solid {
+#profiles .fa-solid {
   transition: color .3s;
 }
 
-main .fa-brands {
+#profiles .fa-brands {
   font-size: 3rem;
   color: var(--profile-brands);
   transition: transform 1s;
 }
 
-main > div:is(:hover, :focus-within) {
+#profiles > div:is(:hover, :focus-within) {
   transform: scale(1.1);
 }
 
-main > div:is(:hover, :focus-within) .fa-brands {
+#profiles > div:is(:hover, :focus-within) .fa-brands {
   transform: rotate(360deg);
 }
 
-main > div:is(:hover, :focus-within) .fa-solid {
+#profiles > div:is(:hover, :focus-within) .fa-solid {
   color: var(--profile-brands);
 }
 
-main h3 {
+#profiles h3 {
   margin: 0;
   font-size: 2rem;
   line-height: 1.4;
@@ -263,14 +275,11 @@ main h3 {
 }
 
 @media (max-width: 550px) {
-  header::after {
+  header > h1 {
     display: none;
   }
-  header > div > button {
+  header > button {
     display: initial;
-  }
-  header > div > h1 {
-    display: none;
   }
   aside {
     left: calc(var(--aside-width) * -1);
@@ -281,9 +290,14 @@ main h3 {
   aside.active {
     left: 0;
   }
+  .scroller {
+    left: 0;
+  }
   main {
     gap: 1rem;
     padding: 1rem;
-    margin: var(--header-height) 0 0 0;
+  }
+  main::before {
+    display: none;
   }
 }
