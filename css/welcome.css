@@ -67,7 +67,7 @@
 
 #photos > div {
   height: clamp(700px, 100vh, 1000px);
-  overflow-y: hidden;
+  overflow: hidden;
   outline: none;
   border-radius: .25rem;
   transition: transform .3s;

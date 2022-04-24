@@ -12,10 +12,10 @@
 }
 
 .snake > div {
+  position: relative;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  position: relative;
   height: 3.2rem;
 }
 
