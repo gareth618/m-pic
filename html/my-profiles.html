@@ -22,10 +22,10 @@
   <body>
     <header>
       <h1 class="fixed">M-PIC</h1>
-      <button class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
+      <button type="button" class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
       <input type="search" placeholder="search">
       <nav>
-        <button class="fixed" onclick="onClickBtn('menu')">me</button>
+        <button type="button" class="fixed" onclick="onClickBtn('menu')">me</button>
         <div id="menu">
           <ul>
             <li><a href="my-photos.html">my photos</a></li>
@@ -75,11 +75,23 @@
         </div>
         <div>
           <div></div>
-          <div><button onclick="onClick(event)">unsplash</button></div>
+          <div><button type="button" onclick="onClick(event)">unsplash</button></div>
           <i class="fa-brands fa-unsplash"></i>
           <i class="fa-brands fa-unsplash fa-bounce"></i>
           <div></div>
         </div>
+      </div>
+
+      <div id="add">
+        <button type="button" class="plus" onclick="onClickBtn('add')">
+          <div></div>
+          <div></div>
+        </button>
+        <button type="button"><i class="fa-brands fa-facebook"></i></button>
+        <button type="button"><i class="fa-brands fa-instagram"></i></button>
+        <button type="button"><i class="fa-brands fa-twitter"></i></button>
+        <button type="button"><i class="fa-brands fa-reddit-alien"></i></button>
+        <button type="button"><i class="fa-brands fa-unsplash"></i></button>
       </div>
     </aside>
 

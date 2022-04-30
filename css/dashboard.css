@@ -137,6 +137,85 @@ aside .snake {
   color: var(--text);
 }
 
+#add {
+  --radius: 35px;
+  position: fixed;
+  left: calc(75px - var(--radius));
+  bottom: calc(75px - var(--radius));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(2 * var(--radius));
+  height: calc(2 * var(--radius));
+  background: var(--add);
+  border-radius: 50%;
+  transition-property: left, bottom, width, height;
+  transition-duration: .3s;
+}
+
+#add > button:not(:first-child) {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  padding-top: .11em;
+  line-height: 1;
+  font-size: 2.25rem;
+  background: var(--edit-border);
+  border-radius: 50%;
+  transition-property: visibility, transform;
+  transition-duration: .3s;
+  visibility: hidden;
+  z-index: 6;
+}
+
+#add i {
+  color: var(--darker-bg);
+}
+
+#add.active > button:not(:first-child) {
+  visibility: visible;
+}
+
+#add.active > button:nth-child(2) { transform: rotate(-105deg) translate(var(--radius)) rotate(+105deg); }
+#add.active > button:nth-child(3) { transform: rotate( -75deg) translate(var(--radius)) rotate( +75deg); }
+#add.active > button:nth-child(4) { transform: rotate( -45deg) translate(var(--radius)) rotate( +45deg); }
+#add.active > button:nth-child(5) { transform: rotate( -15deg) translate(var(--radius)) rotate( +15deg); }
+#add.active > button:nth-child(6) { transform: rotate( +15deg) translate(var(--radius)) rotate( -15deg); }
+
+#add.active {
+  --radius: 115px;
+}
+
+.plus {
+  --radius: 35px;
+  position: relative;
+  width: calc(2 * var(--radius));
+  height: calc(2 * var(--radius));
+  border-radius: 50%;
+  background: var(--edit-border);
+  outline: none !important;
+  transition: transform .3s;
+  z-index: 7;
+}
+
+.plus div {
+  position: absolute;
+  top: calc(var(--radius) - 1px);
+  left: calc(var(--radius) - 20px);
+  width: 40px;
+  height: 2px;
+  background: var(--darker-bg);
+  border-radius: 100vh;
+}
+
+.plus div:first-child {
+  transform: rotate(90deg);
+}
+
+#add.active .plus {
+  transform: rotate(-135deg);
+}
+
 .scroller {
   position: fixed;
   top: var(--header-height);
@@ -181,9 +260,7 @@ main img {
 
 #profiles {
   display: grid;
-  /* align-items: start; */
   justify-content: space-evenly;
-  /* grid-template-rows: auto [last-line] 1fr; */
   grid-template-columns: repeat(auto-fill, 150px);
 }
 

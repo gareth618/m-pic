@@ -22,6 +22,7 @@
     --description-words: var(--light-purple);
     --profile-brands: var(--light-black);
     --edit-border: var(--light-black);
+    --add: var(--light-grey);
     --pink: var(--light-pink);
     --purple: var(--light-purple);
     --grey: var(--light-grey);
@@ -38,6 +39,7 @@
     --description-words: var(--dark-pink);
     --profile-brands: var(--dark-purple);
     --edit-border: var(--dark-pink);
+    --add: var(--dark-black);
     --pink: var(--dark-pink);
     --purple: var(--dark-purple);
     --grey: var(--dark-purple);
