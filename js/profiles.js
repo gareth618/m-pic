@@ -3,7 +3,7 @@ window.onload = () => {
   const random = max => Math.floor(Math.random() * max);
   const icons = ['fa-facebook', 'fa-instagram', 'fa-reddit-alien', 'fa-twitter', 'fa-unsplash'];
   const users = ['gareth618', 'lizzzu', 'oracolul', 'mikeIMT', 'bo$$u', 'bunul20', 'fanurie', 'juve45', 'b9i', 'denis2111', 'geniucos', 'usu', 'paftenie', 'macarie'];
-  const count = random(25) + 25;
+  const count = random(25) + 1;
   let html = '';
   for (let i = 0; i < count; i++) {
     const icon = icons[random(icons.length)];

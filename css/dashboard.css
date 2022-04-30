@@ -120,7 +120,7 @@ aside {
   left: 0;
   bottom: 0;
   z-index: 5;
-  padding: 0 var(--padding);
+  padding: 0 var(--padding) 1rem var(--padding);
   width: var(--aside-width);
   background: var(--background);
   overflow: auto;
@@ -145,6 +145,12 @@ aside .snake {
   bottom: 0;
 }
 
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
 main::before {
   content: '';
   position: absolute;
@@ -152,7 +158,7 @@ main::before {
   left: 0;
   right: 8px;
   z-index: 1;
-  height: var(--title-height);
+  height: calc(var(--title-height) - 10px);
   background: linear-gradient(to bottom, var(--background), 90%, transparent);
 }
 
@@ -161,10 +167,7 @@ main {
   flex-wrap: wrap;
   gap: 2.5rem;
   padding: var(--title-height) 3rem 3rem 3rem;
-  width: 100%;
-  height: 100%;
   color: var(--text);
-  overflow: auto;
 }
 
 main:not(#profiles) {
@@ -178,7 +181,9 @@ main img {
 
 #profiles {
   display: grid;
+  /* align-items: start; */
   justify-content: space-evenly;
+  /* grid-template-rows: auto [last-line] 1fr; */
   grid-template-columns: repeat(auto-fill, 150px);
 }
 

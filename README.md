@@ -22,6 +22,6 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 
 the design is available on [figma](https://www.figma.com/file/FPE0X6J8mfUDaEQ6Sg8xH9/web)
 
-the documentation is available [here](https://m-pic.netlify.app/documentation)
+the documentation is available [here](https://m-pic.netlify.app/report)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6360b353-ce76-4a7c-a391-939a84fa2b8f/deploy-status)](https://m-pic.netlify.app/html/sign-in.html)
