@@ -54,7 +54,7 @@ header > input {
 nav {
   position: absolute;
   right: var(--padding);
-  width: 70px;
+  width: 80px;
   height: 2.2rem;
 }
 
@@ -63,8 +63,9 @@ nav button {
   left: 0;
   right: 0;
   z-index: 3;
-  padding: .2rem 1.5rem;
-  font-size: 1.5rem;
+  padding: calc(.2rem - 1px) 0;
+  font-size: 1.8rem;
+  line-height: 1;
   background: var(--pink);
   border: 1px solid var(--black);
   border-radius: 100vh;
@@ -86,12 +87,12 @@ nav button {
 
 #menu.active {
   visibility: visible;
-  height: 5rem;
+  height: 5.5rem;
 }
 
 #menu ul {
   margin: 0;
-  padding: 1.2rem 0 .2rem 0;
+  padding: 1.3rem 0 .2rem 0;
   background: var(--darker-bg);
   border: 1px solid var(--black);
   border-radius: 0 0 .25rem .25rem;
@@ -109,8 +110,8 @@ nav button {
 }
 
 #menu a {
-  line-height: 1.3;
-  font-size: 1.2rem;
+  line-height: 1.2;
+  font-size: 1.4rem;
   padding: 0 .15rem;
 }
 
@@ -157,15 +158,23 @@ aside .snake {
   position: absolute;
   width: 50px;
   height: 50px;
-  padding-top: .11em;
   line-height: 1;
-  font-size: 2.25rem;
   background: var(--edit-border);
   border-radius: 50%;
   transition-property: visibility, transform;
   transition-duration: .3s;
   visibility: hidden;
   z-index: 6;
+}
+
+#add.photo > button:not(:first-child) {
+  padding-top: .05em;
+  font-size: 1.75rem;
+}
+
+#add.profile > button:not(:first-child) {
+  padding-top: .11em;
+  font-size: 2.25rem;
 }
 
 #add i {
@@ -176,11 +185,15 @@ aside .snake {
   visibility: visible;
 }
 
-#add.active > button:nth-child(2) { transform: rotate(-105deg) translate(var(--radius)) rotate(+105deg); }
-#add.active > button:nth-child(3) { transform: rotate( -75deg) translate(var(--radius)) rotate( +75deg); }
-#add.active > button:nth-child(4) { transform: rotate( -45deg) translate(var(--radius)) rotate( +45deg); }
-#add.active > button:nth-child(5) { transform: rotate( -15deg) translate(var(--radius)) rotate( +15deg); }
-#add.active > button:nth-child(6) { transform: rotate( +15deg) translate(var(--radius)) rotate( -15deg); }
+#add.photo.active > button:nth-child(2) { transform: rotate(-75deg) translate(var(--radius)) rotate(75deg); }
+#add.photo.active > button:nth-child(3) { transform: rotate(-45deg) translate(var(--radius)) rotate(47deg); }
+#add.photo.active > button:nth-child(4) { transform: rotate(-15deg) translate(var(--radius)) rotate(15deg); }
+
+#add.profile.active > button:nth-child(2) { transform: rotate(-105deg) translate(var(--radius)) rotate(+105deg); }
+#add.profile.active > button:nth-child(3) { transform: rotate( -75deg) translate(var(--radius)) rotate( +75deg); }
+#add.profile.active > button:nth-child(4) { transform: rotate( -45deg) translate(var(--radius)) rotate( +45deg); }
+#add.profile.active > button:nth-child(5) { transform: rotate( -15deg) translate(var(--radius)) rotate( +15deg); }
+#add.profile.active > button:nth-child(6) { transform: rotate( +15deg) translate(var(--radius)) rotate( -15deg); }
 
 #add.active {
   --radius: 115px;
@@ -302,6 +315,41 @@ main img {
   font-size: 2rem;
   line-height: 1.4;
   text-transform: lowercase;
+}
+
+.sort {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.sort button {
+  position: relative;
+  margin-top: 1rem;
+  padding: .5rem 1rem 2rem 1rem;
+  width: fit-content;
+  background: none;
+}
+
+.sort p {
+  position: absolute;
+  top: 1.85rem;
+  left: -1rem;
+  right: -1rem;
+  margin: 0;
+  line-height: 1;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.sort button i {
+  font-size: 1rem;
+  color: var(--text);
+  transform: rotate(90deg) rotateY(180deg);
+  transition: transform .3s;
+}
+
+.sort button.active i {
+  transform: rotate(-90deg) rotateY(180deg);
 }
 
 .status {
