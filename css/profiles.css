@@ -1,0 +1,108 @@
+#add.profile > button:not(:first-child) {
+  padding-top: .11em;
+  font-size: 2.25rem;
+}
+
+#add.profile.active > button:nth-child(2) { transform: rotate(-105deg) translate(var(--radius)) rotate(+105deg); }
+#add.profile.active > button:nth-child(3) { transform: rotate( -75deg) translate(var(--radius)) rotate( +75deg); }
+#add.profile.active > button:nth-child(4) { transform: rotate( -45deg) translate(var(--radius)) rotate( +45deg); }
+#add.profile.active > button:nth-child(5) { transform: rotate( -15deg) translate(var(--radius)) rotate( +15deg); }
+#add.profile.active > button:nth-child(6) { transform: rotate( +15deg) translate(var(--radius)) rotate( -15deg); }
+
+#profiles {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fill, 150px);
+}
+
+#profiles > div {
+  padding: 1rem;
+  width: 150px;
+  text-align: center;
+  background: var(--darker-bg);
+  border: 1px solid var(--black);
+  border-radius: .5rem;
+  transition: transform .3s;
+  cursor: default;
+}
+
+#profiles .fa-solid {
+  transition: color .3s;
+}
+
+#profiles .fa-brands {
+  font-size: 3rem;
+  color: var(--profile-brands);
+  transition: transform 1s;
+}
+
+#profiles > div:is(:hover, :focus-within) {
+  transform: scale(1.1);
+}
+
+#profiles > div:is(:hover, :focus-within) .fa-brands {
+  transform: rotate(360deg);
+}
+
+#profiles > div:is(:hover, :focus-within) .fa-solid {
+  color: var(--profile-brands);
+}
+
+#profiles h3 {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.4;
+  text-transform: lowercase;
+}
+
+.status {
+  display: flex;
+  justify-content: space-around;
+}
+
+.status div {
+  position: relative;
+  margin-top: .2rem;
+  height: 3.2rem;
+}
+
+.status p {
+  position: absolute;
+  top: 1.6rem;
+  left: -1rem;
+  right: -1rem;
+  margin: 0;
+  line-height: .8;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.status i {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons button {
+  padding: .2rem;
+  width: 50px;
+  line-height: 1;
+  font-size: 1.5rem;
+  border-radius: 100vh;
+}
+
+.view {
+  color: var(--black);
+  background: var(--pink);
+  border: 1px solid var(--edit-border);
+}
+
+.delete {
+  color: var(--text);
+  background: var(--darker-bg);
+  border: 1px solid var(--text);
+}

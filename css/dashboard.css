@@ -167,36 +167,16 @@ aside .snake {
   z-index: 6;
 }
 
-#add.photo > button:not(:first-child) {
-  padding-top: .05em;
-  font-size: 1.75rem;
-}
-
-#add.profile > button:not(:first-child) {
-  padding-top: .11em;
-  font-size: 2.25rem;
-}
-
-#add i {
-  color: var(--darker-bg);
+#add.active {
+  --radius: 115px;
 }
 
 #add.active > button:not(:first-child) {
   visibility: visible;
 }
 
-#add.photo.active > button:nth-child(2) { transform: rotate(-75deg) translate(var(--radius)) rotate(75deg); }
-#add.photo.active > button:nth-child(3) { transform: rotate(-45deg) translate(var(--radius)) rotate(47deg); }
-#add.photo.active > button:nth-child(4) { transform: rotate(-15deg) translate(var(--radius)) rotate(15deg); }
-
-#add.profile.active > button:nth-child(2) { transform: rotate(-105deg) translate(var(--radius)) rotate(+105deg); }
-#add.profile.active > button:nth-child(3) { transform: rotate( -75deg) translate(var(--radius)) rotate( +75deg); }
-#add.profile.active > button:nth-child(4) { transform: rotate( -45deg) translate(var(--radius)) rotate( +45deg); }
-#add.profile.active > button:nth-child(5) { transform: rotate( -15deg) translate(var(--radius)) rotate( +15deg); }
-#add.profile.active > button:nth-child(6) { transform: rotate( +15deg) translate(var(--radius)) rotate( -15deg); }
-
-#add.active {
-  --radius: 115px;
+#add i {
+  color: var(--darker-bg);
 }
 
 .plus {
@@ -260,148 +240,6 @@ main {
   gap: 2.5rem;
   padding: var(--title-height) 3rem 3rem 3rem;
   color: var(--text);
-}
-
-main:not(#profiles) {
-  gap: 1rem;
-}
-
-main img {
-  height: 200px;
-  border-radius: .25rem;
-}
-
-#profiles {
-  display: grid;
-  justify-content: space-evenly;
-  grid-template-columns: repeat(auto-fill, 150px);
-}
-
-#profiles > div {
-  padding: 1rem;
-  width: 150px;
-  text-align: center;
-  background: var(--darker-bg);
-  border: 1px solid var(--black);
-  border-radius: .5rem;
-  transition: transform .3s;
-  cursor: default;
-}
-
-#profiles .fa-solid {
-  transition: color .3s;
-}
-
-#profiles .fa-brands {
-  font-size: 3rem;
-  color: var(--profile-brands);
-  transition: transform 1s;
-}
-
-#profiles > div:is(:hover, :focus-within) {
-  transform: scale(1.1);
-}
-
-#profiles > div:is(:hover, :focus-within) .fa-brands {
-  transform: rotate(360deg);
-}
-
-#profiles > div:is(:hover, :focus-within) .fa-solid {
-  color: var(--profile-brands);
-}
-
-#profiles h3 {
-  margin: 0;
-  font-size: 2rem;
-  line-height: 1.4;
-  text-transform: lowercase;
-}
-
-.sort {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.sort button {
-  position: relative;
-  margin-top: 1rem;
-  padding: .5rem 1rem 2rem 1rem;
-  width: fit-content;
-  background: none;
-}
-
-.sort p {
-  position: absolute;
-  top: 1.85rem;
-  left: -1rem;
-  right: -1rem;
-  margin: 0;
-  line-height: 1;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.sort button i {
-  font-size: 1rem;
-  color: var(--text);
-  transform: rotate(90deg) rotateY(180deg);
-  transition: transform .3s;
-}
-
-.sort button.active i {
-  transform: rotate(-90deg) rotateY(180deg);
-}
-
-.status {
-  display: flex;
-  justify-content: space-around;
-}
-
-.status div {
-  position: relative;
-  margin-top: .2rem;
-  height: 3.2rem;
-}
-
-.status p {
-  position: absolute;
-  top: 1.6rem;
-  left: -1rem;
-  right: -1rem;
-  margin: 0;
-  line-height: .8;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-.status i {
-  font-size: 1rem;
-  color: var(--text);
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-around;
-}
-
-.buttons button {
-  padding: .2rem;
-  width: 50px;
-  line-height: 1;
-  font-size: 1.5rem;
-  border-radius: 100vh;
-}
-
-.view {
-  color: var(--black);
-  background: var(--pink);
-  border: 1px solid var(--edit-border);
-}
-
-.delete {
-  color: var(--text);
-  background: var(--darker-bg);
-  border: 1px solid var(--text);
 }
 
 @media (max-width: 550px) {

@@ -1,0 +1,53 @@
+#add.photo > button:not(:first-child) {
+  padding-top: .05em;
+  font-size: 1.75rem;
+}
+
+#add.photo.active > button:nth-child(2) { transform: rotate(-75deg) translate(var(--radius)) rotate(75deg); }
+#add.photo.active > button:nth-child(3) { transform: rotate(-45deg) translate(var(--radius)) rotate(47deg); }
+#add.photo.active > button:nth-child(4) { transform: rotate(-15deg) translate(var(--radius)) rotate(15deg); }
+
+main {
+  gap: 1rem;
+}
+
+main img {
+  height: 200px;
+  border-radius: .25rem;
+}
+
+.sort {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.sort button {
+  position: relative;
+  margin-top: 1rem;
+  padding: .5rem 1rem 2rem 1rem;
+  width: fit-content;
+  background: none;
+}
+
+.sort p {
+  position: absolute;
+  top: 1.85rem;
+  left: -1rem;
+  right: -1rem;
+  margin: 0;
+  line-height: 1;
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--text);
+}
+
+.sort button i {
+  font-size: 1rem;
+  color: var(--text);
+  transform: rotate(90deg) rotateY(180deg);
+  transition: transform .3s;
+}
+
+.sort button.active i {
+  transform: rotate(-90deg) rotateY(180deg);
+}
