@@ -29,11 +29,12 @@ main img {
   background: none;
 }
 
-.sort p {
+.sort span {
   position: absolute;
   top: 1.85rem;
   left: -1rem;
   right: -1rem;
+  display: block;
   margin: 0;
   line-height: 1;
   font-size: 1.5rem;
