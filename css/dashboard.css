@@ -191,7 +191,8 @@ aside .snake {
   z-index: 7;
 }
 
-.plus div {
+.plus span {
+  display: block;
   position: absolute;
   top: calc(var(--radius) - 1px);
   left: calc(var(--radius) - 20px);
@@ -201,7 +202,7 @@ aside .snake {
   border-radius: 100vh;
 }
 
-.plus div:first-child {
+.plus span:first-child {
   transform: rotate(90deg);
 }
 
