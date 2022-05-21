@@ -19,25 +19,26 @@
     <script src="../js/checkbox.js" defer></script>
     <script src="../js/photos.js" defer></script>
     <script src="../js/typewriter.js" defer></script>
+    <script src="../js/sign-in.js" defer></script>
   </head>
 
   <body>
     <section class="welcome">
       <div class="sign">
         <h1>M-PIC</h1>
-        <form class="fixed" action="my-photos" method="post">
+        <form class="fixed" action="javascript:void(0)" onsubmit="signIn()">
           <h2>sign in</h2>
           <div class="snake">
             <div>
               <div></div>
-              <div><input type="email" placeholder="email"></div>
+              <div><input id="email" type="email" placeholder="email"></div>
               <i class="fa-solid fa-envelope"></i>
               <i class="fa-solid fa-envelope fa-bounce"></i>
               <div></div>
             </div>
             <div>
               <div></div>
-              <div><input type="password" placeholder="password"></div>
+              <div><input id="password" type="password" placeholder="password"></div>
               <i class="fa-solid fa-lock"></i>
               <i class="fa-solid fa-lock fa-bounce"></i>
               <div></div>

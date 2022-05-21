@@ -42,7 +42,19 @@ for (const resource of resources) {
 }
 
 const server = createServer((req, res) => {
-  console.log(req.url);
+  if (req.url === '/api/sign-in') {
+    const chunks = [];
+    req
+      .on('data', chunk => chunks.push(chunk))
+      .on('end', () => {
+        const body = Buffer.concat(chunks).toString();
+        console.log(JSON.parse(body));
+      });
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ ok: true }));
+    return;
+  }
 	if (req.url === '/') {
     render(res, '/html/sign-in.html', 'text/html');
     return;
