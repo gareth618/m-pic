@@ -2,6 +2,24 @@ import { createServer } from 'http';
 import { stat, createReadStream } from 'fs';
 import { readdir } from 'fs/promises';
 
+import pg from 'pg';
+const { Pool } = pg;
+
+const client = new Pool({
+  user: 'mpic',
+  host: 'localhost',
+  database: 'postgres',
+  password: 'mpic',
+  port: 5432
+});
+await client.connect();
+
+const res = await client.query("select * from users where password = $1::text", ['iamauser']);
+for (const { email, password } of res.rows) {
+  console.log(email + ' ' + password);
+}
+await client.end();
+
 const hostname = '127.0.0.1';
 const port = 3000;
 
