@@ -23,6 +23,19 @@ export default async function api(route, body) {
     return { msg };
   }
   if (route === 'sign-up') {
-    // TODO
+    const res = await pool.query(
+      'SELECT email FROM users WHERE email = $1::text',
+      [body.email]
+    );
+    if (res.rows.length === 0) {
+      await pool.query(
+        'INSERT INTO users (email, password) VALUES ($1::text, $2::text)',
+        [body.email, body.password]
+      );
+    }
+    const msg
+      = res.rows.length !== 0 ? 'email address already exists'
+      : 'ok';
+    return { msg };
   }
 };
