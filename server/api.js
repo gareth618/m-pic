@@ -13,29 +13,16 @@ await pool.connect();
 export default async function api(route, body) {
   if (route === 'sign-in') {
     const res = await pool.query(
-      'SELECT password FROM users WHERE email = $1::text',
-      [body.email]
+      'select sign_in ($1::text, $2::text)',
+      [body.email, body.password]
     );
-    const msg
-      = res.rows.length === 0 ? 'user doesn\'t exist'
-      : res.rows[0].password !== body.password ? 'wrong password'
-      : 'ok';
-    return { msg };
+    return { message: res.rows[0].sign_in };
   }
   if (route === 'sign-up') {
     const res = await pool.query(
-      'SELECT email FROM users WHERE email = $1::text',
-      [body.email]
+      'select sign_up ($1::text, $2::text)',
+      [body.email, body.password]
     );
-    if (res.rows.length === 0) {
-      await pool.query(
-        'INSERT INTO users (email, password) VALUES ($1::text, $2::text)',
-        [body.email, body.password]
-      );
-    }
-    const msg
-      = res.rows.length !== 0 ? 'email address already exists'
-      : 'ok';
-    return { msg };
+    return { message: res.rows[0].sign_up };
   }
 };

@@ -25,7 +25,7 @@ async function signIn() {
 
   const body = await res.body.getReader().read();
   const ans = JSON.parse(new TextDecoder().decode(body.value));
-  ans.msg === 'ok'
+  ans.message === 'ok'
     ? window.location.href = '/my-photos'
-    : alert(ans.msg);
+    : alert(ans.message);
 }
