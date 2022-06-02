@@ -59,6 +59,7 @@ begin
 end
 $$;
 
+
 --------------
 -- PROFILES --
 --------------
@@ -99,20 +100,89 @@ begin
 end
 $$;
 
+
 ------------
 -- IMAGES --
 ------------
 
--- post_image(id_user, post_file, post_text, post_tags, post_profiles_ids)
----- creează imaginea
----- adaugă relațiile dintre imagine și tag-uri
------- dacă un tag nu există, îl creează
----- adaugă relațiile dintre imagine și profiluri
------- dacă un id de profil este invalid îl ignoră
----- returnează id-ul imaginii
+create or replace function post_image (
+  p_id_user int,
+  p_post_file bytea,
+  p_post_profiles_ids int[],
+  p_post_tags varchar[] default null,
+  p_post_text varchar default null
+)
+  returns int
+  language plpgsql
+as
+$$
+declare
+  tag varchar;
+  profile int;
+  tag_id tags.id%type;
+  profile_id profiles.id%type;
+  new_id int;
+begin
+  insert into
+    images (id_user, post_file, post_text, post_date)
+    values (p_id_user, p_post_file, p_post_text, current_timestamp)
+    returning id into new_id;
 
--- search_images(id_user, tags, profiles)
----- selectează toate imaginile (doar id-uri) care fac match la măcar un tag sau profil
----- asociază fiecărei imagini un scor egal cu numărul de tag-uri și profile match-uite
----- sortează imaginile descrescător după scor
----- returnează imaginile (nu doar id-uri) ca json
+  foreach tag in array p_post_tags loop
+    select id
+      into tag_id
+      from tags
+      where tags.title = tag;
+    if not found then
+      insert into
+        tags (title)
+        values (tag)
+        returning id into tag_id;
+    end if;
+    insert into
+      image_tag (id_image, id_tag)
+      values (new_id, tag_id);
+  end loop;
+
+  foreach profile in array p_post_profiles_ids loop
+    select id
+      into profile_id
+      from profiles
+      where profiles.id_user = p_id_user
+      and profiles.id = profile;
+    if found then
+      insert into
+        image_profile (id_image, id_profile)
+        values (new_id, profile_id);
+    end if;
+  end loop;
+
+  return new_id;
+end;
+$$;
+
+-- create or replace function search_images (
+--   p_id_user int,
+--   p_post_profiles_ids int[] default null,
+--   p_post_tags varchar[] default null,
+-- )
+--   returns table (j json)
+--   language plpgsql
+-- as
+-- $$
+-- begin
+--   select *
+--     from images
+--     where images.id_user = p_id_user
+--     and array (
+--       select id_profile
+--       from image_profile
+--       where id_image = images.id
+--     ) <@ p_post_profiles_ids
+--     and array (
+--       select id_tag
+--       from image_tag
+--       where id_image = images.id
+--     ) <@ p_post_tags;
+-- end;
+-- $$;

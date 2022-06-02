@@ -26,8 +26,8 @@ create table profiles (
 create table images (
   id serial primary key,
   id_user int not null,
-  post_file bytea, -- o să fie not null
-  post_text varchar(1000) not null,
+  post_file bytea not null,
+  post_text varchar(1000),
   post_date timestamp not null,
 
   constraint fkey_images_users
