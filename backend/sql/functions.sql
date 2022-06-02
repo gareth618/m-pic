@@ -8,16 +8,17 @@ create or replace function sign_in (p_email varchar, p_password varchar)
 as
 $$
 declare
-  correct_password users.password%type;
+  user_id int;
+  user_password users.password%type;
 begin
-  select password
-    into correct_password
+  select id, password
+    into user_id, user_password
     from users u
     where u.email = p_email;
-  if not found or p_password <> correct_password then
+  if not found or p_password <> user_password then
     return 'wrong username or password';
   else
-    return 'success';
+    return 'signed in user with id ' || user_id;
   end if;
 end
 $$;

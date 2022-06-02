@@ -16,21 +16,11 @@ async function signUp() {
     return;
   }
 
-  const res = await fetch('http://127.0.0.1:3000/api/sign-up', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      email,
-      password: password1
-    })
+  const res = await makeRequest('POST', 'sign-up', {
+    email,
+    password: password1
   });
-
-  const body = await res.body.getReader().read();
-  const ans = JSON.parse(new TextDecoder().decode(body.value));
-  ans.message === 'ok'
-    ? window.location.href = '/sign-in'
-    : alert(ans.message);
+  res.error != null
+    ? alert(res.error)
+    : window.location.href = '/sign-in';
 }

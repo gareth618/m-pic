@@ -1,41 +1,20 @@
 import { createServer } from 'http';
 import { createReadStream } from 'fs';
 import { readdir } from 'fs/promises';
-import api from './api.js';
+import queryApi from './api.js';
 
 const mimes = [
-  {
-    dir: 'assets/favicons',
-    type: 'image/svg+xml'
-  },
-  {
-    dir: 'assets/photos/avif',
-    type: 'image/avif'
-  },
-  {
-    dir: 'assets/photos/jpg',
-    type: 'image/jpg'
-  },
-  {
-    dir: 'assets/photos/webp',
-    type: 'image/webp'
-  },
-  {
-    dir: 'css',
-    type: 'text/css'
-  },
-  {
-    dir: 'html',
-    type: 'text/html'
-  },
-  {
-    dir: 'js',
-    type: 'application/javascript'
-  }
+  { dir: 'assets/favicons', type: 'image/svg+xml' },
+  { dir: 'assets/photos/avif', type: 'image/avif' },
+  { dir: 'assets/photos/jpg', type: 'image/jpg' },
+  { dir: 'assets/photos/webp', type: 'image/webp' },
+  { dir: 'css', type: 'text/css' },
+  { dir: 'html', type: 'text/html' },
+  { dir: 'js', type: 'application/javascript' }
 ];
 
 for (const mime of mimes) {
-  const files = await readdir(mime.dir);
+  const files = await readdir(`frontend/${mime.dir}`);
   mime.files = files.map(file => `/${mime.dir}/${file}`);
 }
 
@@ -54,7 +33,9 @@ const server = createServer(async (req, res) => {
       chunks.push(chunk);
     }
     const body = JSON.parse(Buffer.concat(chunks).toString());
-    const ans = await api(route, body);
+    const auth = req.headers.authorisation;
+    const user = auth == null ? -1 : parseInt(auth);
+    const ans = await queryApi(user, req.method, route, body);
     if (ans != null) {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
@@ -68,7 +49,7 @@ const server = createServer(async (req, res) => {
     if (mime.files.includes(file)) {
       res.statusCode = 200;
       res.setHeader('Content-Type', mime.type);
-      createReadStream(`.${file}`).pipe(res);
+      createReadStream(`frontend${file}`).pipe(res);
       return;
     }
   }

@@ -6,26 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="an aggregator-type app for photos stored in various photo-sharing platforms">
 
-    <title>M-PIC | sign up</title>
+    <title>M-PIC | sign in</title>
     <link rel="icon" href="../assets/favicons/light.svg" id="favicon">
 
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/welcome.css">
+    <link rel="stylesheet" href="../css/description.css">
     <link rel="stylesheet" href="../css/snake.css">
 
     <script src="https://kit.fontawesome.com/c225e559b0.js" crossorigin="anonymous" defer></script>
     <script src="../js/favicon.js" defer></script>
     <script src="../js/checkbox.js" defer></script>
     <script src="../js/photos.js" defer></script>
-    <script src="../js/sign-up.js" defer></script>
+    <script src="../js/typewriter.js" defer></script>
+    <script src="../js/request.js" defer></script>
+    <script src="../js/sign-in.js" defer></script>
   </head>
 
   <body>
     <section class="welcome">
       <div class="sign">
         <h1>M-PIC</h1>
-        <form class="fixed" action="javascript:void(0)" onsubmit="signUp()">
-          <h2>sign up</h2>
+        <form class="fixed" action="javascript:void(0)" onsubmit="signIn()">
+          <h2>sign in</h2>
           <div class="snake">
             <div>
               <div></div>
@@ -43,20 +46,13 @@
             </div>
             <div>
               <div></div>
-              <div><input id="confirm-password" type="password" placeholder="confirm password"></div>
-              <i class="fa-solid fa-lock"></i>
-              <i class="fa-solid fa-lock fa-bounce"></i>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
               <div><label>remember me</label></div>
               <i tabindex="0" id="checkbox" class="fa-solid fa-square-xmark" onclick="toggleChecked()" onkeypress="toggleChecked(event)"></i>
               <div></div>
             </div>
           </div>
           <button type="submit">let's go!</button>
-          <a href="sign-in">sign in</a>
+          <a href="sign-up">sign up</a>
         </form>
       </div>
 
@@ -68,6 +64,30 @@
         <div tabindex="-1" data-order="17, 18, 19, grey, 20, 21, 22, pink, 23">
         </div>
       </div>
+    </section>
+
+    <section id="description">
+      <div class="left">
+        <h1>M-PIC is about</h1>
+        <h1 class="typewrite-words" data-words="memories, friendship, exploration, sharing, life">m</h1>
+        <p>
+          M-PIC is an aggregator-type app that helps you organize your photos from various photo-<span>sharing</span> platforms, such as facebook, instagram, twitter, reddit and unsplash
+        </p>
+        <p>
+          it was built by two students from their passion for quality <span>photography</span>, tired of wasting time by manually organizing their photos and sharing them on so many social platforms
+        </p>
+        <p>
+          M-PIC is the all-in-one platform you'll ever need in order to save the time needed to organize your photo collection, letting you create more wonderful <span>memories</span> with your loved ones
+        </p>
+      </div>
+
+      <ul class="right">
+        <li class="typewrite-word" data-word="memories"></li>
+        <li class="typewrite-word" data-word="friendship"></li>
+        <li class="typewrite-word" data-word="exploration"></li>
+        <li class="typewrite-word" data-word="sharing"></li>
+        <li class="typewrite-word" data-word="life"></li>
+      </ul>
     </section>
   </body>
 </html>
