@@ -34,7 +34,7 @@ makeApi(false, 'PUT', 'sign-in', [
   { field: 'password', type: 'string' }
 ], async body => {
   const res = await pool.query(
-    'select sign_in ($1::text, $2::text)',
+    'select sign_in ($1, $2)',
     [body.email, body.password]
   );
   const ans = res.rows[0].sign_in;
@@ -48,13 +48,42 @@ makeApi(false, 'POST', 'sign-up', [
   { field: 'password', type: 'string' }
 ], async body => {
   const res = await pool.query(
-    'select sign_up ($1::text, $2::text)',
+    'select sign_up ($1, $2)',
     [body.email, body.password]
   );
   const ans = res.rows[0].sign_up;
   return ans.startsWith('email')
     ? { error: ans }
     : { user: parseInt(ans.split(' ').slice(-1)[0]) }
+});
+
+makeApi(true, 'POST', 'post-image', [
+  { field: 'profiles-ids', type: 'object' },
+  { field: 'tags', type: 'object' },
+  { field: 'text', type: 'string' }
+], async (body, user) => {
+  const res = await pool.query(
+    'select post_image ($1, bytea(\'/Users/gareth618/Desktop/m-pic/frontend/assets/photos/jpg/1.jpg\'), $2, $3, $4)',
+    [user, body['profiles-ids'], body.tags, body.text]
+  );
+  const ans = res.rows[0].post_image;
+  return {
+    id: ans,
+    tags: body.tags,
+    text: body.text
+  };
+});
+
+makeApi(true, 'PUT', 'search-images', [
+  { field: 'profiles-ids', type: 'object' },
+  { field: 'tags', type: 'object' }
+], async (body, user) => {
+  const res = await pool.query(
+    'select search_images ($1, $2, $3)',
+    [user, body['profiles-ids'], body.tags]
+  );
+  const ans = res.rows[0].search_images;
+  return ans;
 });
 
 export default async function queryApi(user, method, route, body) {

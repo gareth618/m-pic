@@ -18,13 +18,16 @@
     <script src="../js/favicon.js" defer></script>
     <script src="../js/buttons.js" defer></script>
     <script src="../js/gallery.js" defer></script>
+    <script src="../js/request.js" defer></script>
     <script src="../js/sign-out.js" defer></script>
+    <script src="../js/post-image.js" defer></script>
+    <script src="../js/search-images.js" defer></script>
   </head>
 
   <header>
     <h1 class="fixed">M-PIC</h1>
     <button type="button" class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
-    <input type="search" placeholder="search">
+    <input id="search" type="search" placeholder="search" onkeypress="if (event.key === 'Enter') searchImages()">
     <nav>
       <button type="button" class="fixed" onclick="onClickBtn('menu')">me</button>
       <div id="menu">
@@ -99,7 +102,7 @@
     </div>
 
     <div id="add" class="photo">
-      <button type="button" class="plus" onclick="onClickBtn('add')">
+      <button type="button" class="plus" onclick="onClickBtn('add'); postImage()">
         <span></span>
         <span></span>
       </button>

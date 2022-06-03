@@ -158,31 +158,43 @@ begin
   end loop;
 
   return new_id;
-end;
+end
 $$;
 
--- create or replace function search_images (
---   p_id_user int,
---   p_post_profiles_ids int[] default null,
---   p_post_tags varchar[] default null,
--- )
---   returns table (j json)
---   language plpgsql
--- as
--- $$
--- begin
---   select *
---     from images
---     where images.id_user = p_id_user
---     and array (
---       select id_profile
---       from image_profile
---       where id_image = images.id
---     ) <@ p_post_profiles_ids
---     and array (
---       select id_tag
---       from image_tag
---       where id_image = images.id
---     ) <@ p_post_tags;
--- end;
--- $$;
+create or replace function search_images (
+  p_id_user int,
+  p_post_profiles_ids int[] default null,
+  p_post_tags varchar[] default null
+)
+  returns table (j json)
+  language plpgsql
+as
+$$
+begin
+  return query
+    select json_agg(t)
+    from (
+      select *
+        from images
+        where images.id_user = p_id_user
+        and array (
+          select id
+          from profiles
+          where id in (
+            select id_profile
+            from image_profile
+            where id_image = images.id
+          )
+        ) @> p_post_profiles_ids
+        and array (
+          select title
+          from tags
+          where id in (
+            select id_tag
+            from image_tag
+            where id_image = images.id
+          )
+        ) @> p_post_tags
+    ) t;
+end
+$$;
