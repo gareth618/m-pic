@@ -1,65 +1,88 @@
+import pg from 'pg';
+import { parse } from 'url';
 import { createServer } from 'http';
 import { createReadStream } from 'fs';
 import { readdir } from 'fs/promises';
-import queryApi from './api.js';
 
-const mimes = [
-  { dir: 'assets/favicons', type: 'image/svg+xml' },
-  { dir: 'assets/photos/avif', type: 'image/avif' },
-  { dir: 'assets/photos/jpg', type: 'image/jpg' },
-  { dir: 'assets/photos/webp', type: 'image/webp' },
-  { dir: 'css', type: 'text/css' },
-  { dir: 'html', type: 'text/html' },
-  { dir: 'js', type: 'application/javascript' }
-];
-
-for (const mime of mimes) {
-  const files = await readdir(`frontend/${mime.dir}`);
-  mime.files = files.map(file => `/${mime.dir}/${file}`);
-}
-
-const server = createServer(async (req, res) => {
-  if (req.url === '/') {
-    res.statusCode = 302;
-    res.setHeader('Location', '/sign-in');
-    res.end();
-    return;
+export default class Router {
+  constructor(public) {
+    this.mimes = [];
+    this.routes = [];
+    this.public = public;
   }
 
-  if (req.url.substring(0, 5) === '/api/') {
-    const route = req.url.substring(5);
-    const chunks = [];
-    for await (const chunk of req) {
-      chunks.push(chunk);
-    }
-    const body = JSON.parse(Buffer.concat(chunks).toString());
-    const auth = req.headers.authorisation;
-    const user = auth == null ? -1 : parseInt(auth);
-    const ans = await queryApi(user, req.method, route, body);
-    if (ans != null) {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(ans));
-      return;
-    }
+  public(dir, type) {
+    const files = (await readdir(`${this.public}/${dir}`)).map(file => `/${dir}/${file}`);
+    this.mimes.push({ dir, type, files });
   }
 
-  for (const mime of mimes) {
-    const file = mime.dir === 'html' ? `/html${req.url}.html` : req.url;
-    if (mime.files.includes(file)) {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', mime.type);
-      createReadStream(`frontend${file}`).pipe(res);
-      return;
-    }
+  postgres(config) {
+    this.pool = new pg.Pool(config);
   }
-  res.statusCode = 404;
-  res.end('sorry, page not found');
-});
 
-const hostname = '127.0.0.1';
-const port = 3000;
+  get(url, callback) { this.routes.push({ method: 'GET', url, callback }); }
+  post(url, callback) { this.routes.push({ method: 'POST', url, callback }); }
+  put(url, callback) { this.routes.push({ method: 'PUT', url, callback }); }
 
-server.listen(port, hostname, () => {
-  console.log(`server running at http://${hostname}:${port}/`);
-});
+  listen(hostname, port) {
+    const server = createServer(async (req, res) => {
+      if (req.method === 'GET') {
+        for (const mime of this.mimes) {
+          const file = mime.dir === 'html' ? `/html${req.url}.html` : req.url;
+          if (mime.files.includes(file)) {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', mime.type);
+            createReadStream(`${this.public}${file}`).pipe(res);
+            return;
+          }
+        }
+      }
+
+      const route = this.routes.find(route => {
+        const position = req.url.indexOf('?');
+        const cleanReqURL = position === -1 ? req.url : req.url.substring(0, position);
+        return route.method === req.method && route.url === cleanReqURL;
+      });
+      if (route == null) {
+        res.statusCode = 404;
+        res.end('sorry, page not found');
+        return;
+      }
+
+      const client = pool.connect();
+      const sqlFacade = {
+        call: async (fun, args) => {
+          const ans = await client.query(
+            `SELECT ${fun} (${args.map((_, index) => `$${index + 1}`).join(', ')})`,
+            args
+          );
+          return ans.rows[0][fun];
+        }
+      };
+      const reqFacade = {
+        head: req.headers,
+        body: route.method === 'GET'
+          ? parse(req.url, true).query
+          : JSON.parse(Buffer.concat(chunks).toString())
+      };
+      const resFacade = {
+        redirect: url => {
+          res.statusCode = 302;
+          res.setHeader('Location', url);
+          res.end();
+        },
+        code: code => {
+          res.statusCode = code;
+          res.setHeader('Content-Type', 'application/json');
+        },
+        body: body => res.end(JSON.stringify(body))
+      };
+      route.callback(sqlFacade, reqFacade, resFacade);
+      client.release();
+    });
+
+    server.listen(port, hostname, () => {
+      console.log(`server running at http://${hostname}:${port}/`);
+    });
+  }
+};
