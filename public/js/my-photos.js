@@ -6,9 +6,9 @@ window.onload = () => {
   for (let i = 1; i <= count; i++) {
     html += `
       <picture>
-        <source srcset="../assets/photos/avif/${i}.avif" type="image/avif">
-        <source srcset="../assets/photos/webp/${i}.webp" type="image/webp">
-        <img src="../assets/photos/jpg/${i}.jpg" alt="photo ${i}">
+        <source srcset="/public/images/avif/${i}.avif" type="image/avif">
+        <source srcset="/public/images/webp/${i}.webp" type="image/webp">
+        <img src="/public/images/jpg/${i}.jpg" alt="photo ${i}">
       </picture>
     `;
   }

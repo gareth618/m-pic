@@ -11,9 +11,9 @@ window.onload = () => {
       else {
         html += `
           <picture>
-            <source srcset="../assets/photos/avif/${photo}.avif" type="image/avif">
-            <source srcset="../assets/photos/webp/${photo}.webp" type="image/webp">
-            <img src="../assets/photos/jpg/${photo}.jpg" alt="photo">
+            <source srcset="/public/images/avif/${photo}.avif" type="image/avif">
+            <source srcset="/public/images/webp/${photo}.webp" type="image/webp">
+            <img src="/public/images/jpg/${photo}.jpg" alt="photo">
           </picture>
         `;
       }

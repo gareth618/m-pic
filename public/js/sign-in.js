@@ -38,8 +38,8 @@ function animateWord() {
     for (let i = 1; i <= word.length; i++) {
       setTimeout(() => {
         el.innerHTML
-          = `<span>${word.substring(0, i)}</span>`
-          + `<span>${word.substring(i)}</span>`;
+          = `<span>${word.slice(0, i)}</span>`
+          + `<span>${word.slice(i)}</span>`;
       }, delta);
       delta += 100;
     }
@@ -53,12 +53,12 @@ function animateWords() {
     for (const word of el.getAttribute('data-words').split(', ')) {
       let delta = 500;
       for (let i = 1; i <= word.length; i++) {
-        states.push([word.substring(0, i), delta]);
+        states.push([word.slice(0, i), delta]);
         delta /= 1.25;
       }
       states.push([word, 3000]);
       for (let i = word.length; i >= 1; i--) {
-        states.push([word.substring(0, i), 100]);
+        states.push([word.slice(0, i), 100]);
       }
       states.push(['', 500]);
     }

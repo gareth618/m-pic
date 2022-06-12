@@ -1,13 +1,16 @@
 import Router from './router.js';
+import Templater from './templater.js';
 
-const router = new Router('frontend');
-await router.mime('assets/favicons', 'image/svg+xml');
-await router.mime('assets/photos/avif', 'image/avif');
-await router.mime('assets/photos/jpg', 'image/jpg');
-await router.mime('assets/photos/webp', 'image/webp');
-await router.mime('css', 'text/css');
-await router.mime('html', 'text/html');
-await router.mime('js', 'application/javascript');
+const templater = new Templater();
+await templater.load('src/views');
+
+const router = new Router();
+await router.mime('public/favicons', 'image/svg+xml');
+await router.mime('public/images/avif', 'image/avif');
+await router.mime('public/images/jpg', 'image/jpg');
+await router.mime('public/images/webp', 'image/webp');
+await router.mime('public/css', 'text/css');
+await router.mime('public/js', 'application/javascript');
 
 router.postgres({
   host: 'localhost',
@@ -17,8 +20,24 @@ router.postgres({
   password: 'mpic'
 });
 
+router.get('/sign-in', (_sql, _req, res) => {
+  res.html(templater.get('SignIn'));
+});
+
+router.get('/sign-up', (_sql, _req, res) => {
+  res.html(templater.get('SignUp'));
+});
+
+router.get('/my-photos', (_sql, _req, res) => {
+  res.html(templater.get('MyPhotos'));
+});
+
+router.get('/my-profiles', (_sql, _req, res) => {
+  res.html(templater.get('MyProfiles'));
+});
+
 router.get('/', (_sql, _req, res) => {
-  res.redirect('/sign-in');
+  res.goto('/sign-in');
 });
 
 router.get('/api/sign-in', async (sql, req, res) => {

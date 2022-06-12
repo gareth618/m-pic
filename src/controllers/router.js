@@ -5,14 +5,13 @@ import { createReadStream } from 'fs';
 import { readdir } from 'fs/promises';
 
 export default class Router {
-  constructor(res) {
-    this.res = res;
+  constructor() {
     this.mimes = [];
     this.routes = [];
   }
 
   async mime(dir, type) {
-    const files = (await readdir(`${this.res}/${dir}`)).map(file => `/${dir}/${file}`);
+    const files = (await readdir(dir)).map(file => `/${dir}/${file}`);
     this.mimes.push({ dir, type, files });
   }
 
@@ -28,11 +27,10 @@ export default class Router {
     const server = createServer(async (req, res) => {
       if (req.method === 'GET') {
         for (const mime of this.mimes) {
-          const file = mime.dir === 'html' ? `/html${req.url}.html` : req.url;
-          if (mime.files.includes(file)) {
+          if (mime.files.includes(req.url)) {
             res.statusCode = 200;
             res.setHeader('Content-Type', mime.type);
-            createReadStream(`${this.res}${file}`).pipe(res);
+            createReadStream(req.url.slice(1)).pipe(res);
             return;
           }
         }
@@ -40,7 +38,7 @@ export default class Router {
 
       const route = this.routes.find(route => {
         const position = req.url.indexOf('?');
-        const cleanReqURL = position === -1 ? req.url : req.url.substring(0, position);
+        const cleanReqURL = position === -1 ? req.url : req.url.slice(0, position);
         return route.method === req.method && route.url === cleanReqURL;
       });
       if (route == null) {
@@ -66,10 +64,15 @@ export default class Router {
           : JSON.parse(Buffer.concat(chunks).toString())
       };
       const resFacade = {
-        redirect: url => {
+        goto: url => {
           res.statusCode = 302;
           res.setHeader('Location', url);
           res.end();
+        },
+        html: html => {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'text/html');
+          res.end(html);
         },
         code: code => {
           res.statusCode = code;
