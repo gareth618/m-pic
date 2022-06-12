@@ -1,13 +1,13 @@
-import Router from 'router';
+import Router from './router.js';
 
 const router = new Router('frontend');
-router.public('assets/favicons', 'image/svg+xml');
-router.public('assets/photos/avif', 'image/avif');
-router.public('assets/photos/jpg', 'image/jpg');
-router.public('assets/photos/webp', 'image/webp');
-router.public('css', 'text/css');
-router.public('html', 'text/html');
-router.public('js', 'application/javascript');
+await router.mime('assets/favicons', 'image/svg+xml');
+await router.mime('assets/photos/avif', 'image/avif');
+await router.mime('assets/photos/jpg', 'image/jpg');
+await router.mime('assets/photos/webp', 'image/webp');
+await router.mime('css', 'text/css');
+await router.mime('html', 'text/html');
+await router.mime('js', 'application/javascript');
 
 router.postgres({
   host: 'localhost',
@@ -17,12 +17,12 @@ router.postgres({
   password: 'mpic'
 });
 
-router.get('/', (_, _, res) => {
+router.get('/', (_sql, _req, res) => {
   res.redirect('/sign-in');
 });
 
-router.get('/api/sign-in', (sql, req, res) => {
-  const ans = sql.call(
+router.get('/api/sign-in', async (sql, req, res) => {
+  const ans = await sql.call(
     'sign_in',
     [req.body.email, req.body.password]
   );
@@ -36,8 +36,8 @@ router.get('/api/sign-in', (sql, req, res) => {
   }
 });
 
-router.post('/api/sign-up', (sql, req, res) => {
-  const ans = sql.call(
+router.post('/api/sign-up', async (sql, req, res) => {
+  const ans = await sql.call(
     'sign_up',
     [req.body.email, req.body.password]
   );

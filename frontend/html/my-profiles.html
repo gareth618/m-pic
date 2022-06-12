@@ -9,16 +9,15 @@
     <title>M-PIC | my profiles</title>
     <link rel="icon" href="../assets/favicons/light.svg" id="favicon">
 
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/profiles.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/account.css">
+    <link rel="stylesheet" href="../css/my-profiles.css">
     <link rel="stylesheet" href="../css/snake.css">
 
     <script src="https://kit.fontawesome.com/c225e559b0.js" crossorigin="anonymous" defer></script>
-    <script src="../js/favicon.js" defer></script>
-    <script src="../js/profiles.js" defer></script>
-    <script src="../js/buttons.js" defer></script>
-    <script src="../js/sign-out.js" defer></script>
+    <script src="../js/global.js" defer></script>
+    <script src="../js/account.js" defer></script>
+    <script src="../js/my-profiles.js" defer></script>
   </head>
 
   <body>
@@ -31,7 +30,7 @@
         <div id="menu">
           <ul>
             <li><a href="my-photos">my photos</a></li>
-            <li><a href="sign-in" onclick="singOut()">sign out</a></li>
+            <li><a href="sign-in" onclick="signOut()">sign out</a></li>
           </ul>
         </div>
       </nav>
@@ -42,35 +41,35 @@
       <div class="snake">
         <div>
           <div></div>
-          <div><button onclick="onClick(event)">all</button></div>
+          <div><button type="button" onclick="onClick(event)">all</button></div>
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star fa-bounce"></i>
           <div></div>
         </div>
         <div>
           <div></div>
-          <div><button onclick="onClick(event)">facebook</button></div>
+          <div><button type="button" onclick="onClick(event)">facebook</button></div>
           <i class="fa-brands fa-facebook"></i>
           <i class="fa-brands fa-facebook fa-bounce"></i>
           <div></div>
         </div>
         <div>
           <div></div>
-          <div><button onclick="onClick(event)">instagram</button></div>
+          <div><button type="button" onclick="onClick(event)">instagram</button></div>
           <i class="fa-brands fa-instagram"></i>
           <i class="fa-brands fa-instagram fa-bounce"></i>
           <div></div>
         </div>
         <div>
           <div></div>
-          <div><button onclick="onClick(event)">twitter</button></div>
+          <div><button type="button" onclick="onClick(event)">twitter</button></div>
           <i class="fa-brands fa-twitter"></i>
           <i class="fa-brands fa-twitter fa-bounce"></i>
           <div></div>
         </div>
         <div>
           <div></div>
-          <div><button onclick="onClick(event)">reddit</button></div>
+          <div><button type="button" onclick="onClick(event)">reddit</button></div>
           <i class="fa-brands fa-reddit-alien"></i>
           <i class="fa-brands fa-reddit-alien fa-bounce"></i>
           <div></div>

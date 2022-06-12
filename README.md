@@ -11,17 +11,6 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 - Iulian Oleniuc (2B3)
 - Elisabeta Dima (2B3)
 
-## 📚 pages
-
-- [x] [sign in](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Ffrontend%2Fhtml%2Fsign-in.html)
-- [x] [sign up](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Ffrontend%2Fhtml%2Fsign-up.html)
-- [x] [my photos](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Ffrontend%2Fhtml%2Fmy-photos.html)
-- [x] [my profiles](https://validator.w3.org/nu/?doc=https%3A%2F%2Fm-pic.netlify.app%2Ffrontend%2Fhtml%2Fmy-profiles.html)
-
 ## 🎨 design
 
 the design is available on [figma](https://www.figma.com/file/FPE0X6J8mfUDaEQ6Sg8xH9/web)
-
-the documentation is available [here](https://m-pic.netlify.app/report)
-
-<!-- [![Netlify Status](https://api.netlify.com/api/v1/badges/6360b353-ce76-4a7c-a391-939a84fa2b8f/deploy-status)](https://m-pic.netlify.app/html/sign-in.html) -->

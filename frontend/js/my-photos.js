@@ -1,4 +1,4 @@
-const onloadGalleryJS = window.onload || (() => { });
+const onloadMyPhotosJS = window.onload || (() => { });
 window.onload = () => {
   const gallery = document.getElementById('gallery');
   let html = '';
@@ -13,5 +13,5 @@ window.onload = () => {
     `;
   }
   gallery.innerHTML = html;
-  onloadGalleryJS();
+  onloadMyPhotosJS();
 };

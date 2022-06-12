@@ -16,11 +16,11 @@ async function signUp() {
     return;
   }
 
-  const res = await makeRequest('POST', 'sign-up', {
+  const ans = await call('POST', '/sign-up', {
     email,
     password: password1
   });
-  res.error != null
+  ans.error != null
     ? alert(res.error)
     : window.location.href = '/sign-in';
 }

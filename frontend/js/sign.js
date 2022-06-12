@@ -1,4 +1,4 @@
-const onloadPhotosJS = window.onload || (() => { });
+const onloadSignJS = window.onload || (() => { });
 window.onload = () => {
   const columns = [...document.getElementById('photos').children];
   columns.forEach((column, index) => {
@@ -26,12 +26,9 @@ window.onload = () => {
       offset = (offset + 1) % 240;
       for (const child of column.children) {
         const transform = `translateY(${offset * (index % 2 === 1 ? +1 : -1)}px)`;
-        if (child.tagName === "DIV") {
-          child.style.transform = transform;
-        }
-        else {
-          child.children[2].style.transform = transform;
-        }
+        child.tagName === "DIV"
+          ? child.style.transform = transform
+          : child.children[2].style.transform = transform;
       }
       if (offset === 0) {
         if (index % 2 === 0) {
@@ -49,5 +46,26 @@ window.onload = () => {
     };
     scroll();
   });
-  onloadPhotosJS();
+  onloadSignJS();
 };
+
+let checked = false;
+
+function toggleChecked(event) {
+  const checkbox = document.getElementById('checkbox').classList;
+  if (checked) {
+    checkbox.remove('fa-square-check');
+    checkbox.add('fa-square-xmark');
+    checked = false;
+  }
+  else {
+    checkbox.remove('fa-square-xmark');
+    checkbox.add('fa-square-check');
+    checked = true;
+  }
+  checkbox.add('fa-shake');
+  setTimeout(() => {
+    checkbox.remove('fa-shake');
+  }, 500);
+  event?.preventDefault();
+}

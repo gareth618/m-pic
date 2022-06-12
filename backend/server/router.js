@@ -5,14 +5,14 @@ import { createReadStream } from 'fs';
 import { readdir } from 'fs/promises';
 
 export default class Router {
-  constructor(public) {
+  constructor(res) {
+    this.res = res;
     this.mimes = [];
     this.routes = [];
-    this.public = public;
   }
 
-  public(dir, type) {
-    const files = (await readdir(`${this.public}/${dir}`)).map(file => `/${dir}/${file}`);
+  async mime(dir, type) {
+    const files = (await readdir(`${this.res}/${dir}`)).map(file => `/${dir}/${file}`);
     this.mimes.push({ dir, type, files });
   }
 
@@ -32,7 +32,7 @@ export default class Router {
           if (mime.files.includes(file)) {
             res.statusCode = 200;
             res.setHeader('Content-Type', mime.type);
-            createReadStream(`${this.public}${file}`).pipe(res);
+            createReadStream(`${this.res}${file}`).pipe(res);
             return;
           }
         }
@@ -49,7 +49,7 @@ export default class Router {
         return;
       }
 
-      const client = pool.connect();
+      const client = await this.pool.connect();
       const sqlFacade = {
         call: async (fun, args) => {
           const ans = await client.query(

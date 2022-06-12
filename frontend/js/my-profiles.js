@@ -1,4 +1,4 @@
-const onloadProfilesJS = window.onload || (() => { });
+const onloadMyProfilesJS = window.onload || (() => { });
 window.onload = () => {
   const random = max => Math.floor(Math.random() * max);
   const icons = ['fa-facebook', 'fa-instagram', 'fa-reddit-alien', 'fa-twitter', 'fa-unsplash'];
@@ -37,5 +37,5 @@ window.onload = () => {
     `;
   };
   document.getElementById('profiles').innerHTML = html;
-  onloadProfilesJS();
+  onloadMyProfilesJS();
 };
