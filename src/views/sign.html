@@ -1,0 +1,65 @@
+<component name="TextField">
+  <div>
+    <div></div>
+    <div>
+      <input
+        id="{{$id}}"
+        type="{{$type}}"
+        placeholder="{{$id.replace(/-/g, ' ')}}"
+      >
+    </div>
+    <i class="fa-solid fa-{{$icon}}"></i>
+    <i class="fa-solid fa-{{$icon}} fa-bounce"></i>
+    <div></div>
+  </div>
+</component>
+
+<component name="RememberMe">
+  <div>
+    <div></div>
+    <div><label>remember me</label></div>
+    <i
+      tabindex="0"
+      id="checkbox"
+      class="fa-solid fa-square-xmark"
+      onclick="toggleChecked()"
+      onkeypress="toggleChecked(event)"
+    ></i>
+    <div></div>
+  </div>
+</component>
+
+<component name="Welcome">
+  <section class="welcome">
+    <div class="sign">
+      <h1>M-PIC</h1>
+      <form
+        class="fixed"
+        action="javascript:void(0)"
+        onsubmit="{{
+          $crtTitle.split(' ')[0] +
+          $crtTitle.split(' ').slice(1).map(token => token.charAt(0).toUpperCase() + token.slice(1)).join('')
+        }}()"
+      >
+        <h2>{{$crtTitle}}</h2>
+        <div class="snake">
+          <for itr="field" arr="$fields">
+            <TextField
+              id="$field.id"
+              type="$field.type"
+              icon="$field.icon"
+            >
+          </for>
+          <RememberMe>
+        </div>
+        <button type="submit">let's go!</button>
+        <a href="{{$altTitle.replace(/ /g, '-')}}">{{$altTitle}}</a>
+      </form>
+    </div>
+    <div id="photos">
+      <div tabindex="-1" data-order="1, 2, 3, pink, 4, 5, 6, black, 7, 8, 9, white-text"></div>
+      <div tabindex="-1" data-order="10, 11, 12, black, 13, 14, 15, purple, 16"></div>
+      <div tabindex="-1" data-order="17, 18, 19, grey, 20, 21, 22, pink, 23"></div>
+    </div>
+  </section>
+</component>

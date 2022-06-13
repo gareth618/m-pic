@@ -7,7 +7,7 @@ changeTheme(matcher.matches);
 matcher.addEventListener('change', event => changeTheme(event.matches));
 
 async function call(method, path, body) {
-  let url = `http://127.0.0.1:3000/api${path}`;
+  let url = `http://localhost:3000/api${path}`;
   url += method === 'GET' ? '?' + new URLSearchParams(body) : '';
   const res = await fetch(url, {
     method,

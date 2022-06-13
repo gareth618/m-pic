@@ -1,0 +1,41 @@
+<component name="Header">
+  <header>
+    <h1 class="fixed">M-PIC</h1>
+    <button type="button" class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
+    <input type="search" placeholder="search">
+    <nav>
+      <button type="button" class="fixed" onclick="onClickBtn('menu')">me</button>
+      <div id="menu">
+        <ul>
+          <li><a href="{{$altPage.replace(/ /g, '-')}}">{{$altPage}}</a></li>
+          <li><a href="sign-in" onclick="signOut()">sign out</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+</component>
+
+<component name="Snake">
+  <div class="snake">
+    <for itr="btn" arr="$buttons">
+      <div>
+        <div></div>
+        <div><button type="button" onclick="onClick(event)">{{$btn.text}}</button></div>
+        <i class="fa-{{$btn.type}} fa-{{$btn.icon}}"></i>
+        <i class="fa-{{$btn.type}} fa-{{$btn.icon}} fa-bounce"></i>
+        <div></div>
+      </div>
+    </for>
+  </div>
+</component>
+
+<component name="FilterMenu">
+  <Snake buttons="[
+    { text: 'all', type: 'solid', icon: 'star' },
+    { text: 'facebook', type: 'brands', icon: 'facebook' },
+    { text: 'instagram', type: 'brands', icon: 'instagram' },
+    { text: 'twitter', type: 'brands', icon: 'twitter' },
+    { text: 'reddit', type: 'brands', icon: 'reddit-alien' },
+    { text: 'unsplash', type: 'brands', icon: 'unsplash' }
+  ]">
+</component>

@@ -19,8 +19,9 @@ the design is available on [figma](https://www.figma.com/file/FPE0X6J8mfUDaEQ6Sg
 
 - [x] router engine
 - [x] restructure project in mvc fashion
-- [ ] template engine
-- [ ] rewrite views in components
+- [x] template engine
+- [x] rewrite views in components
+- [ ] generate photos and profiles in controller
 - [ ] deploy on heroku
 - [ ] facebook api
 - [ ] twitter api

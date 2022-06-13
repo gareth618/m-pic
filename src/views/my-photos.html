@@ -1,118 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="an aggregator-type app for photos stored in various photo-sharing platforms">
-
-    <title>M-PIC | my photos</title>
-    <link rel="icon" href="/public/favicons/light.svg" id="favicon">
-
-    <link rel="stylesheet" href="/public/css/global.css">
-    <link rel="stylesheet" href="/public/css/account.css">
-    <link rel="stylesheet" href="/public/css/my-photos.css">
-    <link rel="stylesheet" href="/public/css/snake.css">
-
-    <script src="https://kit.fontawesome.com/c225e559b0.js" crossorigin="anonymous" defer></script>
-    <script src="/public/js/global.js" defer></script>
-    <script src="/public/js/account.js" defer></script>
-    <script src="/public/js/my-photos.js" defer></script>
-  </head>
-
-  <body>
-    <header>
-      <h1 class="fixed">M-PIC</h1>
-      <button type="button" class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
-      <input type="search" placeholder="search">
-      <nav>
-        <button type="button" class="fixed" onclick="onClickBtn('menu')">me</button>
-        <div id="menu">
-          <ul>
-            <li><a href="my-profiles">my profiles</a></li>
-            <li><a href="sign-in" onclick="signOut()">sign out</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
-    <aside id="aside">
-      <h2>my photos</h2>
-      <div class="snake">
-        <div>
-          <div></div>
-          <div><button type="button" onclick="onClick(event)">all</button></div>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star fa-bounce"></i>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-          <div><button type="button" onclick="onClick(event)">facebook</button></div>
-          <i class="fa-brands fa-facebook"></i>
-          <i class="fa-brands fa-facebook fa-bounce"></i>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-          <div><button type="button" onclick="onClick(event)">instagram</button></div>
-          <i class="fa-brands fa-instagram"></i>
-          <i class="fa-brands fa-instagram fa-bounce"></i>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-          <div><button type="button" onclick="onClick(event)">twitter</button></div>
-          <i class="fa-brands fa-twitter"></i>
-          <i class="fa-brands fa-twitter fa-bounce"></i>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-          <div><button type="button" onclick="onClick(event)">reddit</button></div>
-          <i class="fa-brands fa-reddit-alien"></i>
-          <i class="fa-brands fa-reddit-alien fa-bounce"></i>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-          <div><button type="button" onclick="onClick(event)">unsplash</button></div>
-          <i class="fa-brands fa-unsplash"></i>
-          <i class="fa-brands fa-unsplash fa-bounce"></i>
-          <div></div>
+<component name="MyPhotos">
+  <!DOCTYPE html>
+  <html lang="en">
+    <Head
+      title="'my photos'"
+      styles="['my', 'my-photos', 'snake']"
+      scripts="['my', 'my-photos']"
+    >
+    <body>
+      <Header altPage="'my profiles'">
+      <aside id="aside">
+        <h2>my photos</h2>
+        <FilterMenu>
+        <SortMenu>
+        <AddPhoto>
+      </aside>
+      <div class="scroller">
+        <div class="container">
+          <main id="gallery" data-count="23"></main>
         </div>
       </div>
+    </body>
+  </html>
+</component>
 
-      <div class="sort">
-        <button type="button" id="sort-date" onclick="onClickSortBtn('sort-date')">
-          <i class="fa-solid fa-arrow-right-arrow-left"></i>
-          <span>date</span>
-        </button>
-        <button type="button" id="sort-likes" onclick="onClickSortBtn('sort-likes')">
-          <i class="fa-solid fa-arrow-right-arrow-left"></i>
-          <span>likes</span>
-        </button>
-        <button type="button" id="sort-shares" onclick="onClickSortBtn('sort-shares')">
-          <i class="fa-solid fa-arrow-right-arrow-left"></i>
-          <span>shares</span>
-        </button>
-      </div>
+<component name="AddPhoto">
+  <div id="add" class="photo">
+    <button type="button" class="plus" onclick="onClickBtn('add')">
+      <span></span>
+      <span></span>
+    </button>
+    <button type="button"><i class="fa-solid fa-camera"></i></button>
+    <button type="button"><i class="fa-solid fa-upload"></i></button>
+    <button type="button"><i class="fa-solid fa-link"></i></button>
+  </div>
+</component>
 
-      <div id="add" class="photo">
-        <button type="button" class="plus" onclick="onClickBtn('add')">
-          <span></span>
-          <span></span>
-        </button>
-        <button type="button"><i class="fa-solid fa-camera"></i></button>
-        <button type="button"><i class="fa-solid fa-upload"></i></button>
-        <button type="button"><i class="fa-solid fa-link"></i></button>
-      </div>
-    </aside>
-
-    <div class="scroller">
-      <div class="container">
-        <main id="gallery" data-count="23"></main>
-      </div>
-    </div>
-  </body>
-</html>
+<component name="SortMenu">
+  <div class="sort">
+    <button type="button" id="sort-date" onclick="onClickSortBtn('sort-date')">
+      <i class="fa-solid fa-arrow-right-arrow-left"></i>
+      <span>date</span>
+    </button>
+    <button type="button" id="sort-likes" onclick="onClickSortBtn('sort-likes')">
+      <i class="fa-solid fa-arrow-right-arrow-left"></i>
+      <span>likes</span>
+    </button>
+    <button type="button" id="sort-shares" onclick="onClickSortBtn('sort-shares')">
+      <i class="fa-solid fa-arrow-right-arrow-left"></i>
+      <span>shares</span>
+    </button>
+  </div>
+</component>

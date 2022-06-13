@@ -21,19 +21,19 @@ router.postgres({
 });
 
 router.get('/sign-in', (_sql, _req, res) => {
-  res.html(templater.get('SignIn'));
+  res.html(templater.render('SignIn', { }));
 });
 
 router.get('/sign-up', (_sql, _req, res) => {
-  res.html(templater.get('SignUp'));
+  res.html(templater.render('SignUp', { }));
 });
 
 router.get('/my-photos', (_sql, _req, res) => {
-  res.html(templater.get('MyPhotos'));
+  res.html(templater.render('MyPhotos', { }));
 });
 
 router.get('/my-profiles', (_sql, _req, res) => {
-  res.html(templater.get('MyProfiles'));
+  res.html(templater.render('MyProfiles', { }));
 });
 
 router.get('/', (_sql, _req, res) => {
@@ -72,4 +72,4 @@ router.post('/api/sign-up', async (sql, req, res) => {
   }
 });
 
-router.listen('127.0.0.1', 3000);
+router.listen('localhost', 3000);

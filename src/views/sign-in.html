@@ -1,90 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="an aggregator-type app for photos stored in various photo-sharing platforms">
+<component name="SignIn">
+  <!DOCTYPE html>
+  <html lang="en">
+    <Head
+      title="'sign in'"
+      styles="['snake', 'welcome', 'description']"
+      scripts="['sign', 'sign-in']"
+    >
+    <body>
+      <Welcome
+        crtTitle="'sign in'"
+        altTitle="'sign up'"
+        fields="[
+          { id: 'email', type: 'email', icon: 'envelope' },
+          { id: 'password', type: 'password', icon: 'lock' }
+        ]"
+      >
+      <Description>
+    </body>
+  </html>
+</component>
 
-    <title>M-PIC | sign in</title>
-    <link rel="icon" href="/public/favicons/light.svg" id="favicon">
-
-    <link rel="stylesheet" href="/public/css/global.css">
-    <link rel="stylesheet" href="/public/css/snake.css">
-    <link rel="stylesheet" href="/public/css/welcome.css">
-    <link rel="stylesheet" href="/public/css/description.css">
-
-    <script src="https://kit.fontawesome.com/c225e559b0.js" crossorigin="anonymous" defer></script>
-    <script src="/public/js/global.js" defer></script>
-    <script src="/public/js/sign.js" defer></script>
-    <script src="/public/js/sign-in.js" defer></script>
-  </head>
-
-  <body>
-    <section class="welcome">
-      <div class="sign">
-        <h1>M-PIC</h1>
-        <form class="fixed" action="javascript:void(0)" onsubmit="signIn()">
-          <h2>sign in</h2>
-          <div class="snake">
-            <div>
-              <div></div>
-              <div><input id="email" type="email" placeholder="email"></div>
-              <i class="fa-solid fa-envelope"></i>
-              <i class="fa-solid fa-envelope fa-bounce"></i>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-              <div><input id="password" type="password" placeholder="password"></div>
-              <i class="fa-solid fa-lock"></i>
-              <i class="fa-solid fa-lock fa-bounce"></i>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-              <div><label>remember me</label></div>
-              <i tabindex="0" id="checkbox" class="fa-solid fa-square-xmark" onclick="toggleChecked()" onkeypress="toggleChecked(event)"></i>
-              <div></div>
-            </div>
-          </div>
-          <button type="submit">let's go!</button>
-          <a href="sign-up">sign up</a>
-        </form>
-      </div>
-
-      <div id="photos">
-        <div tabindex="-1" data-order="1, 2, 3, pink, 4, 5, 6, black, 7, 8, 9, white-text">
-        </div>
-        <div tabindex="-1" data-order="10, 11, 12, black, 13, 14, 15, purple, 16">
-        </div>
-        <div tabindex="-1" data-order="17, 18, 19, grey, 20, 21, 22, pink, 23">
-        </div>
-      </div>
-    </section>
-
-    <section id="description">
-      <div class="left">
-        <h1>M-PIC is about</h1>
-        <h1 class="typewrite-words" data-words="memories, friendship, exploration, sharing, life">m</h1>
-        <p>
-          M-PIC is an aggregator-type app that helps you organize your photos from various photo-<span>sharing</span> platforms, such as facebook, instagram, twitter, reddit and unsplash
-        </p>
-        <p>
-          it was built by two students from their passion for quality <span>photography</span>, tired of wasting time by manually organizing their photos and sharing them on so many social platforms
-        </p>
-        <p>
-          M-PIC is the all-in-one platform you'll ever need in order to save the time needed to organize your photo collection, letting you create more wonderful <span>memories</span> with your loved ones
-        </p>
-      </div>
-
-      <ul class="right">
-        <li class="typewrite-word" data-word="memories"></li>
-        <li class="typewrite-word" data-word="friendship"></li>
-        <li class="typewrite-word" data-word="exploration"></li>
-        <li class="typewrite-word" data-word="sharing"></li>
-        <li class="typewrite-word" data-word="life"></li>
-      </ul>
-    </section>
-  </body>
-</html>
+<component name="Description">
+  <section id="description">
+    <div class="left">
+      <h1>M-PIC is about</h1>
+      <h1 class="typewrite-words" data-words="memories, friendship, exploration, sharing, life">m</h1>
+      <p>
+        M-PIC is an aggregator-type app that helps you organize your photos from various photo-<span>sharing</span> platforms, such as facebook, instagram, twitter, reddit and unsplash
+      </p>
+      <p>
+        it was built by two students from their passion for quality <span>photography</span>, tired of wasting time by manually organizing their photos and sharing them on so many social platforms
+      </p>
+      <p>
+        M-PIC is the all-in-one platform you'll ever need in order to save the time needed to organize your photo collection, letting you create more wonderful <span>memories</span> with your loved ones
+      </p>
+    </div>
+    <ul class="right">
+      <li class="typewrite-word" data-word="memories"></li>
+      <li class="typewrite-word" data-word="friendship"></li>
+      <li class="typewrite-word" data-word="exploration"></li>
+      <li class="typewrite-word" data-word="sharing"></li>
+      <li class="typewrite-word" data-word="life"></li>
+    </ul>
+  </section>
+</component>
