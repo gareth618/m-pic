@@ -12,7 +12,7 @@ async function signUp() {
     return;
   }
   if (password1 !== password2) {
-    alert('passwords don\'t match');
+    alert('passwords do not match');
     return;
   }
 

@@ -45,13 +45,14 @@ router.get('/api/sign-in', async (sql, req, res) => {
     'sign_in',
     [req.body.email, req.body.password]
   );
-  if (ans.startsWith('wrong')) {
+  const user = parseInt(ans);
+  if (user === -1) {
     res.code(400);
-    res.body({ error: ans });
+    res.body({ error: 'wrong email or password' });
   }
   else {
     res.code(200);
-    res.body({ user: parseInt(ans.split(' ').slice(-1)[0]) });
+    res.body({ user });
   }
 });
 
@@ -60,13 +61,14 @@ router.post('/api/sign-up', async (sql, req, res) => {
     'sign_up',
     [req.body.email, req.body.password]
   );
-  if (ans.startsWith('email')) {
+  const user = parseInt(ans);
+  if (user === -1) {
     res.code(400);
-    res.body({ error: ans });
+    res.body({ error: 'email already in use' });
   }
   else {
     res.code(200);
-    res.body({ user: parseInt(ans.split(' ').slice(-1)[0]) });
+    res.body({ user });
   }
 });
 
