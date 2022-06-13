@@ -29,6 +29,20 @@
   </div>
 </component>
 
+<component name="Image">
+  <picture>
+    <source srcset="/public/images/avif/{{$id}}.avif" type="image/avif">
+    <source srcset="/public/images/webp/{{$id}}.webp" type="image/webp">
+    <img src="/public/images/jpg/{{$id}}.jpg" alt="photo">
+  </picture>
+</component>
+
+<component name="EmptyImage">
+  <div>
+    <div style="background: var(--{{$color}})"></div>
+  </div>
+</component>
+
 <component name="Welcome">
   <section class="welcome">
     <div class="sign">
@@ -56,10 +70,44 @@
         <a href="{{$altTitle.replace(/ /g, '-')}}">{{$altTitle}}</a>
       </form>
     </div>
+
     <div id="photos">
-      <div tabindex="-1" data-order="1, 2, 3, pink, 4, 5, 6, black, 7, 8, 9, white-text"></div>
-      <div tabindex="-1" data-order="10, 11, 12, black, 13, 14, 15, purple, 16"></div>
-      <div tabindex="-1" data-order="17, 18, 19, grey, 20, 21, 22, pink, 23"></div>
+      <div tabindex="-1">
+        <Image id="1">
+        <Image id="2">
+        <Image id="3">
+        <EmptyImage color="'pink'">
+        <Image id="4">
+        <Image id="5">
+        <Image id="6">
+        <EmptyImage color="'black'">
+        <Image id="7">
+        <Image id="8">
+        <Image id="9">
+        <EmptyImage color="'white-text'">
+      </div>
+      <div tabindex="-1">
+        <Image id="10">
+        <Image id="11">
+        <Image id="12">
+        <EmptyImage color="'black'">
+        <Image id="13">
+        <Image id="14">
+        <Image id="15">
+        <EmptyImage color="'purple'">
+        <Image id="16">
+      </div>
+      <div tabindex="-1">
+        <Image id="17">
+        <Image id="18">
+        <Image id="19">
+        <EmptyImage color="'grey'">
+        <Image id="20">
+        <Image id="21">
+        <Image id="22">
+        <EmptyImage color="'pink'">
+        <Image id="23">
+      </div>
     </div>
   </section>
 </component>

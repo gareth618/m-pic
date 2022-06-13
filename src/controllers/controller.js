@@ -29,11 +29,31 @@ router.get('/sign-up', (_sql, _req, res) => {
 });
 
 router.get('/my-photos', (_sql, _req, res) => {
-  res.html(templater.render('MyPhotos', { }));
+  const random = max => Math.floor(Math.random() * max);
+  const count = random(25) + 25;
+  const photos = [];
+  for (let i = 0; i < count; i++) {
+    photos.push(random(23) + 1);
+  }
+  res.html(templater.render('MyPhotos', { photos }));
 });
 
 router.get('/my-profiles', (_sql, _req, res) => {
-  res.html(templater.render('MyProfiles', { }));
+  const random = max => Math.floor(Math.random() * max);
+  const icons = ['facebook', 'instagram', 'reddit-alien', 'twitter', 'unsplash'];
+  const users = ['gareth618', 'lizzzu', 'oracolul', 'mikeIMT', 'bo$$u', 'bunul20', 'fanurie', 'juve45', 'b9i', 'denis2111', 'geniucos', 'usu', 'paftenie', 'macarie'];
+  const count = random(25) + 25;
+  const profiles = [];
+  for (let i = 0; i < count; i++) {
+    profiles.push({
+      icon: icons[random(icons.length)],
+      user: users[random(users.length)],
+      photos: random(1000),
+      followers: random(1000),
+      shares: random(1000)
+    });
+  }
+  res.html(templater.render('MyProfiles', { profiles }));
 });
 
 router.get('/', (_sql, _req, res) => {

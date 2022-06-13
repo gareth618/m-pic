@@ -4,7 +4,7 @@
     <Head
       title="'my profiles'"
       styles="['my', 'my-profiles', 'snake']"
-      scripts="['my', 'my-profiles']"
+      scripts="['my']"
     >
     <body>
       <Header altPage="'my photos'">
@@ -15,11 +15,46 @@
       </aside>
       <div class="scroller">
         <div class="container">
-          <main id="profiles"></main>
+          <main id="profiles">
+            <for itr="profile" arr="$profiles">
+              <Profile
+                icon="$profile.icon"
+                user="$profile.user"
+                photos="$profile.photos"
+                followers="$profile.followers"
+                shares="$profile.shares"
+              >
+            </for>
+          </main>
         </div>
       </div>
     </body>
   </html>
+</component>
+
+<component name="Profile">
+  <div>
+    <i class="fa-brands fa-{{$icon}}"></i>
+    <h3>{{$user}}</h3>
+    <div class="status">
+      <div>
+        <i class="fa-solid fa-image"></i>
+        <p>{{$photos}}</p>
+      </div>
+      <div>
+        <i class="fa-solid fa-user-large"></i>
+        <p>{{$followers}}</p>
+      </div>
+      <div>
+        <i class="fa-solid fa-heart"></i>
+        <p>{{$shares}}</p>
+      </div>
+    </div>
+    <div class="buttons">
+      <button type="button" class="view">view</button>
+      <button type="button" class="delete">delete</button>
+    </div>
+  </div>
 </component>
 
 <component name="AddProfile">

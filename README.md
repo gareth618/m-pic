@@ -21,7 +21,7 @@ the design is available on [figma](https://www.figma.com/file/FPE0X6J8mfUDaEQ6Sg
 - [x] restructure project in mvc fashion
 - [x] template engine
 - [x] rewrite views in components
-- [ ] generate photos and profiles in controller
+- [x] generate photos and profiles in controller
 - [ ] deploy on heroku
 - [ ] facebook api
 - [ ] twitter api

@@ -2,24 +2,6 @@ const onloadSignJS = window.onload || (() => { });
 window.onload = () => {
   const columns = [...document.getElementById('photos').children];
   columns.forEach((column, index) => {
-    const photos = column.getAttribute('data-order').split(', ');
-    let html = '';
-    for (const photo of photos) {
-      if (Number.isNaN(parseInt(photo))) {
-        html += `<div><div style="background: var(--${photo})"></div></div>`;
-      }
-      else {
-        html += `
-          <picture>
-            <source srcset="/public/images/avif/${photo}.avif" type="image/avif">
-            <source srcset="/public/images/webp/${photo}.webp" type="image/webp">
-            <img src="/public/images/jpg/${photo}.jpg" alt="photo">
-          </picture>
-        `;
-      }
-    }
-    column.innerHTML = html;
-
     column.scrollTop = 480;
     let offset = 0;
     const scroll = () => {
