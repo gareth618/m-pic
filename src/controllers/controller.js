@@ -28,14 +28,8 @@ router.get('/sign-up', (_sql, _req, res) => {
   res.html(templater.render('SignUp', { }));
 });
 
-router.get('/my-photos', (_sql, _req, res) => {
-  const random = max => Math.floor(Math.random() * max);
-  const count = random(25) + 25;
-  const photos = [];
-  for (let i = 0; i < count; i++) {
-    photos.push(random(23) + 1);
-  }
-  res.html(templater.render('MyPhotos', { photos }));
+router.get('/my-photos', async (_sql, _req, res) => {
+  res.html(templater.render('MyPhotos', { }));
 });
 
 router.get('/my-profiles', (_sql, _req, res) => {

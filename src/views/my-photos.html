@@ -4,7 +4,7 @@
     <Head
       title="'my photos'"
       styles="['my', 'my-photos', 'snake']"
-      scripts="['my']"
+      scripts="['my', 'my-photos']"
     >
     <body>
       <Header altPage="'my profiles'">
@@ -17,22 +17,11 @@
       <div class="scroller">
         <div class="container">
           <main id="gallery">
-            <for itr="photo" arr="$photos">
-              <Photo id="$photo">
-            </for>
           </main>
         </div>
       </div>
     </body>
   </html>
-</component>
-
-<component name="Photo">
-  <picture>
-    <source srcset="/public/images/avif/{{$id}}.avif" type="image/avif">
-    <source srcset="/public/images/webp/{{$id}}.webp" type="image/webp">
-    <img src="/public/images/jpg/{{$id}}.jpg" alt="photo {{$id}}">
-  </picture>
 </component>
 
 <component name="AddPhoto">

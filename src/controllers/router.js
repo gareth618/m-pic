@@ -65,7 +65,7 @@ export default class Router {
       };
       const resFacade = {
         goto: url => {
-          res.statusCode = 302;
+          res.statusCode = 301;
           res.setHeader('Location', url);
           res.end();
         },

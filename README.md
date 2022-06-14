@@ -22,12 +22,12 @@ the design is available on [figma](https://www.figma.com/file/FPE0X6J8mfUDaEQ6Sg
 - [x] template engine
 - [x] rewrite views in components
 - [x] generate photos and profiles in controller
+- [x] unsplash api
 - [ ] deploy on heroku
 - [ ] facebook api
 - [ ] twitter api
 - [ ] instagram api
 - [ ] reddit api
-- [ ] unsplash api
 - [ ] 404 custom page
 - [ ] minimal admin panel with stats
 - [ ] user sessions and authorization

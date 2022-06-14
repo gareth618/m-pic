@@ -10,7 +10,6 @@ export default class Templater {
     for (const file of files) {
       const code = await readFile(`${dir}/${file}`, { encoding: 'utf8' });
       const matches = code.match(/<component\s+name=".+?">.*?<\/component>/sg) || [];
-      if (matches == null) continue;
       for (const match of matches) {
         const { name, content } = match.match(/<component\s+name="(?<name>.+?)">(?<content>.*?)<\/component>/s).groups;
         this.components[name] = content;
@@ -24,7 +23,7 @@ export default class Templater {
 
   #parseHTML(html, args) {
     while (true) {
-      const exprMatch = html.match(/{{(?<expr>.*?)}}/s);
+      const exprMatch = html.match(/{{(?<expr>.+?)}}/s);
       const loopMatch = html.match(/<for\s+itr="(?<itr>.+?)"\s+arr="(?<arr>.+?)">(?<content>.*?)<\/for>/s);
       const compMatch = html.match(/<(?<name>[A-Z][a-zA-Z]*)(?<atts>\s+[a-zA-Z]+=".+?")?\s*>/s);
 
@@ -44,8 +43,8 @@ export default class Templater {
         const arr = this.#parseJS(loopMatch.groups.arr, args);
         const content = loopMatch.groups.content;
         let forHTML = '';
-        for (const elm of arr) {
-          args[itr] = elm;
+        for (const elt of arr) {
+          args[itr] = elt;
           forHTML += this.#parseHTML(content, args);
         }
         args[itr] = undefined;
@@ -55,7 +54,7 @@ export default class Templater {
       if (index === compIndex) {
         const name = compMatch.groups.name;
         const compArgs = { };
-        const matches = (compMatch.groups.atts || '').match(/[a-zA-Z]+=".+?"/sg) || [];
+        const matches = compMatch.groups.atts?.match(/[a-zA-Z]+=".+?"/sg) || [];
         for (const match of matches) {
           const { att, val } = match.match(/(?<att>[a-zA-Z]+)="(?<val>.+?)"/s).groups;
           compArgs[att] = this.#parseJS(val, args);

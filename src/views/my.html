@@ -15,9 +15,16 @@
   </header>
 </component>
 
-<component name="Snake">
+<component name="FilterMenu">
   <div class="snake">
-    <for itr="btn" arr="$buttons">
+    <for itr="btn" arr="[
+      { text: 'all', type: 'solid', icon: 'star' },
+      { text: 'facebook', type: 'brands', icon: 'facebook' },
+      { text: 'instagram', type: 'brands', icon: 'instagram' },
+      { text: 'twitter', type: 'brands', icon: 'twitter' },
+      { text: 'reddit', type: 'brands', icon: 'reddit-alien' },
+      { text: 'unsplash', type: 'brands', icon: 'unsplash' }
+    ]">
       <div>
         <div></div>
         <div><button type="button" onclick="onClick(event)">{{$btn.text}}</button></div>
@@ -27,15 +34,4 @@
       </div>
     </for>
   </div>
-</component>
-
-<component name="FilterMenu">
-  <Snake buttons="[
-    { text: 'all', type: 'solid', icon: 'star' },
-    { text: 'facebook', type: 'brands', icon: 'facebook' },
-    { text: 'instagram', type: 'brands', icon: 'instagram' },
-    { text: 'twitter', type: 'brands', icon: 'twitter' },
-    { text: 'reddit', type: 'brands', icon: 'reddit-alien' },
-    { text: 'unsplash', type: 'brands', icon: 'unsplash' }
-  ]">
 </component>
