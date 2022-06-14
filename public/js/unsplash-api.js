@@ -1,4 +1,4 @@
-const onloadMyPhotosJS = window.onload || (() => { });
+const onloadUnsplashAPI = window.onload || (() => { });
 window.onload = () => {
   const loadPhotosFromUnsplash = async () => {
     const ACCESS_KEY = 'fYYxcL26k6kwhwqZql_3lgO86KhpuhID-cWQg9Z9_P4';
@@ -55,5 +55,5 @@ window.onload = () => {
     }
   };
   loadPhotosFromUnsplash();
-  onloadMyPhotosJS();
+  onloadUnsplashAPI();
 };

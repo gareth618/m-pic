@@ -28,14 +28,18 @@ router.get('/sign-up', (_sql, _req, res) => {
   res.html(templater.render('SignUp', { }));
 });
 
-router.get('/my-photos', async (_sql, _req, res) => {
-  res.html(templater.render('MyPhotos', { }));
+router.get('/my-photos-unsplash', async (_sql, _req, res) => {
+  res.html(templater.render('MyPhotos', { api: 'unsplash-api' }));
+});
+
+router.get('/my-photos-twitter', async (_sql, _req, res) => {
+  res.html(templater.render('MyPhotos', { api: 'twitter-api' }));
 });
 
 router.get('/my-profiles', (_sql, _req, res) => {
   const random = max => Math.floor(Math.random() * max);
   const icons = ['facebook', 'instagram', 'reddit-alien', 'twitter', 'unsplash'];
-  const users = ['gareth618', 'lizzzu', 'oracolul', 'mikeIMT', 'bo$$u', 'bunul20', 'fanurie', 'juve45', 'b9i', 'denis2111', 'geniucos', 'usu', 'paftenie', 'macarie'];
+  const users = ['gareth618', 'lizzzu', 'oracolul', 'mikeIMT', 'bossu', 'bunul20', 'fanurie', 'juve45', 'b9i', 'denis2111', 'geniucos', 'usu', 'paftenie', 'macarie'];
   const count = random(25) + 25;
   const profiles = [];
   for (let i = 0; i < count; i++) {
@@ -86,4 +90,5 @@ router.post('/api/sign-up', async (sql, req, res) => {
   }
 });
 
-router.listen('localhost', 3000);
+const port = process.env.PORT || 3000;
+router.listen('localhost', port);
