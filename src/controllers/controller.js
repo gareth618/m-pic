@@ -90,5 +90,4 @@ router.post('/api/sign-up', async (sql, req, res) => {
   }
 });
 
-const port = process.env.PORT || 3000;
-router.listen('localhost', port);
+router.listen(process.env.PORT || 3000);

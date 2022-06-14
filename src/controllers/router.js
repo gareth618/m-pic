@@ -23,7 +23,7 @@ export default class Router {
   post(url, callback) { this.routes.push({ method: 'POST', url, callback }); }
   put(url, callback) { this.routes.push({ method: 'PUT', url, callback }); }
 
-  listen(hostname, port) {
+  listen(port) {
     const server = createServer(async (req, res) => {
       if (req.method === 'GET') {
         for (const mime of this.mimes) {
@@ -84,8 +84,7 @@ export default class Router {
       client.release();
     });
 
-    server.listen(port, hostname, () => {
-      console.log(`server running at http://${hostname}:${port}/`);
-    });
+    server.listen(port);
+    console.log(`locally running at http://localhost:${port}/`);
   }
 };
