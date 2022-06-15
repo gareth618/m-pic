@@ -128,22 +128,18 @@ router.get('/api/connect/twitter', async (_sql, _req, res) => {
 
   const params = oauth.authorize(request, token);
   let auth = '';
-  for (const field in params) {
-    if (field === 'oauth_token') continue;
-    if (field === 'oauth_callback') continue;
-    auth += `${field}="${encodeURIComponent(params[field])}", `;
+  for (const key in params) {
+    if (key === 'oauth_callback') continue;
+    auth += `${key}="${encodeURIComponent(params[key])}", `;
   }
   auth = auth.slice(0, -2);
-
-  console.log(params);
-  console.log(auth);
 
   const ans = await (await fetch(request.url, {
     method: request.method,
     headers: { 'Authorization': `OAuth ${auth}` }
   })).text();
   res.code(200);
-  res.body(ans);
+  res.body(ans.match(/oauth_token=(?<oauth_token>.+)\&oauth_token_secret=(?<oauth_token_secret>.+)\&oauth_callback_confirmed=true/).groups);
 });
 
 router.listen(process.env.PORT || 3000);
