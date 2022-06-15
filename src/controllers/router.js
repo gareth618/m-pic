@@ -43,7 +43,45 @@ export default class Router {
       });
       if (route == null) {
         res.statusCode = 404;
-        res.end('sorry, page not found');
+        res.setHeader('Content-Type', 'text/html');
+        res.end(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <title>M-PIC | page not found</title>
+              <link rel="icon" href="/public/favicons/light.svg" id="favicon">
+              <link rel="stylesheet" href="/public/css/global.css">
+              <script src="/public/js/global.js" defer></script>
+              <style>
+                * {
+                  text-align: center;
+                  margin: 0;
+                }
+                h1 {
+                  font-size: 14rem;
+                  margin-top: 8%;
+                }
+                h2 {
+                  font-size: 4rem;
+                  margin-bottom: 2rem;
+                }
+                a {
+                  font-size: 2rem;
+                  padding: .25rem 1rem;
+                  color: var(--black);
+                  background: var(--pink);
+                  border: 1px solid var(--black);
+                  border-radius: 100vh;
+                }
+              </style>
+            </head>
+            <body>
+              <h1>404</h1>
+              <h2>sorry, page not found</h2>
+              <a href="/">back to home page</a>
+            </body>
+          </html>
+        `);
         return;
       }
 
