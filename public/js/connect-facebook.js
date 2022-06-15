@@ -29,14 +29,12 @@ window.onload = () => {
         redirect_uri: REDIRECT_URI,
         code: CODE
       });
-    console.log((await (await fetch(getAccessTokenURL, { method: 'POST' })).json()));
+    const accessToken = (await (await fetch(getAccessTokenURL, { method: 'POST' })).json()).access_token;
+
+    console.log(await fetch('https://graph.facebook.com/me/accounts?' + new URLSearchParams({
+      access_token: accessToken
+    }), { method: 'GET' }));
   };
   loadPhotos();
   onloadConnectFacebook();
 };
-
-// GET https://graph.facebook.com/v14.0/oauth/access_token?
-//    client_id={app-id}
-//    &redirect_uri={redirect-uri}
-//    &client_secret={app-secret}
-//    &code={code-parameter}
