@@ -100,7 +100,7 @@ router.post('/api/sign-up', async (sql, req, res) => {
   }
 });
 
-router.get('/api/connect/twitter', async (_sql, _req, res) => {
+router.get('/api/authorize/twitter', async (_sql, _req, res) => {
   const oauth = OAuth({
     signature_method: 'HMAC-SHA1',
     consumer: {
@@ -140,6 +140,23 @@ router.get('/api/connect/twitter', async (_sql, _req, res) => {
   res.code(200);
   const tokens = ans.match(/oauth_token=(?<oauth_token>.+)\&oauth_token_secret=(?<oauth_token_secret>.+)\&oauth_callback_confirmed=true/).groups;
   res.body(tokens.oauth_token);
+});
+
+router.get('/api/token/twitter', async(_sql, req, res) => {
+  const request = {
+    method: 'POST',
+    url: 'https://api.twitter.com/oauth/access_token?' + new URLSearchParams({
+      oauth_token: req.body.oauth_token,
+      oauth_verifier: req.body.oauth_verifier
+    })
+  };
+
+  const ans = await (await fetch(request.url, {
+    method: request.method
+  })).text();
+  res.code(200);
+  const tokens = ans.match(/oauth_token=(?<oauth_token>.+)\&oauth_token_secret=(?<oauth_token_secret>.+)\&user_id=(?<user_id>.+)\&screen_name=(?<screen_name>.+)/).groups;
+  res.body(tokens);
 });
 
 router.listen(process.env.PORT || 3000);

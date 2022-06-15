@@ -2,7 +2,7 @@ const onloadConnectTwitter = window.onload || (() => { });
 window.onload = () => {
   const loadPhotos = async () => {
     if (window.location.href.indexOf('?') === -1) {
-      const token = await call('GET', '/connect/twitter');
+      const token = await call('GET', '/authorize/twitter');
       const authorizeAppURL
         = 'https://api.twitter.com/oauth/authorize?'
         + new URLSearchParams({
@@ -13,13 +13,11 @@ window.onload = () => {
     }
     const params = window.location.href.match(/\?oauth_token=(?<token>.+)\&oauth_verifier=(?<verifier>.+)/).groups;
 
-    const res = await fetch('https://api.twitter.com/oauth/access_token?' + new URLSearchParams({
+    const tokens = await call('GET', '/token/twitter', {
       oauth_token: params.token,
       oauth_verifier: params.verifier
-    }), {
-      method: 'POST'
     });
-    console.log(res);
+    console.log(tokens);
   };
   loadPhotos();
   onloadConnectTwitter();
