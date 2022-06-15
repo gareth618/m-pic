@@ -1,8 +1,10 @@
+import 'dotenv/config'
+import crypto from 'crypto';
+import request from 'request';
+import OAuth from 'oauth-1.0a';
+
 import Router from './router.js';
 import Templater from './templater.js';
-import request from 'request';
-import crypto from 'crypto';
-import OAuth from 'oauth-1.0a';
 
 const templater = new Templater();
 await templater.load('src/views');
@@ -16,11 +18,16 @@ await router.mime('public/css', 'text/css');
 await router.mime('public/js', 'application/javascript');
 
 router.postgres({
-  host: 'localhost',
-  port: 5432,
-  database: 'postgres',
-  user: 'mpic',
-  password: 'mpic'
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  ssl: { rejectUnauthorized: false }
+});
+
+router.get('/', (_sql, _req, res) => {
+  res.goto('/sign-in');
 });
 
 router.get('/sign-in', (_sql, _req, res) => {
@@ -31,12 +38,12 @@ router.get('/sign-up', (_sql, _req, res) => {
   res.html(templater.render('SignUp', { }));
 });
 
-router.get('/my-photos-facebook', async (_sql, _req, res) => {
-  res.html(templater.render('MyPhotos', { api: 'facebook-api' }));
+router.get('/my-photos-unsplash', async (_sql, _req, res) => {
+  res.html(templater.render('MyPhotos', { api: 'unsplash' }));
 });
 
-router.get('/my-photos-unsplash', async (_sql, _req, res) => {
-  res.html(templater.render('MyPhotos', { api: 'unsplash-api' }));
+router.get('/my-photos-facebook', async (_sql, _req, res) => {
+  res.html(templater.render('MyPhotos', { api: 'facebook' }));
 });
 
 router.get('/my-photos-twitter', async (_sql, _req, res) => {
@@ -53,7 +60,7 @@ router.get('/my-photos-twitter', async (_sql, _req, res) => {
         .digest('base64');
     }
   });
-  
+
   const request_data = {
     url: 'https://api.twitter.com/oauth/request_token?' + new URLSearchParams({
       oauth_callback: 'http://localhost:3000/my-photos-twitter'
@@ -96,10 +103,6 @@ router.get('/my-profiles', (_sql, _req, res) => {
     });
   }
   res.html(templater.render('MyProfiles', { profiles }));
-});
-
-router.get('/', (_sql, _req, res) => {
-  res.goto('/sign-in');
 });
 
 router.get('/api/sign-in', async (sql, req, res) => {

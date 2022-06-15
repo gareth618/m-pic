@@ -47,15 +47,14 @@ export default class Router {
         return;
       }
 
-      // const client = await this.pool.connect();
+      const client = await this.pool.connect();
       const sqlFacade = {
         call: async (fun, args) => {
-          return '-1';
-          // const ans = await client.query(
-          //   `SELECT ${fun} (${args.map((_, index) => `$${index + 1}`).join(', ')})`,
-          //   args
-          // );
-          // return ans.rows[0][fun];
+          const ans = await client.query(
+            `SELECT ${fun} (${args.map((_, index) => `$${index + 1}`).join(', ')})`,
+            args
+          );
+          return ans.rows[0][fun];
         }
       };
       const reqFacade = {
@@ -82,7 +81,7 @@ export default class Router {
         body: body => res.end(JSON.stringify(body))
       };
       route.callback(sqlFacade, reqFacade, resFacade);
-      // client.release();
+      client.release();
     });
 
     server.listen(port);
