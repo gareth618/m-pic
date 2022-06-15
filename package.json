@@ -6,7 +6,10 @@
     "start": "node src/controllers/controller.js"
   },
   "dependencies": {
-    "pg": "^8.7.3"
+    "crypto": "^1.0.1",
+    "oauth-1.0a": "^2.2.6",
+    "pg": "^8.7.3",
+    "request": "^2.88.2"
   },
   "engines": {
     "node": "14.x"

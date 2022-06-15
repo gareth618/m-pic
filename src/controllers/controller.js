@@ -1,5 +1,8 @@
 import Router from './router.js';
 import Templater from './templater.js';
+import request from 'request';
+import crypto from 'crypto';
+import OAuth from 'oauth-1.0a';
 
 const templater = new Templater();
 await templater.load('src/views');
@@ -37,6 +40,43 @@ router.get('/my-photos-unsplash', async (_sql, _req, res) => {
 });
 
 router.get('/my-photos-twitter', async (_sql, _req, res) => {
+  const oauth = OAuth({
+    consumer: {
+      key: '9qlxqpU2SherZlf7WQVsFYQ3T',
+      secret: 'XKx8CpVaPQuorHrGl6mj1OLenyHeI95BVAFvsq80if3zdM5Ep9'
+    },
+    signature_method: 'HMAC-SHA1',
+    hash_function(base_string, key) {
+      return crypto
+        .createHmac('sha1', key)
+        .update(base_string)
+        .digest('base64');
+    }
+  });
+  
+  const request_data = {
+    url: 'https://api.twitter.com/oauth/request_token?' + new URLSearchParams({
+      oauth_callback: 'http://localhost:3000/my-photos-twitter'
+    }),
+    method: 'POST'
+  };
+
+  const token = {
+    key: '1536324348457385985-PcGWOXEqNlkpcJbn5ycBMHy8TG34sf',
+    secret: 'eO3pkfRNjZhWV1NkqUdzjVK5sq0cnwTrELdRCSrNqrZS1'
+  };
+
+  request(
+    {
+      url: request_data.url,
+      method: request_data.method,
+      form: oauth.authorize(request_data, token)
+    },
+    (error, response, body) => {
+      console.log(body);
+    }
+  );
+
   res.html(templater.render('MyPhotos', { api: 'twitter-api' }));
 });
 
