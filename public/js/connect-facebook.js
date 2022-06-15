@@ -31,9 +31,9 @@ window.onload = () => {
       });
     const accessToken = (await (await fetch(getAccessTokenURL, { method: 'POST' })).json()).access_token;
 
-    console.log(await fetch('https://graph.facebook.com/me/accounts?' + new URLSearchParams({
+    console.log(await (await fetch('https://graph.facebook.com/me/accounts?' + new URLSearchParams({
       access_token: accessToken
-    }), { method: 'GET' }));
+    }), { method: 'GET' })).json());
   };
   loadPhotos();
   onloadConnectFacebook();
