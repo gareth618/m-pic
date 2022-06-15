@@ -1,6 +1,6 @@
-const onloadUnsplashAPI = window.onload || (() => { });
+const onloadConnectUnsplash = window.onload || (() => { });
 window.onload = () => {
-  const loadPhotosFromUnsplash = async () => {
+  const loadPhotos = async () => {
     const ACCESS_KEY = 'fYYxcL26k6kwhwqZql_3lgO86KhpuhID-cWQg9Z9_P4';
     const SECRET_KEY = '8pkIKHWiYeck0qJCbiyNUvRT09xI2YJNb4sH33Vh0Ak';
 
@@ -54,6 +54,6 @@ window.onload = () => {
       gallery.appendChild(image);
     }
   };
-  loadPhotosFromUnsplash();
-  onloadUnsplashAPI();
+  loadPhotos();
+  onloadConnectUnsplash();
 };

@@ -1,8 +1,8 @@
-const onloadTwitterAPI = window.onload || (() => { });
+const onloadConnectTwitter = window.onload || (() => { });
 window.onload = () => {
-  const loadPhotosFromTwitter = async () => {
-    // TODO
+  const loadPhotos = async () => {
+    console.log(await call('GET', '/connect/twitter'));
   };
-  loadPhotosFromTwitter();
-  onloadTwitterAPI();
+  loadPhotos();
+  onloadConnectTwitter();
 };

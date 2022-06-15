@@ -1,7 +1,7 @@
-import 'dotenv/config'
+import 'dotenv/config';
 import crypto from 'crypto';
-import request from 'request';
 import OAuth from 'oauth-1.0a';
+import fetch from 'node-fetch';
 
 import Router from './router.js';
 import Templater from './templater.js';
@@ -47,44 +47,7 @@ router.get('/my-photos-facebook', async (_sql, _req, res) => {
 });
 
 router.get('/my-photos-twitter', async (_sql, _req, res) => {
-  const oauth = OAuth({
-    consumer: {
-      key: '9qlxqpU2SherZlf7WQVsFYQ3T',
-      secret: 'XKx8CpVaPQuorHrGl6mj1OLenyHeI95BVAFvsq80if3zdM5Ep9'
-    },
-    signature_method: 'HMAC-SHA1',
-    hash_function(base_string, key) {
-      return crypto
-        .createHmac('sha1', key)
-        .update(base_string)
-        .digest('base64');
-    }
-  });
-
-  const request_data = {
-    url: 'https://api.twitter.com/oauth/request_token?' + new URLSearchParams({
-      oauth_callback: 'http://localhost:3000/my-photos-twitter'
-    }),
-    method: 'POST'
-  };
-
-  const token = {
-    key: '1536324348457385985-PcGWOXEqNlkpcJbn5ycBMHy8TG34sf',
-    secret: 'eO3pkfRNjZhWV1NkqUdzjVK5sq0cnwTrELdRCSrNqrZS1'
-  };
-
-  request(
-    {
-      url: request_data.url,
-      method: request_data.method,
-      form: oauth.authorize(request_data, token)
-    },
-    (error, response, body) => {
-      console.log(body);
-    }
-  );
-
-  res.html(templater.render('MyPhotos', { api: 'twitter-api' }));
+  res.html(templater.render('MyPhotos', { api: 'twitter' }));
 });
 
 router.get('/my-profiles', (_sql, _req, res) => {
@@ -135,6 +98,52 @@ router.post('/api/sign-up', async (sql, req, res) => {
     res.code(200);
     res.body({ user });
   }
+});
+
+router.get('/api/connect/twitter', async (_sql, _req, res) => {
+  const oauth = OAuth({
+    signature_method: 'HMAC-SHA1',
+    consumer: {
+      key: '9qlxqpU2SherZlf7WQVsFYQ3T',
+      secret: 'XKx8CpVaPQuorHrGl6mj1OLenyHeI95BVAFvsq80if3zdM5Ep9'
+    },
+    hash_function(base_string, key) {
+      return crypto
+        .createHmac('sha1', key)
+        .update(base_string)
+        .digest('base64');
+    }
+  });
+
+  const request = {
+    method: 'POST',
+    url: 'https://api.twitter.com/oauth/request_token?' + new URLSearchParams({
+      oauth_callback: 'http://localhost:3000/my-photos-twitter'
+    })
+  };
+  const token = {
+    key: '1536324348457385985-KwEXWkOLRdfEQVj4gTFHswIGqb98td',
+    secret: 'CsQDUW5Mu78N9uOPp8sTOW4eutbGOHY6dSApOyGp2qCrW'
+  };
+
+  const params = oauth.authorize(request, token);
+  let auth = '';
+  for (const field in params) {
+    if (field === 'oauth_token') continue;
+    if (field === 'oauth_callback') continue;
+    auth += `${field}="${encodeURIComponent(params[field])}", `;
+  }
+  auth = auth.slice(0, -2);
+
+  console.log(params);
+  console.log(auth);
+
+  const ans = await (await fetch(request.url, {
+    method: request.method,
+    headers: { 'Authorization': `OAuth ${auth}` }
+  })).text();
+  res.code(200);
+  res.body(ans);
 });
 
 router.listen(process.env.PORT || 3000);
