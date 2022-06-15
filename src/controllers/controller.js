@@ -129,7 +129,6 @@ router.get('/api/connect/twitter', async (_sql, _req, res) => {
   const params = oauth.authorize(request, token);
   let auth = '';
   for (const key in params) {
-    if (key === 'oauth_callback') continue;
     auth += `${key}="${encodeURIComponent(params[key])}", `;
   }
   auth = auth.slice(0, -2);

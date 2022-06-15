@@ -8,14 +8,35 @@ window.onload = () => {
     const STATE_PARAM = 'mpic-random-string';
 
     if (window.location.href.indexOf('?') === -1) {
-      const loginDialogURL = 'https://www.facebook.com/v14.0/dialog/oauth?' + new URLSearchParams({
-        client_id: APP_ID,
-        redirect_uri: REDIRECT_URI,
-        state: STATE_PARAM
-      });
-      window.open(loginDialogURL, '_self');
+      const authorizeAppURL
+        = 'https://www.facebook.com/v14.0/dialog/oauth?'
+        + new URLSearchParams({
+          client_id: APP_ID,
+          redirect_uri: REDIRECT_URI,
+          state: STATE_PARAM,
+          response_type: 'code'
+        });
+      window.open(authorizeAppURL, '_self');
+      return;
     }
+    const CODE = window.location.href.match(/\?code=(?<code>.+)\&state=/).groups.code;
+
+    const getAccessTokenURL
+      = 'https://graph.facebook.com/v14.0/oauth/access_token?'
+      + new URLSearchParams({
+        client_id: APP_ID,
+        client_secret: APP_SECRET,
+        redirect_uri: REDIRECT_URI,
+        code: CODE
+      });
+    console.log((await (await fetch(getAccessTokenURL, { method: 'POST' })).json()));
   };
   loadPhotos();
   onloadConnectFacebook();
 };
+
+// GET https://graph.facebook.com/v14.0/oauth/access_token?
+//    client_id={app-id}
+//    &redirect_uri={redirect-uri}
+//    &client_secret={app-secret}
+//    &code={code-parameter}
