@@ -28,6 +28,10 @@ router.get('/sign-up', (_sql, _req, res) => {
   res.html(templater.render('SignUp', { }));
 });
 
+router.get('/my-photos-facebook', async (_sql, _req, res) => {
+  res.html(templater.render('MyPhotos', { api: 'facebook-api' }));
+});
+
 router.get('/my-photos-unsplash', async (_sql, _req, res) => {
   res.html(templater.render('MyPhotos', { api: 'unsplash-api' }));
 });
