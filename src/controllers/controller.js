@@ -118,7 +118,7 @@ router.get('/api/connect/twitter', async (_sql, _req, res) => {
   const request = {
     method: 'POST',
     url: 'https://api.twitter.com/oauth/request_token?' + new URLSearchParams({
-      oauth_callback: 'http://localhost:3000/my-photos-twitter'
+      oauth_callback: 'https://m-p1c.herokuapp.com/my-photos-twitter'
     })
   };
   const token = {
