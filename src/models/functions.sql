@@ -12,7 +12,7 @@ as
 $$
 declare
   user_id int;
-  user_password users.password%type;
+  user_password varchar;
 begin
   select id, password
     into user_id, user_password

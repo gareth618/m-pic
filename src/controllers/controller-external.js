@@ -40,6 +40,10 @@ export default function(router) {
     res.json({ token });
   });
 
+  router.post('/api/facebook/authorize', async (sql, req, res) => {
+    
+  });
+
   router.get('/api/twitter/init', async (_sql, _req, res) => {
     const oauth = OAuth({
       signature_method: 'HMAC-SHA1',
