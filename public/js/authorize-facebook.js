@@ -10,22 +10,12 @@ window.onload = () => {
       }), '_self');
       return;
     }
-    console.log(new URLSearchParams(window.location.search).get('code'));
-  //   const CODE = window.location.href.match(/\?code=(?<code>.+)\&state=/).groups.code;
-
-  //   const getAccessTokenURL
-  //     = 'https://graph.facebook.com/v14.0/oauth/access_token?'
-  //     + new URLSearchParams({
-  //       client_id: APP_ID,
-  //       client_secret: APP_SECRET,
-  //       redirect_uri: REDIRECT_URI,
-  //       code: CODE
-  //     });
-  //   const accessToken = (await (await fetch(getAccessTokenURL, { method: 'POST' })).json()).access_token;
-
-  //   console.log(await (await fetch('https://graph.facebook.com/me/accounts?' + new URLSearchParams({
-  //     access_token: accessToken
-  //   }), { method: 'GET' })).json());
+    const { profile } = await call('POST', '/facebook/authorize', {
+      user: localStorage.getItem('M-PIC.user'),
+      code: new URLSearchParams(window.location.search).get('code')
+    });
+    await call('PUT', '/facebook/token', { profile });
+    window.open('/my-profiles', '_self');
   };
   authorize();
   onloadConnectFacebook();
