@@ -21,5 +21,5 @@ function onClickSortBtn(id) {
 
 function signOut() {
   localStorage.removeItem('M-PIC.user');
-  window.location.href = '/sign-in';
+  location.href = '/sign-in';
 }

@@ -22,5 +22,5 @@ async function signUp() {
   });
   ans.error != null
     ? alert(res.error)
-    : window.location.href = '/sign-in';
+    : location.href = '/sign-in';
 }
