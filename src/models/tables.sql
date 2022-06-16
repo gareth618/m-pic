@@ -7,16 +7,16 @@ drop table if exists users;
 
 create table users (
   id serial primary key,
-  email varchar(100) not null,
-  password varchar(100) not null
+  email varchar not null,
+  password varchar not null
 );
 
 create table profiles (
   id serial primary key,
   id_user int not null,
-  platform varchar(10) not null,
-  code varchar(200) not null,
-  token varchar(200),
+  platform varchar not null,
+  code varchar not null,
+  token varchar,
 
   constraint fkey_profiles_users
     foreign key (id_user)

@@ -110,7 +110,7 @@ create or replace function get_profile_code (p_id int)
 as
 $$
 declare
-  ans varchar(100);
+  ans varchar;
 begin
   select code into ans from profiles p where p.id = p_id;
   return ans;
