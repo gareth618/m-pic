@@ -1,4 +1,3 @@
-import { randomBytes } from 'crypto';
 import fetch from 'node-fetch';
 
 export default function controllerPages(router, templater) {

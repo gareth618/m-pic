@@ -8,11 +8,12 @@ window.onload = () => {
       return;
     }
     const params = new URLSearchParams(location.search);
-    const tokens = await call('GET', '/twitter/authorize', {
+    await call('GET', '/twitter/authorize', {
+      user: localStorage.getItem('M-PIC.user'),
       oauth_token: params.get('oauth_token'),
       oauth_verifier: params.get('oauth_verifier')
     });
-    console.log(tokens);
+    window.open('/my-profiles', '_self');
   };
   authorize();
   onloadAuthorizeTwitter();

@@ -111,7 +111,7 @@ export default function(router) {
     res.json({ token: tokens.oauth_token });
   });
 
-  router.get('/api/twitter/authorize', async (_sql, req, res) => {
+  router.get('/api/twitter/authorize', async (sql, req, res) => {
     const ans = await (await fetch('https://api.twitter.com/oauth/access_token?' + new URLSearchParams({
       oauth_token: req.body.oauth_token,
       oauth_verifier: req.body.oauth_verifier
@@ -119,8 +119,18 @@ export default function(router) {
       method: 'POST'
     })).text();
     const tokens = ans.match(/oauth_token=(?<oauth_token>.+)\&oauth_token_secret=(?<oauth_token_secret>.+)\&user_id=(?<user_id>.+)\&screen_name=(?<screen_name>.+)/).groups;
+    const token = `${tokens.oauth_token} ${tokens.oauth_token_secret}`;
+
+    const profile = await sql.call(
+      'add_profile',
+      [req.body.user, 'twitter', `${req.oauth_token} ${req.oauth_verifier}`]
+    );
+    await sql.call(
+      'set_profile_token',
+      [parseInt(profile), token]
+    );
     res.code(200);
-    res.json(tokens);
+    res.json({ token });
   });
 };
 
