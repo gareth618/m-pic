@@ -40,12 +40,12 @@ export default function(router) {
     res.json({ token });
   });
 
-  router.get('/api/authorize/twitter', async (_sql, _req, res) => {
+  router.get('/api/twitter/init', async (_sql, _req, res) => {
     const oauth = OAuth({
       signature_method: 'HMAC-SHA1',
       consumer: {
-        key: '9qlxqpU2SherZlf7WQVsFYQ3T',
-        secret: 'XKx8CpVaPQuorHrGl6mj1OLenyHeI95BVAFvsq80if3zdM5Ep9'
+        key: process.env.TWITTER_ACCESS_KEY,
+        secret: process.env.TWITTER_SECRET_KEY
       },
       hash_function(base_string, key) {
         return crypto
@@ -58,44 +58,38 @@ export default function(router) {
     const request = {
       method: 'POST',
       url: 'https://api.twitter.com/oauth/request_token?' + new URLSearchParams({
-        oauth_callback: 'https://m-p1c.herokuapp.com/my-photos-twitter'
+        oauth_callback: domain + 'authorize/twitter'
       })
     };
     const token = {
-      key: '1536324348457385985-KwEXWkOLRdfEQVj4gTFHswIGqb98td',
-      secret: 'CsQDUW5Mu78N9uOPp8sTOW4eutbGOHY6dSApOyGp2qCrW'
+      key: process.env.TWITTER_ACCESS_TOKEN,
+      secret: process.env.TWITTER_SECRET_TOKEN
     };
-
     const params = oauth.authorize(request, token);
+
     let auth = '';
     for (const key in params) {
       auth += `${key}="${encodeURIComponent(params[key])}", `;
     }
     auth = auth.slice(0, -2);
-
     const ans = await (await fetch(request.url, {
       method: request.method,
       headers: { 'Authorization': `OAuth ${auth}` }
     })).text();
-    res.code(200);
     const tokens = ans.match(/oauth_token=(?<oauth_token>.+)\&oauth_token_secret=(?<oauth_token_secret>.+)\&oauth_callback_confirmed=true/).groups;
-    res.json(tokens.oauth_token);
+    res.code(200);
+    res.json({ token: tokens.oauth_token });
   });
 
-  router.get('/api/token/twitter', async (_sql, req, res) => {
-    const request = {
-      method: 'POST',
-      url: 'https://api.twitter.com/oauth/access_token?' + new URLSearchParams({
-        oauth_token: req.body.oauth_token,
-        oauth_verifier: req.body.oauth_verifier
-      })
-    };
-
-    const ans = await (await fetch(request.url, {
-      method: request.method
+  router.get('/api/twitter/authorize', async (_sql, req, res) => {
+    const ans = await (await fetch('https://api.twitter.com/oauth/access_token?' + new URLSearchParams({
+      oauth_token: req.body.oauth_token,
+      oauth_verifier: req.body.oauth_verifier
+    }), {
+      method: 'POST'
     })).text();
-    res.code(200);
     const tokens = ans.match(/oauth_token=(?<oauth_token>.+)\&oauth_token_secret=(?<oauth_token_secret>.+)\&user_id=(?<user_id>.+)\&screen_name=(?<screen_name>.+)/).groups;
+    res.code(200);
     res.json(tokens);
   });
 };

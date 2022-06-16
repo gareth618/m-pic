@@ -32,5 +32,7 @@ the website is available on [heroku](https://m-p1c.herokuapp.com/)
 - [ ] facebook api
 - [ ] instagram api
 - [ ] twitter api
+- [ ] add profile button
+- [ ] load profiles from server
 - [ ] minimal admin panel with stats
 - [ ] user sessions and authorization

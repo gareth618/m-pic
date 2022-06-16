@@ -1,4 +1,4 @@
-const onloadSignJS = window.onload || (() => { });
+const onloadSign = window.onload || (() => { });
 window.onload = () => {
   const columns = [...document.getElementById('photos').children];
   columns.forEach((column, index) => {
@@ -28,7 +28,7 @@ window.onload = () => {
     };
     scroll();
   });
-  onloadSignJS();
+  onloadSign();
 };
 
 let checked = false;

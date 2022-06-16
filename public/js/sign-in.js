@@ -82,16 +82,16 @@ function checkScrolled() {
   doneWord = true;
 }
 
-const onloadSignInJS = window.onload || (() => { });
+const onloadSignIn = window.onload || (() => { });
 window.onload = () => {
   animateWords();
   initWord();
   checkScrolled();
-  onloadSignInJS();
+  onloadSignIn();
 };
 
-const onscrollSignInJS = window.onscroll || (() => { });
+const onscrollSignIn = window.onscroll || (() => { });
 window.onscroll = () => {
   checkScrolled();
-  onscrollSignInJS();
+  onscrollSignIn();
 };
