@@ -1,3 +1,4 @@
+import { randomBytes } from 'crypto';
 import fetch from 'node-fetch';
 
 export default function controllerPages(router, templater) {
@@ -11,20 +12,21 @@ export default function controllerPages(router, templater) {
     res.html(templater.render('SignUp', { }));
   });
 
-  router.get('/my-profiles', (_sql, _req, res) => {
-    const random = max => Math.floor(Math.random() * max);
-    const icons = ['facebook', 'instagram', 'reddit-alien', 'twitter', 'unsplash'];
-    const users = ['gareth618', 'lizzzu', 'oracolul', 'mikeIMT', 'bossu', 'bunul20', 'fanurie', 'juve45', 'b9i', 'denis2111', 'geniucos', 'usu', 'paftenie', 'macarie'];
-    const count = random(25) + 25;
+  router.get('/my-profiles', async (sql, _req, res) => {
+    const my_profiles = (await sql.call(
+      'get_profiles',
+      [1]
+    )) || [];
     const profiles = [];
-    for (let i = 0; i < count; i++) {
+    const random = max => Math.floor(Math.random() * max);
+    for (const { platform, token } of my_profiles) {
       profiles.push({
-        icon: icons[random(icons.length)],
-        user: users[random(users.length)],
+        icon: platform,
+        user: token ? 'username' : 'unknown',
         photos: random(1000),
         followers: random(1000),
         shares: random(1000)
-      });
+      })
     }
     res.html(templater.render('MyProfiles', { profiles }));
   });
