@@ -20,7 +20,7 @@ async function signIn() {
   }
   else {
     localStorage.setItem('M-PIC.user', ans.user);
-    window.location.href = '/my-photos-unsplash';
+    window.location.href = '/my-photos';
   }
 }
 

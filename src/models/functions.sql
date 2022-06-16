@@ -2,7 +2,10 @@
 -- USERS --
 -----------
 
-create or replace function sign_in (p_email varchar, p_password varchar)
+create or replace function sign_in (
+  p_email varchar,
+  p_password varchar
+)
   returns varchar
   language plpgsql
 as
@@ -23,7 +26,10 @@ begin
 end
 $$;
 
-create or replace function sign_up (p_email varchar, p_password varchar)
+create or replace function sign_up (
+  p_email varchar,
+  p_password varchar
+)
   returns varchar
   language plpgsql
 as
@@ -48,57 +54,93 @@ begin
 end
 $$;
 
-create or replace procedure delete_user (p_id int)
+create or replace function delete_user (p_id int)
+  returns int
   language plpgsql
 as
 $$
 begin
-  delete
-    from users u
-    where u.id = p_id;
+  delete from users u where u.id = p_id;
+  return p_id;
 end
 $$;
 
 
--- --------------
--- -- PROFILES --
--- --------------
+--------------
+-- PROFILES --
+--------------
 
--- create or replace function add_profile (p_id_user int, p_platform varchar)
---   returns varchar
---   language plpgsql
--- as
--- $$
--- declare
---   count_profiles int;
---   new_id int;
--- begin
---   select count(*)
---     into count_profiles
---     from profiles p
---     where p.id_user = p_id_user and p.platform = p_platform;
---   if count_profiles = 0 then
---     insert into
---       profiles (id_user, platform, logged_in)
---       values (p_id_user, p_platform, true)
---       returning id into new_id;
---     return 'created profile with id ' || new_id;
---   else
---     return 'platform already in use';
---   end if;
--- end
--- $$;
+create or replace function add_profile (
+  p_id_user int,
+  p_platform varchar,
+  p_code varchar
+)
+  returns int
+  language plpgsql
+as
+$$
+declare
+  new_id int;
+begin
+  insert into
+    profiles (id_user, platform, code)
+    values (p_id_user, p_platform, p_code)
+    returning id into new_id;
+  return new_id;
+end
+$$;
 
--- create or replace procedure delete_profile (p_id int)
---   language plpgsql
--- as
--- $$
--- begin
---   delete
---     from profiles p
---     where p.id = p_id;
--- end
--- $$;
+create or replace function get_profiles (p_id_user int)
+  returns table (j json)
+  language plpgsql
+as
+$$
+begin
+  return query select json_agg(t) from (
+    select platform, token
+      from profiles p
+      where p.id_user = p_id_user
+  ) t;
+end
+$$;
+
+create or replace function get_profile_code (p_id int)
+  returns varchar
+  language plpgsql
+as
+$$
+declare
+  ans varchar(100);
+begin
+  select code into ans from profiles p where p.id = p_id;
+  return ans;
+end
+$$;
+
+create or replace function set_profile_token (
+  p_id int,
+  p_token varchar
+)
+  returns varchar
+  language plpgsql
+as
+$$
+begin
+  update profiles p set token = p_token where p.id = p_id;
+  return p_token;
+end
+$$;
+
+create or replace function delete_profile (p_id int)
+  returns int
+  language plpgsql
+as
+$$
+begin
+  delete from profiles p where p.id = p_id;
+  return p_id;
+end
+$$;
 
 
 -- ------------

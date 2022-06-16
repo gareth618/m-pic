@@ -27,10 +27,10 @@ the website is available on [heroku](https://m-p1c.herokuapp.com/)
 - [x] rewrite views in components
 - [x] generate photos and profiles in controller
 - [x] deploy on heroku
+- [x] 404 custom page
 - [x] unsplash api
 - [ ] facebook api
 - [ ] instagram api
 - [ ] twitter api
-- [ ] 404 custom page
 - [ ] minimal admin panel with stats
 - [ ] user sessions and authorization

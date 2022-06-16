@@ -2,7 +2,7 @@ import pg from 'pg';
 import { parse } from 'url';
 import { createServer } from 'http';
 import { createReadStream } from 'fs';
-import { readdir } from 'fs/promises';
+import { readdir, readFile } from 'fs/promises';
 
 export default class Router {
   constructor() {
@@ -13,6 +13,10 @@ export default class Router {
   async mime(dir, type) {
     const files = (await readdir(dir)).map(file => `/${dir}/${file}`);
     this.mimes.push({ dir, type, files });
+  }
+
+  async page404(file) {
+    this.html404 = await readFile(file, { encoding: 'utf8' });
   }
 
   postgres(config) {
@@ -44,44 +48,7 @@ export default class Router {
       if (route == null) {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/html');
-        res.end(`
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <title>M-PIC | page not found</title>
-              <link rel="icon" href="/public/favicons/light.svg" id="favicon">
-              <link rel="stylesheet" href="/public/css/global.css">
-              <script src="/public/js/global.js" defer></script>
-              <style>
-                * {
-                  text-align: center;
-                  margin: 0;
-                }
-                h1 {
-                  font-size: 14rem;
-                  margin-top: 8%;
-                }
-                h2 {
-                  font-size: 4rem;
-                  margin-bottom: 2rem;
-                }
-                a {
-                  font-size: 2rem;
-                  padding: .25rem 1rem;
-                  color: var(--black);
-                  background: var(--pink);
-                  border: 1px solid var(--black);
-                  border-radius: 100vh;
-                }
-              </style>
-            </head>
-            <body>
-              <h1>404</h1>
-              <h2>sorry, page not found</h2>
-              <a href="/">back to home page</a>
-            </body>
-          </html>
-        `);
+        res.end(this.html404);
         return;
       }
 
@@ -99,7 +66,13 @@ export default class Router {
         head: req.headers,
         body: route.method === 'GET'
           ? parse(req.url, true).query
-          : JSON.parse(Buffer.concat(chunks).toString())
+          : await (async () => {
+            const chunks = [];
+            for await (const chunk of req) {
+              chunks.push(chunk);
+            }
+            return JSON.parse(Buffer.concat(chunks).toString());
+          })()
       };
       const resFacade = {
         goto: url => {
@@ -116,7 +89,9 @@ export default class Router {
           res.statusCode = code;
           res.setHeader('Content-Type', 'application/json');
         },
-        body: body => res.end(JSON.stringify(body))
+        json: json => {
+          res.end(JSON.stringify(json))
+        }
       };
       route.callback(sqlFacade, reqFacade, resFacade);
       client.release();

@@ -1,7 +1,7 @@
-drop table if exists image_tag;
-drop table if exists image_profile;
-drop table if exists tags;
-drop table if exists images;
+-- drop table if exists image_tag;
+-- drop table if exists image_profile;
+-- drop table if exists tags;
+-- drop table if exists images;
 drop table if exists profiles;
 drop table if exists users;
 
@@ -11,17 +11,18 @@ create table users (
   password varchar(50) not null
 );
 
--- create table profiles (
---   id serial primary key,
---   id_user int not null,
---   platform varchar(10) not null,
---   logged_in boolean not null,
+create table profiles (
+  id serial primary key,
+  id_user int not null,
+  platform varchar(10) not null,
+  code varchar(100) not null,
+  token varchar(100),
 
---   constraint fkey_profiles_users
---     foreign key (id_user)
---     references users (id)
---     on delete cascade
--- );
+  constraint fkey_profiles_users
+    foreign key (id_user)
+    references users (id)
+    on delete cascade
+);
 
 -- create table images (
 --   id serial primary key,

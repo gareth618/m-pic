@@ -4,7 +4,7 @@
     <Head
       title="'my photos'"
       styles="['my', 'my-photos', 'snake']"
-      scripts="['my', 'connect-' + $api]"
+      scripts="['my']"
     >
     <body>
       <Header altPage="'my profiles'">
@@ -17,6 +17,9 @@
       <div class="scroller">
         <div class="container">
           <main id="gallery">
+            <for itr="photo" arr="$photos">
+              <img src="{{$photo}}" alt="photo">
+            </for>
           </main>
         </div>
       </div>
