@@ -8,8 +8,8 @@ window.onload = () => {
       return;
     }
     const params = new URLSearchParams(location.search);
-    await call('GET', '/twitter/authorize', {
-      user: localStorage.getItem('M-PIC.user'),
+    await call('POST', '/twitter/authorize', {
+      user_id: localStorage.getItem('M-PIC.user'),
       oauth_token: params.get('oauth_token'),
       oauth_verifier: params.get('oauth_verifier')
     });

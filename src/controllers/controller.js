@@ -3,7 +3,9 @@ import Router from './router.js';
 import Templater from './templater.js';
 import controllerPages from './controller-pages.js';
 import controllerInternal from './controller-internal.js';
-import controllerExternal from './controller-external.js';
+import controllerUnsplash from './controller-unsplash.js';
+import controllerFacebook from './controller-facebook.js';
+import controllerTwitter from './controller-twitter.js';
 
 const templater = new Templater();
 await templater.load('src/views');
@@ -26,7 +28,10 @@ router.postgres({
   database: process.env.DB_NAME,
   ssl: { rejectUnauthorized: false }
 });
+
 controllerPages(router, templater);
 controllerInternal(router);
-controllerExternal(router);
+controllerUnsplash(router);
+controllerFacebook(router);
+controllerTwitter(router);
 router.listen(process.env.PORT || 3000);

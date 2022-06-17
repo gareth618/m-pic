@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 export default function controllerPages(router, templater) {
   router.get('/', (_sql, _req, res) => {
     res.goto('/sign-in');
@@ -12,20 +10,17 @@ export default function controllerPages(router, templater) {
   });
 
   router.get('/my-profiles', async (sql, _req, res) => {
-    const my_profiles = (await sql.call(
+    const dbProfiles = (await sql.call(
       'get_profiles',
       [1]
     )) || [];
     const profiles = [];
-    const random = max => Math.floor(Math.random() * max);
-    for (const { platform, token } of my_profiles) {
-      profiles.push({
-        icon: platform,
-        user: token ? 'username' : 'unknown',
-        photos: random(1000),
-        followers: random(1000),
-        shares: random(1000)
-      })
+    for (const { platform, token } of dbProfiles) {
+      if (platform !== 'unsplash') {
+        profiles.push({ platform });
+        continue;
+      }
+      profiles.push(await router.call('GET', `/${platform}/profile`, { token }));
     }
     res.html(templater.render('MyProfiles', { profiles }));
   });
@@ -33,27 +28,16 @@ export default function controllerPages(router, templater) {
   router.get('/my-photos', async (sql, _req, res) => {
     const profiles = (await sql.call(
       'get_profiles',
-      [1] // [req.body.user]
+      [1]
     )) || [];
     const photos = [];
     for (const { platform, token } of profiles) {
-      if (platform === 'unsplash') {
-        const username = (await (await fetch('https://api.unsplash.com/me', {
-          method: 'GET',
-          headers: { 'Authorization': `Bearer ${token}` }
-        })).json()).username;
-        const collections = await (await fetch(`https://api.unsplash.com/users/${username}/collections?client_id=${token}`, {
-          method: 'GET',
-          headers: { 'Authorization': `Bearer ${token}` }
-        })).json();
-        collections.forEach(collection => {
-          collection.preview_photos.forEach(photo => {
-            photos.push(photo.urls.small);
-          });
-        });
+      if (platform !== 'unsplash') continue;
+      const crtPhotos = await router.call('GET', `/${platform}/photos`, { token });
+      for (const photo of crtPhotos) {
+        photos.push(photo);
       }
     }
-    res.code(200);
     res.html(templater.render('MyPhotos', { photos }));
   });
 

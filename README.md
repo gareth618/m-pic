@@ -11,28 +11,19 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 - Iulian Oleniuc (2B3)
 - Elisabeta Dima (2B3)
 
-## 🎨 design
+## 🔭 stack
 
-the design is available on [figma](https://www.figma.com/file/FPE0X6J8mfUDaEQ6Sg8xH9/web)
+- **design** [figma](https://www.figma.com/file/FPE0X6J8mfUDaEQ6Sg8xH9/web)
+- **deploy** [heroku](https://m-p1c.herokuapp.com/)
+- **backend** node
+- **database** postgres
 
-## 📡 online
+## 🦆 tasks
 
-the website is available on [heroku](https://m-p1c.herokuapp.com/)
-
-## 🐘 tasks
-
-- [x] router engine
-- [x] restructure project in mvc fashion
-- [x] template engine
-- [x] rewrite views in components
-- [x] generate photos and profiles in controller
-- [x] deploy on heroku
-- [x] 404 custom page
-- [x] unsplash api
 - [ ] facebook api
 - [ ] instagram api
 - [ ] twitter api
-- [ ] add profile button
-- [ ] load profiles from server
+- [ ] invalidate reddit
+- [ ] view/delete profile buttons
 - [ ] minimal admin panel with stats
 - [ ] user sessions and authorization

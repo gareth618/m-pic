@@ -1,10 +1,29 @@
+import 'dotenv/config';
 import pg from 'pg';
+import fetch from 'node-fetch';
 import { parse } from 'url';
 import { createServer } from 'http';
 import { createReadStream } from 'fs';
 import { readdir, readFile } from 'fs/promises';
 
 export default class Router {
+  domain() {
+    return process.env.PORT == null
+      ? 'http://localhost:3000/'
+      : 'https://m-p1c.herokuapp.com/';
+  }
+
+  async call(method, path, body) {
+    return await (await fetch(`${this.domain()}api${path}` + (method === 'GET' ? '?' + new URLSearchParams(body) : ''), {
+      method,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      ...(method === 'GET' ? { } : { body: JSON.stringify(body) })
+    })).json();
+  }
+
   constructor() {
     this.mimes = [];
     this.routes = [];

@@ -7,15 +7,12 @@ changeTheme(matcher.matches);
 matcher.addEventListener('change', event => changeTheme(event.matches));
 
 async function call(method, path, body) {
-  let url = `/api${path}`;
-  url += method === 'GET' ? '?' + new URLSearchParams(body) : '';
-  const res = await fetch(url, {
+  return await (await fetch(`/api${path}` + (method === 'GET' ? '?' + new URLSearchParams(body) : ''), {
     method,
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     ...(method === 'GET' ? { } : { body: JSON.stringify(body) })
-  });
-  return await res.json();
+  })).json();
 }

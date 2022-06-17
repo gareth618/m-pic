@@ -17,19 +17,12 @@
 
 <component name="FilterMenu">
   <div class="snake">
-    <for itr="btn" arr="[
-      { text: 'all', type: 'solid', icon: 'star' },
-      { text: 'facebook', type: 'brands', icon: 'facebook' },
-      { text: 'instagram', type: 'brands', icon: 'instagram' },
-      { text: 'twitter', type: 'brands', icon: 'twitter' },
-      { text: 'reddit', type: 'brands', icon: 'reddit-alien' },
-      { text: 'unsplash', type: 'brands', icon: 'unsplash' }
-    ]">
+    <for itr="platform" arr="['all', 'facebook', 'instagram', 'twitter', 'unsplash']">
       <div>
         <div></div>
-        <div><button type="button" onclick="onClick(event)">{{$btn.text}}</button></div>
-        <i class="fa-{{$btn.type}} fa-{{$btn.icon}}"></i>
-        <i class="fa-{{$btn.type}} fa-{{$btn.icon}} fa-bounce"></i>
+        <div><button type="button" onclick="onClick(event)">{{$platform}}</button></div>
+        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform}}"></i>
+        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform}} fa-bounce"></i>
         <div></div>
       </div>
     </for>

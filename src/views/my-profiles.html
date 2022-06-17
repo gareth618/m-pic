@@ -18,8 +18,9 @@
           <main id="profiles">
             <for itr="profile" arr="$profiles">
               <Profile
-                icon="$profile.icon"
-                user="$profile.user"
+                platform="$profile.platform"
+                username="$profile.username"
+                url="$profile.url"
                 photos="$profile.photos"
                 followers="$profile.followers"
                 shares="$profile.shares"
@@ -34,8 +35,8 @@
 
 <component name="Profile">
   <div>
-    <i class="fa-brands fa-{{$icon}}"></i>
-    <h3>{{$user}}</h3>
+    <i class="fa-brands fa-{{$platform}}"></i>
+    <h3>{{$username}}</h3>
     <div class="status">
       <div>
         <i class="fa-solid fa-image"></i>

@@ -1,26 +1,17 @@
 async function signUp() {
   const email = document.getElementById('email').value;
-  const password1 = document.getElementById('password').value;
-  const password2 = document.getElementById('confirm-password').value;
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirm-password').value;
 
-  if (email === '') {
-    alert('you must fill in the email');
-    return;
-  }
-  if (password1 === '') {
-    alert('you must fill in the password');
-    return;
-  }
-  if (password1 !== password2) {
-    alert('passwords do not match');
-    return;
-  }
+  if (email === '') return alert('you must fill in the email');
+  if (password === '') return alert('you must fill in the password');
+  if (password !== confirmPassword) return alert('passwords do not match');
 
   const ans = await call('POST', '/sign-up', {
     email,
-    password: password1
+    password
   });
   ans.error != null
-    ? alert(res.error)
+    ? alert(ans.error)
     : location.href = '/sign-in';
 }

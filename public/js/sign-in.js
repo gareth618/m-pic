@@ -2,14 +2,8 @@ async function signIn() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
-  if (email === '') {
-    alert('you must fill in the email');
-    return;
-  }
-  if (password === '') {
-    alert('you must fill in the password');
-    return;
-  }
+  if (email === '') return alert('you must fill in the email');
+  if (password === '') return alert('you must fill in the password');
 
   const ans = await call('GET', '/sign-in', {
     email,
@@ -19,7 +13,7 @@ async function signIn() {
     alert(ans.error);
   }
   else {
-    localStorage.setItem('M-PIC.user', ans.user);
+    localStorage.setItem('M-PIC.user', ans.user_id);
     location.href = '/my-photos';
   }
 }

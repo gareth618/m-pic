@@ -10,11 +10,11 @@ window.onload = () => {
       }), '_self');
       return;
     }
-    const { profile } = await call('POST', '/facebook/authorize', {
-      user: localStorage.getItem('M-PIC.user'),
+    const { profile_id } = await call('POST', '/facebook/authorize', {
+      user_id: localStorage.getItem('M-PIC.user'),
       code: new URLSearchParams(location.search).get('code')
     });
-    await call('PUT', '/facebook/token', { profile });
+    await call('PUT', '/facebook/token', { profile_id });
     window.open('/my-profiles', '_self');
   };
   authorize();
