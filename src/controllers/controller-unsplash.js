@@ -34,41 +34,61 @@ export default function controllerUnsplash(router) {
   });
 
   router.get('/api/unsplash/profile', async (_sql, req, res) => {
-    const profile = await (await fetch('https://api.unsplash.com/me', {
-      method: 'GET',
-      headers: { 'Authorization': `Bearer ${req.body.token}` }
-    })).json();
-    res.code(200);
-    res.json({
-      platform: 'unsplash',
-      username: profile.username,
-      url: `https://unsplash.com/@${profile.username}`,
-      photos: profile.total_photos,
-      followers: profile.followers_count,
-      shares: profile.total_likes
-    });
+    try {
+      const profile = await (await fetch('https://api.unsplash.com/me', {
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${req.body.token}` }
+      })).json();
+      res.code(200);
+      res.json({
+        platform: 'unsplash',
+        username: profile.username,
+        url: `https://unsplash.com/@${profile.username}`,
+        photos: profile.total_photos,
+        followers: profile.followers_count,
+        shares: profile.total_likes
+      });
+    }
+    catch (err) {
+      res.code(503);
+      res.json({
+        platform: 'unsplash',
+        username: '???',
+        url: `https://unsplash.com/`,
+        photos: 'unsplash',
+        followers: 'is',
+        shares: 'down'
+      });
+    }
   });
 
   router.get('/api/unsplash/photos', async (_sql, req, res) => {
-    const { username } = await router.call('GET', '/unsplash/profile', { token: req.body.token });
-    const collections = await (await fetch(`https://api.unsplash.com/users/${username}/collections?` + new URLSearchParams({
-      client_id: req.body.token
-    }), {
-      method: 'GET',
-      headers: { 'Authorization': `Bearer ${req.body.token}` }
-    })).json();
-    const photos = [];
-    collections.forEach(collection => {
-      collection.preview_photos.forEach(photo => {
-        photos.push({
-          platform: 'unsplash',
-          url: photo.urls.small,
-          post: `https://unsplash.com/photos/${photo.id}`,
-          tags: [],
-          shares: 0
+    try {
+      const { username } = await router.call('GET', '/unsplash/profile', { token: req.body.token });
+      const collections = await (await fetch(`https://api.unsplash.com/users/${username}/collections?` + new URLSearchParams({
+        client_id: req.body.token
+      }), {
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${req.body.token}` }
+      })).json();
+      const photos = [];
+      collections.forEach(collection => {
+        collection.preview_photos.forEach(photo => {
+          photos.push({
+            platform: 'unsplash',
+            url: photo.urls.small,
+            post: `https://unsplash.com/photos/${photo.id}`,
+            tags: [],
+            shares: 0
+          });
         });
       });
-    });
-    res.json(photos);
+      res.code(200);
+      res.json(photos);
+    }
+    catch (err) {
+      res.code(503);
+      res.json([]);
+    }
   });
 };
