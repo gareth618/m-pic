@@ -16,7 +16,7 @@ export default function controllerPages(router, templater) {
     )) || [];
     const profiles = [];
     for (const { platform, token } of dbProfiles) {
-      if (platform !== 'unsplash') {
+      if (platform === 'facebook') {
         profiles.push({ platform });
         continue;
       }

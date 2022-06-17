@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="buttons">
-      <button type="button" class="view">view</button>
+      <button type="button" class="view" onclick="window.open('{{$url}}', '_blank')">view</button>
       <button type="button" class="delete">delete</button>
     </div>
   </div>
@@ -65,9 +65,9 @@
       <span></span>
     </button>
     <button type="button" onclick="location.href = '/authorize/facebook'"><i class="fa-brands fa-facebook"></i></button>
-    <button type="button" onclick="location.href = '/authorize/instagram'"><i class="fa-brands fa-instagram"></i></button>
+    <button title="this feature is not available" disabled><i class="fa-brands fa-instagram"></i></button>
     <button type="button" onclick="location.href = '/authorize/twitter'"><i class="fa-brands fa-twitter"></i></button>
-    <button type="button" onclick="location.href = '/authorize/reddit'"><i class="fa-brands fa-reddit-alien"></i></button>
+    <button title="this feature is not available" disabled><i class="fa-brands fa-reddit-alien"></i></button>
     <button type="button" onclick="location.href = '/authorize/unsplash'"><i class="fa-brands fa-unsplash"></i></button>
   </div>
 </component>
