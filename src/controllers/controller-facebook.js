@@ -33,50 +33,70 @@ export default function controllerFacebook(router) {
   });
 
   router.get('/api/facebook/profile', async (_sql, req, res) => {
-    const profile = await (await fetch('https://graph.facebook.com/me?fields=name,link,friends', {
-      method: 'GET',
-      headers: { 'Authorization': `Bearer ${req.body.token}` }
-    })).json();
-    const photos = await router.call('GET', '/facebook/photos', { token: req.body.token });
-    res.code(200);
-    res.json({
-      profileId: req.body.profile_id,
-      platform: 'facebook',
-      username: profile.name,
-      url: profile.link,
-      photos: photos.length,
-      followers: profile.friends.summary.total_count,
-      likes: photos.reduce((cnt, photo) => cnt + photo.likes, 0)
-    });
+    try {
+      const profile = await (await fetch('https://graph.facebook.com/me?fields=name,link,friends', {
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${req.body.token}` }
+      })).json();
+      const photos = await router.call('GET', '/facebook/photos', { token: req.body.token });
+      res.code(200);
+      res.json({
+        profileId: req.body.profile_id,
+        platform: 'facebook',
+        username: profile.name,
+        url: profile.link,
+        photos: photos.length,
+        followers: profile.friends.summary.total_count,
+        likes: photos.reduce((cnt, photo) => cnt + photo.likes, 0)
+      });
+    }
+    catch (err) {
+      res.code(503);
+      res.json({
+        profileId: req.body.profile_id,
+        platform: 'facebook',
+        username: '???',
+        url: `https://facebook.com/`,
+        photos: 'facebook',
+        followers: 'is',
+        likes: 'down'
+      });
+    }
   });
 
   router.get('/api/facebook/photos', async (_sql, req, res) => {
-    const initCall = async path => {
-      return await fetch(`https://graph.facebook.com/v14.0${path}`, {
-        method: 'GET',
-        headers: { 'Authorization': `Bearer ${req.body.token}` }
-      });
-    };
-    const fullCall = async path => {
-      return (await initCall(path)).json();
-    };
-    const profile_id = (await fullCall('/me')).id;
-    const photos = (await Promise.all((await fullCall(`/${profile_id}/posts`)).data.map(async post => {
-      const post_data = await fullCall(`/${post.id}?fields=message,shares,created_time,permalink_url,object_id`);
-      const photo_id = post_data.object_id;
-      const photo_picture = await initCall(`/${photo_id}/picture`);
-      if (photo_picture.status !== 200) return;
-      return {
-        platform: 'facebook',
-        url: photo_picture.url,
-        post: post_data.permalink_url,
-        tags: post_data.message?.match(/(?<=#)\w+(?= |)/g) || [],
-        date: post_data.created_time,
-        likes: (await fullCall(`/${photo_id}/likes`)).data.length,
-        shares: post_data.shares?.count || 0
+    try {
+      const initCall = async path => {
+        return await fetch(`https://graph.facebook.com/v14.0${path}`, {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${req.body.token}` }
+        });
       };
-    }))).filter(photo => photo != null);
-    res.code(200);
-    res.json(photos);
+      const fullCall = async path => {
+        return (await initCall(path)).json();
+      };
+      const profile_id = (await fullCall('/me')).id;
+      const photos = (await Promise.all((await fullCall(`/${profile_id}/posts`)).data.map(async post => {
+        const post_data = await fullCall(`/${post.id}?fields=message,shares,created_time,permalink_url,object_id`);
+        const photo_id = post_data.object_id;
+        const photo_picture = await initCall(`/${photo_id}/picture`);
+        if (photo_picture.status !== 200) return;
+        return {
+          platform: 'facebook',
+          url: photo_picture.url,
+          post: post_data.permalink_url,
+          tags: post_data.message?.match(/(?<=#)\w+(?= |)/g) || [],
+          date: post_data.created_time,
+          likes: (await fullCall(`/${photo_id}/likes`)).data.length,
+          shares: post_data.shares?.count || 0
+        };
+      }))).filter(photo => photo != null);
+      res.code(200);
+      res.json(photos);
+    }
+    catch (err) {
+      res.code(503);
+      res.json([]);
+    }
   });
 };

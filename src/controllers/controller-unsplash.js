@@ -56,7 +56,7 @@ export default function controllerUnsplash(router) {
         profileId: req.body.profile_id,
         platform: 'unsplash',
         username: '???',
-        url: `https://unsplash.com/`,
+        url: 'https://unsplash.com/',
         photos: 'unsplash',
         followers: 'is',
         likes: 'down'

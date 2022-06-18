@@ -21,8 +21,8 @@
       <div>
         <div></div>
         <div><button type="button" onclick="onClick(event)">{{$platform}}</button></div>
-        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform}}"></i>
-        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform}} fa-bounce"></i>
+        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform === 'all' ? 'star' : $platform}}"></i>
+        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform === 'all' ? 'star' : $platform}} fa-bounce"></i>
         <div></div>
       </div>
     </for>

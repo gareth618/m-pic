@@ -16,8 +16,8 @@
 }
 
 #profiles > div {
-  padding: 1rem;
-  width: 150px;
+  padding: 1.5rem;
+  width: 170px;
   text-align: center;
   background: var(--darker-bg);
   border: 1px solid var(--black);
@@ -49,8 +49,8 @@
 }
 
 #profiles h3 {
-  margin: 0;
-  font-size: 2rem;
+  margin: .25rem 0 0 0;
+  font-size: 1.8rem;
   line-height: 1.4;
 }
 
