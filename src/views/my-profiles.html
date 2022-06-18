@@ -18,6 +18,7 @@
           <main id="profiles">
             <for itr="profile" arr="$profiles">
               <Profile
+                profileId="$profile.profileId"
                 platform="$profile.platform"
                 username="$profile.username"
                 url="$profile.url"
@@ -52,8 +53,16 @@
       </div>
     </div>
     <div class="buttons">
-      <button type="button" class="view" onclick="window.open('{{$url}}', '_blank')">view</button>
-      <button type="button" class="delete">delete</button>
+      <button
+        type="button"
+        class="view"
+        onclick="window.open('{{$url}}', '_blank')"
+      >view</button>
+      <button
+        type="button"
+        class="delete"
+        onclick="if (confirm('are you sure?')) { call('DELETE', '/delete', { profile_id : '{{$profileId}}' }); location.reload(); }"
+      >delete</button>
     </div>
   </div>
 </component>

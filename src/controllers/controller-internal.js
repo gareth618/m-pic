@@ -28,4 +28,13 @@ export default function controllerInternal(router) {
       res.json({ user_id });
     }
   });
+
+  router.delete('/api/delete', async (sql, req, res) => {
+    await sql.call(
+      'delete_profile',
+      [req.body.profile_id]
+    );
+    res.code(200);
+    res.json({ profile_id: req.body.profile_id });
+  });
 };

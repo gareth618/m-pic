@@ -55,7 +55,7 @@ export default function controllerTwitter(router) {
 
     const profile_id = parseInt(await sql.call(
       'add_profile',
-      [req.body.user_id, 'twitter', `oauth_token=${req.oauth_token}\&oauth_verifier=${req.oauth_verifier}`]
+      [req.body.user_id, 'twitter', `oauth_token=${req.body.oauth_token}\&oauth_verifier=${req.body.oauth_verifier}`]
     ));
     await sql.call(
       'set_profile_token',
@@ -66,32 +66,49 @@ export default function controllerTwitter(router) {
   });
 
   router.get('/api/twitter/profile', async (_sql, req, res) => {
-    try {
-      const tokens = req.body.token.match(/oauth_token=(?<oauth_token>.+)\&oauth_token_secret=(?<oauth_token_secret>.+)\&user_id=(?<user_id>.+)\&screen_name=(?<screen_name>.+)/).groups;
-      const profile = await (await fetch(`https://api.twitter.com/2/users/${tokens.user_id}?user.fields=public_metrics`, {
-        method: 'GET',
-        headers: { 'Authorization': `Bearer ${process.env.TWITTER_BEARER}` }
-      })).json();
-      res.code(200);
-      res.json({
-        platform: 'twitter',
-        username: profile.data.username,
-        url: `https://twitter.com/${profile.data.username}`,
-        photos: profile.data.public_metrics.tweet_count,
-        followers: profile.data.public_metrics.followers_count,
-        shares: 0
-      });
+    const tokens = req.body.token.match(/oauth_token=(?<oauth_token>.+)\&oauth_token_secret=(?<oauth_token_secret>.+)\&user_id=(?<user_id>.+)\&screen_name=(?<screen_name>.+)/).groups;
+    const followers = await (await fetch(`https://api.twitter.com/2/users/${tokens.user_id}/followers`, {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${process.env.TWITTER_BEARER}` }
+    })).json();
+    const photos = await router.call('GET', '/twitter/photos', { token: req.body.token });
+    res.code(200);
+    res.json({
+      profileId: req.body.profile_id,
+      platform: 'twitter',
+      username: tokens.screen_name,
+      url: `https://twitter.com/${tokens.screen_name}`,
+      photos: photos.length,
+      followers: followers.data.length,
+      likes: photos.reduce((likes, photo) => likes + photo.likes, 0)
+    });
+  });
+
+  router.get('/api/twitter/photos', async (_sql, req, res) => {
+    const tokens = req.body.token.match(/oauth_token=(?<oauth_token>.+)\&oauth_token_secret=(?<oauth_token_secret>.+)\&user_id=(?<user_id>.+)\&screen_name=(?<screen_name>.+)/).groups;
+    const data = await (await fetch(`https://api.twitter.com/2/users/${tokens.user_id}/tweets?tweet.fields=attachments,created_at,public_metrics&expansions=attachments.media_keys&media.fields=url`, {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${process.env.TWITTER_BEARER}` }
+    })).json();
+    const photos = [];
+    const posts = data.data;
+    const media = data.includes.media;
+
+    for (const post of posts) {
+      const keys = post.attachments?.media_keys || [];
+      for (const key of keys) {
+        photos.push({
+          platform: 'twitter',
+          url: media.find(item => item.media_key === key).url,
+          post: post.text.split(' ').slice(-1)[0],
+          tags: post.text.match(/(?<=#)\w+(?= |)/g) || [],
+          date: post.created_at,
+          likes: post.public_metrics.like_count,
+          shares: post.public_metrics.retweet_count
+        });
+      }
     }
-    catch (err) {
-      res.code(503);
-      res.json({
-        platform: 'twitter',
-        username: '???',
-        url: `https://twitter.com/`,
-        photos: 'twitter',
-        followers: 'is',
-        shares: 'down'
-      });
-    }
+    res.code(200);
+    res.json(photos);
   });
 };

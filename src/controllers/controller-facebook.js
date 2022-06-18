@@ -40,6 +40,7 @@ export default function controllerFacebook(router) {
     const photos = await router.call('GET', '/facebook/photos', { token: req.body.token });
     res.code(200);
     res.json({
+      profileId: req.body.profile_id,
       platform: 'facebook',
       username: profile.name,
       url: profile.link,

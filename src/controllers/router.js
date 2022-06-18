@@ -45,6 +45,7 @@ export default class Router {
   get(url, callback) { this.routes.push({ method: 'GET', url, callback }); }
   post(url, callback) { this.routes.push({ method: 'POST', url, callback }); }
   put(url, callback) { this.routes.push({ method: 'PUT', url, callback }); }
+  delete(url, callback) { this.routes.push({ method: 'DELETE', url, callback }); }
 
   listen(port) {
     const server = createServer(async (req, res) => {

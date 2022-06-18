@@ -15,9 +15,8 @@ export default function controllerPages(router, templater) {
       [1]
     )) || [];
     const profiles = [];
-    for (const { platform, token } of dbProfiles) {
-      if (!['unsplash', 'facebook'].includes(platform)) continue;
-      profiles.push(await router.call('GET', `/${platform}/profile`, { token }));
+    for (const { id, platform, token } of dbProfiles) {
+      profiles.push(await router.call('GET', `/${platform}/profile`, { profile_id: id, token }));
     }
     res.html(templater.render('MyProfiles', { profiles }));
   });
@@ -29,7 +28,6 @@ export default function controllerPages(router, templater) {
     )) || [];
     const photos = [];
     for (const { platform, token } of profiles) {
-      if (!['unsplash', 'facebook'].includes(platform)) continue;
       photos.push(...(await router.call('GET', `/${platform}/photos`, { token })));
     }
     for (const photo of photos) {
