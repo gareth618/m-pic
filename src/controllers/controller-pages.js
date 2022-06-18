@@ -16,10 +16,7 @@ export default function controllerPages(router, templater) {
     )) || [];
     const profiles = [];
     for (const { platform, token } of dbProfiles) {
-      if (platform === 'facebook') {
-        profiles.push({ platform });
-        continue;
-      }
+      if (!['unsplash', 'facebook'].includes(platform)) continue;
       profiles.push(await router.call('GET', `/${platform}/profile`, { token }));
     }
     res.html(templater.render('MyProfiles', { profiles }));
@@ -32,12 +29,13 @@ export default function controllerPages(router, templater) {
     )) || [];
     const photos = [];
     for (const { platform, token } of profiles) {
-      if (platform !== 'unsplash') continue;
-      const crtPhotos = await router.call('GET', `/${platform}/photos`, { token });
-      for (const photo of crtPhotos) {
-        photos.push(photo);
-      }
+      if (!['unsplash', 'facebook'].includes(platform)) continue;
+      photos.push(...(await router.call('GET', `/${platform}/photos`, { token })));
     }
+    for (const photo of photos) {
+      photo.date = new Date(Date.parse(photo.date));
+    }
+    photos.sort((a, b) => b.date.getTime() - a.date.getTime());
     res.html(templater.render('MyPhotos', { photos }));
   });
 

@@ -46,7 +46,7 @@ export default function controllerUnsplash(router) {
         url: `https://unsplash.com/@${profile.username}`,
         photos: profile.total_photos,
         followers: profile.followers_count,
-        shares: profile.total_likes
+        likes: profile.total_likes
       });
     }
     catch (err) {
@@ -57,7 +57,7 @@ export default function controllerUnsplash(router) {
         url: `https://unsplash.com/`,
         photos: 'unsplash',
         followers: 'is',
-        shares: 'down'
+        likes: 'down'
       });
     }
   });
@@ -78,7 +78,9 @@ export default function controllerUnsplash(router) {
             platform: 'unsplash',
             url: photo.urls.small,
             post: `https://unsplash.com/photos/${photo.id}`,
-            tags: [],
+            tags: [collection.title],
+            date: (new Date()).toString(),
+            likes: 0,
             shares: 0
           });
         });

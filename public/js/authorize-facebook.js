@@ -7,14 +7,17 @@ window.onload = () => {
         redirect_uri: location.href,
         response_type: 'code',
         state: 'mpic-random-string'
-      }), '_self');
+      }) + '&scope=public_profile,user_posts,user_photos,user_friends,user_link', '_self');
       return;
     }
-    const { profile_id } = await call('POST', '/facebook/authorize', {
-      user_id: localStorage.getItem('M-PIC.user'),
-      code: new URLSearchParams(location.search).get('code')
-    });
-    await call('PUT', '/facebook/token', { profile_id });
+    const code = new URLSearchParams(location.search).get('code');
+    if (code != null) {
+      const { profile_id } = await call('POST', '/facebook/authorize', {
+        user_id: localStorage.getItem('M-PIC.user'),
+        code
+      });
+      await call('PUT', '/facebook/token', { profile_id });
+    }
     window.open('/my-profiles', '_self');
   };
   authorize();

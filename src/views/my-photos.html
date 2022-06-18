@@ -18,7 +18,17 @@
         <div class="container">
           <main id="gallery">
             <for itr="photo" arr="$photos">
-              <img src="{{$photo.url}}" alt="{{$photo.platform}}">
+              <img
+                src="{{$photo.url}}"
+                alt="{{$photo.platform}}"
+                title="{{
+                  $photo.post + ' ' +
+                  $photo.tags + ' ' +
+                  $photo.date + ' ' +
+                  $photo.likes + ' ' +
+                  $photo.shares
+                }}"
+              >
             </for>
           </main>
         </div>
