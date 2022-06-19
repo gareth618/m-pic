@@ -1,3 +1,6 @@
+import 'dotenv/config';
+import jwt from 'jsonwebtoken';
+
 export default function controllerInternal(router) {
   router.get('/api/sign-in', async (sql, req, res) => {
     const user_id = parseInt(await sql.call(
@@ -9,8 +12,10 @@ export default function controllerInternal(router) {
       res.json({ error: 'wrong email or password' });
     }
     else {
+      const token = jwt.sign({ user_id }, process.env.JWT_SECRET_KEY);
       res.code(200);
-      res.json({ user_id });
+      res.cook(token);
+      res.json({ token });
     }
   });
 

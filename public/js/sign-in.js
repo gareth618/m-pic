@@ -13,7 +13,7 @@ async function signIn() {
     alert(ans.error);
   }
   else {
-    localStorage.setItem('M-PIC.user', ans.user_id);
+    localStorage.setItem('M-PIC.token', ans.token);
     location.href = '/my-photos';
   }
 }

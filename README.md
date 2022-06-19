@@ -20,10 +20,7 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 
 ## 🦆 tasks
 
-- [ ] facebook api
-- [ ] instagram api
-- [ ] twitter api
-- [ ] invalidate reddit
-- [ ] view/delete profile buttons
 - [ ] minimal admin panel with stats
 - [ ] user sessions and authorization
+
+![jwt](https://jwt.io/img/badge-compatible.svg)

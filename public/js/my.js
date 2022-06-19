@@ -20,6 +20,6 @@ function onClickSortBtn(id) {
 }
 
 function signOut() {
-  localStorage.removeItem('M-PIC.user');
+  localStorage.removeItem('M-PIC.token');
   location.href = '/sign-in';
 }

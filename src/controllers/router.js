@@ -109,8 +109,12 @@ export default class Router {
           res.statusCode = code;
           res.setHeader('Content-Type', 'application/json');
         },
+        cook: token => {
+          res.setHeader('access-control-expose-headers', 'Set-Cookie');
+          res.setHeader('Set-Cookie', `token=${token}; Path=/`);
+        },
         json: json => {
-          res.end(JSON.stringify(json))
+          res.end(JSON.stringify(json));
         }
       };
       route.callback(sqlFacade, reqFacade, resFacade);
