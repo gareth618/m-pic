@@ -1,6 +1,11 @@
+function metrics() {
+  return ['date', 'likes', 'shares'];
+}
+
 const photos = [];
 let filter = 'all';
 let sorter = 'date';
+let ascend = -1;
 
 function renderPhotos() {
   const gallery = document.getElementById('gallery');
@@ -13,21 +18,21 @@ function renderPhotos() {
   }
 }
 
-function sortItems(metric) {
-  if (metric != null) sorter = sorter === metric ? 'date' : metric;
+function sortItems() {
   const tags = document.getElementById('search').value.split(' ').filter(tag => tag !== '');
   for (const photo of photos) {
     photo.score = tags.length === 0 ? -1 : 0;
     for (const tag of tags) {
-      photo.score += photo.tags.includes(tag) ? 1 : 0;
+      for (const photoTag of photo.tags) {
+        photo.score += editDistance(tag, photoTag);
+      }
     }
   }
   photos.sort((a, b) => {
     if (a.score > b.score) return -1;
     if (a.score < b.score) return +1;
-    if (a[sorter] > b[sorter]) return -1;
-    if (a[sorter] < b[sorter]) return +1;
-    return a.id - b.id;
+    const sgn = (a[sorter] - b[sorter]) * ascend;
+    return sgn === 0 ? (a.id - b.id) * ascend : sgn;
   });
   renderPhotos();
 }
@@ -65,7 +70,7 @@ window.onload = () => {
       caption.innerHTML = `
         date: ${new Date(data.date).toLocaleString()}<br>
         platform: ${data.platform}<br>
-        tags: ${data.tags}<br>
+        tags: ${data.tags.join(', ')}<br>
         ${data.likes} likes<br>
         ${data.shares} shares
       `;
@@ -85,28 +90,28 @@ const resetAll = document.getElementById('resetAll');
 
 const effects = ['brightness', 'contrast', 'blur', 'opacity', 'grayscale', 'saturate', 'sepia', 'hue', 'invert'];
 const effectsInit = {
-  'brightness': 100,
-  'contrast': 100,
-  'saturate': 100,
-  'grayscale': 0,
-  'invert': 0,
-  'hue': 0,
-  'blur': 0,
-  'opacity': 100,
-  'sepia': 0,
-  'dropshadow': 0
-}
+  brightness: 100,
+  contrast: 100,
+  saturate: 100,
+  grayscale: 0,
+  invert: 0,
+  hue: 0,
+  blur: 0,
+  opacity: 100,
+  sepia: 0,
+  dropshadow: 0
+};
 const effectsValues = {
-  'brightness': 100,
-  'contrast': 100,
-  'saturate': 100,
-  'grayscale': 0,
-  'invert': 0,
-  'hue': 0,
-  'blur': 0,
-  'opacity': 100,
-  'sepia': 0,
-  'dropshadow': 0
+  brightness: 100,
+  contrast: 100,
+  saturate: 100,
+  grayscale: 0,
+  invert: 0,
+  hue: 0,
+  blur: 0,
+  opacity: 100,
+  sepia: 0,
+  dropshadow: 0
 };
 
 function updateFilters() {
@@ -122,7 +127,7 @@ function updateFilters() {
     invert(${effectsValues.invert}%)
   `;
 }
-``
+
 for (const effect of effects) {
   const slider = document.getElementById(effect);
   const value = document.getElementById(`${effect}Value`);
@@ -135,9 +140,9 @@ for (const effect of effects) {
 
 resetAll.addEventListener('click', () => {
   for (const effect of effects) {
-    effectsValues[`${effect}`] = effectsInit[`${effect}`];
-    document.getElementById(effect).value = effectsInit[`${effect}`];
-    document.getElementById(`${effect}Value`).innerHTML = effectsInit[`${effect}`];
+    effectsValues[effect] = effectsInit[effect];
+    document.getElementById(effect).value = effectsInit[effect];
+    document.getElementById(`${effect}Value`).innerHTML = effectsInit[effect];
   }
   updateFilters();
 });

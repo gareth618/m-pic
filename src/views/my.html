@@ -1,10 +1,10 @@
 <component name="Header">
   <header>
     <h1 class="fixed">M-PIC</h1>
-    <button type="button" class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
+    <button type="button" class="fixed" onclick="toggleActiveOn('aside')">M-PIC</button>
     <input id="search" type="search" placeholder="search" onkeyup="sortItems()">
     <nav>
-      <button type="button" class="fixed" onclick="onClickBtn('menu')">me</button>
+      <button type="button" class="fixed" onclick="toggleActiveOn('menu')">me</button>
       <div id="menu">
         <ul>
           <li><a href="{{$altPage.replace(/ /g, '-')}}">{{$altPage}}</a></li>
@@ -17,14 +17,25 @@
 
 <component name="FilterMenu">
   <div class="snake">
-    <for itr="platform" arr="['all', 'facebook', 'instagram', 'twitter', 'unsplash']">
+    <for itr="platform" arr="['all', 'facebook', 'instagram', 'twitter', 'reddit', 'unsplash']">
       <div>
         <div></div>
-        <div><button type="button" onclick="filterItems('{{$platform}}')">{{$platform}}</button></div>
-        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform === 'all' ? 'star' : $platform}}"></i>
-        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform === 'all' ? 'star' : $platform}} fa-bounce"></i>
+        <div><button type="button" id="filter-by-{{$platform}}" onclick="filterItemsBy('{{$platform}}')">{{$platform}}</button></div>
+        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform === 'all' ? 'star' : $platform === 'reddit' ? 'reddit-alien' : $platform}}"></i>
+        <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform === 'all' ? 'star' : $platform === 'reddit' ? 'reddit-alien' : $platform}} fa-bounce"></i>
         <div></div>
       </div>
+    </for>
+  </div>
+</component>
+
+<component name="SortMenu">
+  <div class="sort">
+    <for itr="metric" arr="$metrics.map((metric, index) => ({ name: metric, init: index === 0 ? 'des' : '' }))">
+      <button type="button" id="sort-by-{{$metric.name}}" onclick="sortItemsBy('{{$metric.name}}')" class="{{$metric.init}}">
+        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        <span>{{$metric.name}}</span>
+      </button>
     </for>
   </div>
 </component>

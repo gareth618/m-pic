@@ -4,13 +4,14 @@
     <Head
       title="'my profiles'"
       styles="['my', 'my-profiles', 'snake']"
-      scripts="['my']"
+      scripts="['my', 'my-profiles']"
     >
     <body>
       <Header altPage="'my photos'">
       <aside id="aside">
         <h2>my profiles</h2>
         <FilterMenu>
+        <SortMenu metrics="['name', 'photos', 'followers', 'likes']">
         <AddProfile>
       </aside>
       <div class="scroller">
@@ -35,7 +36,13 @@
 </component>
 
 <component name="Profile">
-  <div>
+  <div
+    data-platform="{{$platform}}"
+    data-username="{{$username}}"
+    data-photos="{{$photos}}"
+    data-followers="{{$followers}}"
+    data-likes="{{$likes}}"
+  >
     <i class="fa-brands fa-{{$platform}}"></i>
     <h3>{{$username}}</h3>
     <div class="status">
@@ -69,7 +76,7 @@
 
 <component name="AddProfile">
   <div id="add" class="profile">
-    <button type="button" class="plus" onclick="onClickBtn('add')">
+    <button type="button" class="plus" onclick="toggleActiveOn('add')">
       <span></span>
       <span></span>
     </button>

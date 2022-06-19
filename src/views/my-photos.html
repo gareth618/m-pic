@@ -11,7 +11,7 @@
       <aside id="aside">
         <h2>my photos</h2>
         <FilterMenu>
-        <SortMenu>
+        <SortMenu metrics="['date', 'likes', 'shares']">
         <AddPhoto>
       </aside>
       <div class="scroller">
@@ -72,29 +72,12 @@
 
 <component name="AddPhoto">
   <div id="add" class="photo">
-    <button type="button" class="plus" onclick="onClickBtn('add')">
+    <button type="button" class="plus" onclick="toggleActiveOn('add')">
       <span></span>
       <span></span>
     </button>
     <button type="button"><i class="fa-solid fa-camera"></i></button>
     <button type="button"><i class="fa-solid fa-upload"></i></button>
     <button type="button"><i class="fa-solid fa-link"></i></button>
-  </div>
-</component>
-
-<component name="SortMenu">
-  <div class="sort">
-    <button type="button" id="sort-date" onclick="onClickSortBtn('sort-date'); sortItems('date')">
-      <i class="fa-solid fa-arrow-right-arrow-left"></i>
-      <span>date</span>
-    </button>
-    <button type="button" id="sort-likes" onclick="onClickSortBtn('sort-likes'); sortItems('likes')">
-      <i class="fa-solid fa-arrow-right-arrow-left"></i>
-      <span>likes</span>
-    </button>
-    <button type="button" id="sort-shares" onclick="onClickSortBtn('sort-shares'); sortItems('shares')">
-      <i class="fa-solid fa-arrow-right-arrow-left"></i>
-      <span>shares</span>
-    </button>
   </div>
 </component>
