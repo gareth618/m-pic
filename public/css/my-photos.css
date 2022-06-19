@@ -14,6 +14,12 @@
 #gallery img {
   height: 160px;
   border-radius: .25rem;
+  transition: transform .3s;
+  cursor: pointer;
+}
+
+#gallery > img:is(:hover, :focus-within) {
+  transform: scale(1.05);
 }
 
 .sort {
@@ -51,4 +57,78 @@
 
 .sort button.active i {
   transform: rotate(-90deg) rotateY(180deg);
+}
+
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 5;
+  padding: 3rem;
+  top: 3rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  background-color: var(--black-transparent);
+}
+
+#modal .content {
+  display: flex;
+  flex-direction: row;
+}
+
+#image {
+  display: block;
+  margin: auto;
+  width: 60%;
+}
+
+#caption {
+  display: block;
+  align-self: flex-start;
+  margin: auto;
+  width: 30%;
+  font-size: 2rem;
+  text-align: left;
+  color: var(--white);
+  padding: 1rem;
+}
+
+#image,
+#caption {
+  animation-name: zoom;
+  animation-duration: 0.3s;
+}
+
+#modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 3rem;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--white);
+  transition: 0.3s;
+}
+
+#modal .close:hover,
+#modal .close:focus {
+  color: var(--pink);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 550px) {
+  #modal .content {
+    flex-direction: column;
+  }
+  #image {
+    width: 90%;
+  }
+  #caption {
+    width: 90%;
+    font-size: 1.5rem;
+  }
+  #modal .close {
+    top: 0;
+  }
 }

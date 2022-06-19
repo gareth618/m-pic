@@ -27,6 +27,7 @@
     --purple: var(--light-purple);
     --grey: var(--light-grey);
     --black: var(--light-black);
+    --black-transparent: #0E172CF2;
   }
 }
 
@@ -44,6 +45,7 @@
     --purple: var(--dark-purple);
     --grey: var(--dark-purple);
     --black: var(--dark-black);
+    --black-transparent: #121629F2;
   }
 }
 
@@ -141,4 +143,14 @@ input[type="search"]::-webkit-search-results-decoration {
 
 ::-webkit-scrollbar-corner {
   background: none;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes zoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
 }
