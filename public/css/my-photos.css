@@ -7,11 +7,11 @@
 #add.photo.active > button:nth-child(3) { transform: rotate(-45deg) translate(var(--radius)) rotate(47deg); }
 #add.photo.active > button:nth-child(4) { transform: rotate(-15deg) translate(var(--radius)) rotate(15deg); }
 
-main {
+#gallery {
   gap: 1rem;
 }
 
-main img {
+#gallery img {
   height: 160px;
   border-radius: .25rem;
 }

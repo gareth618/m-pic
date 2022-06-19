@@ -2,7 +2,7 @@
   <header>
     <h1 class="fixed">M-PIC</h1>
     <button type="button" class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
-    <input type="search" placeholder="search">
+    <input id="search" type="search" placeholder="search" onkeypress="sortImagesByTags(event)">
     <nav>
       <button type="button" class="fixed" onclick="onClickBtn('menu')">me</button>
       <div id="menu">

@@ -4,7 +4,7 @@
     <Head
       title="'my photos'"
       styles="['my', 'my-photos', 'snake']"
-      scripts="['my']"
+      scripts="['my', 'my-photos']"
     >
     <body>
       <Header altPage="'my profiles'">
@@ -19,15 +19,14 @@
           <main id="gallery">
             <for itr="photo" arr="$photos">
               <img
+                data-platform="{{$photo.platform}}"
+                data-tags="{{$photo.tags.join(' ')}}"
+                data-date="{{$photo.date}}"
+                data-likes="{{$photo.likes}}"
+                data-shares="{{$photo.shares}}"
                 src="{{$photo.url}}"
                 alt="{{$photo.platform}}"
-                title="{{
-                  $photo.post + ' ' +
-                  $photo.tags + ' ' +
-                  $photo.date + ' ' +
-                  $photo.likes + ' ' +
-                  $photo.shares
-                }}"
+                title="{{$photo.post}}"
               >
             </for>
           </main>

@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 export default function controllerPages(router, templater) {
-  const SESSION_DURATION = 30;
+  const SESSION_DURATION = 3600;
   router.get('/', (_sql, _req, res) => {
     res.goto('/sign-in');
   });
@@ -53,9 +53,9 @@ export default function controllerPages(router, templater) {
         photos.push(...(await router.call('GET', `/${platform}/photos`, { token })));
       }
       for (const photo of photos) {
-        photo.date = new Date(Date.parse(photo.date));
+        photo.date = Date.parse(photo.date);
       }
-      photos.sort((a, b) => b.date.getTime() - a.date.getTime());
+      photos.sort((a, b) => b.date - a.date);
       res.html(templater.render('MyPhotos', { photos }));
     }
   });
