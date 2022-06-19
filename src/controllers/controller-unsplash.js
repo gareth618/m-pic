@@ -39,15 +39,16 @@ export default function controllerUnsplash(router) {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${req.body.token}` }
       })).json();
+      const photos = await router.call('GET', '/unsplash/photos', { token: req.body.token });
       res.code(200);
       res.json({
         profileId: req.body.profile_id,
         platform: 'unsplash',
         username: profile.username,
         url: `https://unsplash.com/@${profile.username}`,
-        photos: profile.total_photos,
+        photos: photos.length,
         followers: profile.followers_count,
-        likes: profile.total_likes
+        likes: photos.reduce((cnt, photo) => cnt + photo.likes, 0)
       });
     }
     catch (err) {
@@ -75,13 +76,15 @@ export default function controllerUnsplash(router) {
       })).json();
       const photos = [];
       collections.forEach(collection => {
+        console.log(collection);
         collection.preview_photos.forEach(photo => {
+          console.log(photo);
           photos.push({
             platform: 'unsplash',
-            url: photo.urls.small,
+            url: photo.urls.regular,
             post: `https://unsplash.com/photos/${photo.id}`,
             tags: [collection.title],
-            date: (new Date()).toString(),
+            date: photo.created_at,
             likes: 0,
             shares: 0
           });

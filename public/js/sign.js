@@ -8,7 +8,7 @@ window.onload = () => {
       offset = (offset + 1) % 240;
       for (const child of column.children) {
         const transform = `translateY(${offset * (index % 2 === 1 ? +1 : -1)}px)`;
-        child.tagName === "DIV"
+        child.tagName === 'DIV'
           ? child.style.transform = transform
           : child.children[2].style.transform = transform;
       }

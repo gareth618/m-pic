@@ -20,10 +20,9 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 
 ## 🦆 tasks
 
-- [ ] minimal admin panel with stats
-- [ ] user sessions and authorization
-- [ ] upload image
-- [ ] edit image panel
-- [ ] block duplicate accounts
+- [ ] remember me
+- [ ] admin panel
+- [ ] save edited image
+- [ ] export photos as csv's
 
 ![jwt](https://jwt.io/img/badge-compatible.svg)

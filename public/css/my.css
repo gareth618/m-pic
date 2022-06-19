@@ -243,6 +243,50 @@ main {
   color: var(--text);
 }
 
+.sort {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.sort button {
+  position: relative;
+  margin-top: 1rem;
+  padding: .5rem 1rem 2rem 1rem;
+  width: fit-content;
+  background: none;
+}
+
+.sort span {
+  position: absolute;
+  top: 1.85rem;
+  left: -1rem;
+  right: -1rem;
+  display: block;
+  margin: 0;
+  line-height: 1;
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--text);
+}
+
+.sort button i {
+  font-size: 1rem;
+  color: var(--text);
+  transform: rotate(90deg) rotateY(180deg);
+  transition-duration: .3s;
+  transition-property: transform, color;
+}
+
+.sort button.des i {
+  color: var(--purple);
+  transform: rotate(90deg) rotateY(180deg);
+}
+
+.sort button.asc i {
+  color: var(--pink);
+  transform: rotate(-90deg) rotateY(180deg);
+}
+
 @media (max-width: 550px) {
   header > h1 {
     display: none;
