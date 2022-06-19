@@ -110,18 +110,19 @@ const effectsValues = {
 };
 
 function updateFilters() {
-  img.style.filter =
-    'brightness(' + effectsValues.brightness + '%) ' +
-    'contrast(' + effectsValues.contrast + '%) ' +
-    'blur(' + effectsValues.blur + 'px) ' +
-    'opacity(' + effectsValues.opacity + '%) ' +
-    'grayscale(' + effectsValues.grayscale + '%) ' +
-    'saturate(' + effectsValues.saturate + '%) ' +
-    'sepia(' + effectsValues.sepia + '%) ' +
-    'hue-rotate(' + effectsValues.hue + 'deg) ' +
-    'invert(' + effectsValues.invert + '%)';
+  img.style.filter = `
+    brightness(${effectsValues.brightness}%)
+    contrast(${effectsValues.contrast}%)
+    blur(${effectsValues.blur}px)
+    opacity(${effectsValues.opacity}%)
+    grayscale(${effectsValues.grayscale}%)
+    saturate(${effectsValues.saturate}%)
+    sepia(${effectsValues.sepia}%)
+    hue-rotate(${effectsValues.hue}deg)
+    invert(${effectsValues.invert}%)
+  `;
 }
-
+``
 for (const effect of effects) {
   const slider = document.getElementById(effect);
   const value = document.getElementById(`${effect}Value`);
@@ -136,6 +137,7 @@ resetAll.addEventListener('click', () => {
   for (const effect of effects) {
     effectsValues[`${effect}`] = effectsInit[`${effect}`];
     document.getElementById(effect).value = effectsInit[`${effect}`];
+    document.getElementById(`${effect}Value`).innerHTML = effectsInit[`${effect}`];
   }
   updateFilters();
 });

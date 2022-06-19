@@ -90,6 +90,7 @@
   display: block;
   font-size: 1.5rem;
   line-height: 1;
+  accent-color: var(--pink);
 }
 
 .sliders .slider p {
@@ -124,7 +125,8 @@
 }
 
 #image,
-#caption {
+#caption,
+.sliders {
   animation-name: zoom;
   animation-duration: 0.3s;
 }
@@ -146,9 +148,12 @@
   cursor: pointer;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 800px) {
   #modal .content {
     flex-direction: column;
+  }
+  .content .sliders {
+    width: 90%;
   }
   #image {
     width: 90%;
