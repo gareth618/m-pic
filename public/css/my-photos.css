@@ -109,10 +109,16 @@
 
 .sliders .slider > div p {
   width: 1rem;
+  color: var(--white);
 }
 
 #image {
   width: 50%;
+}
+
+#canvas {
+  visibility: hidden;
+  position: fixed;
 }
 
 #caption {
@@ -133,12 +139,19 @@
 
 #modal .close {
   position: absolute;
-  top: 1rem;
-  right: 3rem;
-  font-size: 3rem;
+  top: 2rem;
+  font-size: 2rem;
   font-weight: bold;
   color: var(--white);
   transition: 0.3s;
+}
+
+#modal #savePhoto {
+  right: 6rem;
+}
+
+#modal #resetAll {
+  right: 3rem;
 }
 
 #modal .close:hover,

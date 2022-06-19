@@ -82,6 +82,7 @@ function filterItems(platform) {
 
 const img = document.getElementById('image');
 const resetAll = document.getElementById('resetAll');
+const savePhoto = document.getElementById('savePhoto');
 
 const effects = ['brightness', 'contrast', 'blur', 'opacity', 'grayscale', 'saturate', 'sepia', 'hue', 'invert'];
 const effectsInit = {
@@ -122,22 +123,42 @@ function updateFilters() {
     invert(${effectsValues.invert}%)
   `;
 }
-``
+
 for (const effect of effects) {
   const slider = document.getElementById(effect);
   const value = document.getElementById(`${effect}Value`);
   slider.addEventListener('input', () => {
     value.innerHTML = slider.value;
-    effectsValues[`${effect}`] = slider.value;
+    effectsValues[effect] = slider.value;
     updateFilters();
   });
 }
 
 resetAll.addEventListener('click', () => {
   for (const effect of effects) {
-    effectsValues[`${effect}`] = effectsInit[`${effect}`];
-    document.getElementById(effect).value = effectsInit[`${effect}`];
-    document.getElementById(`${effect}Value`).innerHTML = effectsInit[`${effect}`];
+    effectsValues[effect] = effectsInit[effect];
+    document.getElementById(effect).value = effectsInit[effect];
+    document.getElementById(`${effect}Value`).innerHTML = effectsInit[effect];
   }
   updateFilters();
+});
+
+savePhoto.addEventListener('click', () => {
+  const canvas = document.getElementById('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  const ctx = canvas.getContext('2d');
+  ctx.filter = `
+    brightness(${effectsValues.brightness}%)
+    contrast(${effectsValues.contrast}%)
+    blur(${effectsValues.blur}px)
+    opacity(${effectsValues.opacity}%)
+    grayscale(${effectsValues.grayscale}%)
+    saturate(${effectsValues.saturate}%)
+    sepia(${effectsValues.sepia}%)
+    hue-rotate(${effectsValues.hue}deg)
+    invert(${effectsValues.invert}%)
+  `;
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  console.log(ctx);
 });

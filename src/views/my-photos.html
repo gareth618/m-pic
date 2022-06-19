@@ -33,12 +33,13 @@
         </div>
       </div>
       <div id="modal">
-        <span class="close" id="resetAll">&times;</span>
+        <span class="close" id="resetAll">&#10008;</span>
+        <span class="close" id="savePhoto">&#10004;</span>
         <div class="content">
           <div class="sliders">
             <Slider effect="'brightness'" max="'500'" value="'100'">
             <Slider effect="'contrast'" max="'500'" value="'100'">
-            <Slider effect="'blur'" max="'500'" value="'100'">
+            <Slider effect="'blur'" max="'500'" value="'0'">
             <Slider effect="'opacity'" max="'100'" value="'100'">
             <Slider effect="'grayscale'" max="'100'" value="'0'">
             <Slider effect="'saturate'" max="'500'" value="'100'">
@@ -47,6 +48,7 @@
             <Slider effect="'invert'" max="'100'" value="'0'">
           </div>
           <img id="image">
+          <canvas id="canvas"></canvas>
           <div id="caption"></div>
         </div>
       </div>
