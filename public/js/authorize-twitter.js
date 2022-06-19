@@ -12,7 +12,6 @@ window.onload = () => {
     const oauth_verifier = params.get('oauth_verifier');
     if (oauth_token != null && oauth_verifier != null) {
       await call('POST', '/twitter/authorize', {
-        user_id: localStorage.getItem('M-PIC.user'),
         oauth_token,
         oauth_verifier
       });

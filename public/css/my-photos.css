@@ -52,10 +52,12 @@
   font-size: 1rem;
   color: var(--text);
   transform: rotate(90deg) rotateY(180deg);
-  transition: transform .3s;
+  transition-duration: .3s;
+  transition-property: transform, color;
 }
 
 .sort button.active i {
+  color: var(--pink);
   transform: rotate(-90deg) rotateY(180deg);
 }
 

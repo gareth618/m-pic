@@ -55,7 +55,7 @@ export default function controllerTwitter(router) {
 
     const profile_id = parseInt(await sql.call(
       'add_profile',
-      [req.body.user_id, 'twitter', `oauth_token=${req.body.oauth_token}\&oauth_verifier=${req.body.oauth_verifier}`]
+      [req.cook, 'twitter', `oauth_token=${req.body.oauth_token}\&oauth_verifier=${req.body.oauth_verifier}`]
     ));
     await sql.call(
       'set_profile_token',

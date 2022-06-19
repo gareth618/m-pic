@@ -2,7 +2,7 @@
   <header>
     <h1 class="fixed">M-PIC</h1>
     <button type="button" class="fixed" onclick="onClickBtn('aside')">M-PIC</button>
-    <input id="search" type="search" placeholder="search" onkeypress="sortImagesByTags(event)">
+    <input id="search" type="search" placeholder="search" onkeyup="sortItems()">
     <nav>
       <button type="button" class="fixed" onclick="onClickBtn('menu')">me</button>
       <div id="menu">
@@ -20,7 +20,7 @@
     <for itr="platform" arr="['all', 'facebook', 'instagram', 'twitter', 'unsplash']">
       <div>
         <div></div>
-        <div><button type="button" onclick="onClick(event)">{{$platform}}</button></div>
+        <div><button type="button" onclick="filterItems('{{$platform}}')">{{$platform}}</button></div>
         <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform === 'all' ? 'star' : $platform}}"></i>
         <i class="fa-{{$platform === 'all' ? 'solid' : 'brands'}} fa-{{$platform === 'all' ? 'star' : $platform}} fa-bounce"></i>
         <div></div>

@@ -150,8 +150,8 @@ aside .snake {
   height: calc(2 * var(--radius));
   background: var(--add);
   border-radius: 50%;
-  transition-property: left, bottom, width, height;
   transition-duration: .3s;
+  transition-property: left, bottom, width, height;
 }
 
 #add > button:not(:first-child) {
@@ -161,8 +161,8 @@ aside .snake {
   line-height: 1;
   background: var(--edit-border);
   border-radius: 50%;
-  transition-property: visibility, transform;
   transition-duration: .3s;
+  transition-property: visibility, transform;
   visibility: hidden;
   z-index: 6;
 }

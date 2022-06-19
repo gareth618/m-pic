@@ -5,7 +5,7 @@ export default function controllerFacebook(router) {
   router.post('/api/facebook/authorize', async (sql, req, res) => {
     const profile_id = parseInt(await sql.call(
       'add_profile',
-      [req.body.user_id, 'facebook', req.body.code]
+      [req.cook, 'facebook', req.body.code]
     ));
     res.code(200);
     res.json({ profile_id });

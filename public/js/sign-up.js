@@ -11,7 +11,7 @@ async function signUp() {
     email,
     password
   });
-  ans.error != null
-    ? alert(ans.error)
-    : location.href = '/sign-in';
+  ans.error == null
+    ? location.href = '/sign-in'
+    : alert(ans.error);
 }

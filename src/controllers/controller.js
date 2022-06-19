@@ -10,7 +10,7 @@ import controllerTwitter from './controller-twitter.js';
 const templater = new Templater();
 await templater.load('src/views');
 
-const router = new Router();
+const router = new Router(process.env.PORT || 1234, 'https://m-p1c.herokuapp.com/');
 await router.page404('src/views/404.html');
 
 await router.mime('public/favicons', 'image/svg+xml');
@@ -34,4 +34,4 @@ controllerInternal(router);
 controllerUnsplash(router);
 controllerFacebook(router);
 controllerTwitter(router);
-router.listen(process.env.PORT || 3000);
+router.listen();

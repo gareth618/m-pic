@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import pg from 'pg';
+import jwt from 'jsonwebtoken';
 import fetch from 'node-fetch';
 import { parse } from 'url';
 import { createServer } from 'http';
@@ -9,8 +10,8 @@ import { readdir, readFile } from 'fs/promises';
 export default class Router {
   domain() {
     return process.env.PORT == null
-      ? 'http://localhost:3000/'
-      : 'https://m-p1c.herokuapp.com/';
+      ? `http://localhost:${this.port}/`
+      : this.deploy;
   }
 
   async call(method, path, body) {
@@ -24,7 +25,9 @@ export default class Router {
     })).json();
   }
 
-  constructor() {
+  constructor(port, deploy) {
+    this.port = port;
+    this.deploy = deploy;
     this.mimes = [];
     this.routes = [];
   }
@@ -47,7 +50,7 @@ export default class Router {
   put(url, callback) { this.routes.push({ method: 'PUT', url, callback }); }
   delete(url, callback) { this.routes.push({ method: 'DELETE', url, callback }); }
 
-  listen(port) {
+  listen() {
     const server = createServer(async (req, res) => {
       if (req.method === 'GET') {
         for (const mime of this.mimes) {
@@ -83,7 +86,13 @@ export default class Router {
         }
       };
       const reqFacade = {
-        head: req.headers,
+        cook: (() => {
+          const token = req.headers.cookie?.split(';')?.find(cookie => cookie.startsWith('token='))?.slice('token='.length);
+          if (token == null) return;
+          const info = jwt.decode(token);
+          if (Date.parse(new Date()) / 1000 - info.iat > 3600) return;
+          return info.user_id;
+        })(),
         body: route.method === 'GET'
           ? parse(req.url, true).query
           : await (async () => {
@@ -109,7 +118,8 @@ export default class Router {
           res.statusCode = code;
           res.setHeader('Content-Type', 'application/json');
         },
-        cook: token => {
+        cook: user_id => {
+          const token = jwt.sign({ user_id }, process.env.JWT_SECRET_KEY);
           res.setHeader('access-control-expose-headers', 'Set-Cookie');
           res.setHeader('Set-Cookie', `token=${token}; Path=/`);
         },
@@ -121,7 +131,7 @@ export default class Router {
       client.release();
     });
 
-    server.listen(port);
-    console.log(`locally running at http://localhost:${port}/`);
+    server.listen(this.port);
+    console.log(`locally running at http://localhost:${this.port}/`);
   }
 };

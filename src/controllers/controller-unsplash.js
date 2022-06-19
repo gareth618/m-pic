@@ -5,7 +5,7 @@ export default function controllerUnsplash(router) {
   router.post('/api/unsplash/authorize', async (sql, req, res) => {
     const profile_id = parseInt(await sql.call(
       'add_profile',
-      [req.body.user_id, 'unsplash', req.body.code]
+      [req.cook, 'unsplash', req.body.code]
     ));
     res.code(200);
     res.json({ profile_id });

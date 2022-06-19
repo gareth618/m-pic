@@ -20,6 +20,6 @@ function onClickSortBtn(id) {
 }
 
 function signOut() {
-  localStorage.removeItem('M-PIC.token');
+  document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT';
   location.href = '/sign-in';
 }

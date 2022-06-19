@@ -9,13 +9,9 @@ async function signIn() {
     email,
     password
   });
-  if (ans.error != null) {
-    alert(ans.error);
-  }
-  else {
-    localStorage.setItem('M-PIC.token', ans.token);
-    location.href = '/my-photos';
-  }
+  ans.error == null
+    ? location.href = '/my-photos'
+    : alert(ans.error);
 }
 
 function initWord() {
