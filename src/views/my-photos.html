@@ -33,14 +33,42 @@
         </div>
       </div>
       <div id="modal">
-        <span class="close">&times;</span>
+        <span class="close" id="resetAll">&times;</span>
         <div class="content">
+          <div class="sliders">
+            <Slider effect="'brightness'" max="'500'" value="'100'">
+            <Slider effect="'contrast'" max="'500'" value="'100'">
+            <Slider effect="'blur'" max="'500'" value="'100'">
+            <Slider effect="'opacity'" max="'100'" value="'100'">
+            <Slider effect="'grayscale'" max="'100'" value="'0'">
+            <Slider effect="'saturate'" max="'500'" value="'100'">
+            <Slider effect="'sepia'" max="'100'" value="'0'">
+            <Slider effect="'hue'" max="'360'" value="'0'">
+            <Slider effect="'invert'" max="'100'" value="'0'">
+          </div>
           <img id="image">
           <div id="caption"></div>
         </div>
       </div>
     </body>
   </html>
+</component>
+
+<component name="Slider">
+  <div class="slider">
+    <p class="effect">{{$effect}}</p>
+    <div>
+      <input
+        id="{{$effect}}"
+        type="range"
+        min="0"
+        max="{{$max}}"
+        value="{{$value}}"
+        oninput="{{$effect}}Value.innerText = this.value"
+      >
+      <p id="{{$effect}}Value">{{$value}}</p>
+    </div>
+  </div>
 </component>
 
 <component name="AddPhoto">
