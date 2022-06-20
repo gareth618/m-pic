@@ -76,6 +76,33 @@ export default class Router {
         }
       }
 
+      if (req.method === 'GET') {
+        if (req.url === '/docs') {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'text/html');
+          createReadStream('docs/index.html').pipe(res);
+          return;
+        }
+        if (req.url === '/docs/index.css') {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'text/css');
+          createReadStream(req.url.slice(1)).pipe(res);
+          return;
+        }
+        if (req.url === '/docs/script.js') {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'text/html');
+          createReadStream(req.url.slice(1)).pipe(res);
+          return;
+        }
+        if (req.url.startsWith('/docs/images/')) {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'image/png');
+          createReadStream(req.url.slice(1)).pipe(res);
+          return;
+        }
+      }
+
       const route = this.routes.find(route => {
         const position = req.url.indexOf('?');
         const cleanReqURL = position === -1 ? req.url : req.url.slice(0, position);
