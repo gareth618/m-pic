@@ -150,7 +150,7 @@ resetAll.addEventListener('click', () => {
   updateFilters();
 });
 
-savePhoto.addEventListener('click', () => {
+savePhoto.addEventListener('click', async () => {
   updateFilters();
   const canvas = document.getElementById('canvas');
   canvas.width = img.width;
@@ -168,7 +168,8 @@ savePhoto.addEventListener('click', () => {
     invert(${effectsValues.invert}%)
   `;
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  console.log(ctx);
+  await call('POST', '/upload', { data: canvas.toDataURL('image/png').slice('data:image/png;base64,'.length) });
+  location.reload();
 });
 
 function exportPhotos() {

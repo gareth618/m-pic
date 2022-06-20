@@ -4,8 +4,8 @@ import jwt from 'jsonwebtoken';
 import fetch from 'node-fetch';
 import { parse } from 'url';
 import { createServer } from 'http';
-import { createReadStream } from 'fs';
-import { readdir, readFile } from 'fs/promises';
+import { existsSync, createReadStream } from 'fs';
+import { readdir, readFile, writeFile } from 'fs/promises';
 
 export default class Router {
   domain() {
@@ -37,6 +37,10 @@ export default class Router {
     this.mimes.push({ dir, type, files });
   }
 
+  async photo(uri, data) {
+    await writeFile(`media/${uri}.png`, data, 'base64');
+  }
+
   async page404(file) {
     this.html404 = await readFile(file, { encoding: 'utf8' });
   }
@@ -60,6 +64,15 @@ export default class Router {
             createReadStream(req.url.slice(1)).pipe(res);
             return;
           }
+        }
+      }
+      if (req.method === 'GET' && req.url.startsWith('/media/') && req.url.endsWith('.png')) {
+        const file = req.url.slice(1);
+        if (existsSync(file)) {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'image/png');
+          createReadStream(file).pipe(res);
+          return;
         }
       }
 

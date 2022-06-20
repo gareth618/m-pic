@@ -38,6 +38,7 @@ export default function controllerPages(router, templater) {
     else {
       const profiles = (await sql.call('get_profiles', [user_id])) || [];
       const photos = [];
+      photos.push(...(await router.call('GET', '/photos', { user_id })));
       for (const { platform, token } of profiles) {
         photos.push(...(await router.call('GET', `/${platform}/photos`, { token })));
       }
