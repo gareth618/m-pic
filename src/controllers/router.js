@@ -4,8 +4,8 @@ import jwt from 'jsonwebtoken';
 import fetch from 'node-fetch';
 import { parse } from 'url';
 import { createServer } from 'http';
-import { existsSync, createReadStream } from 'fs';
 import { readdir, readFile, writeFile } from 'fs/promises';
+import { existsSync, mkdirSync, createReadStream } from 'fs';
 
 export default class Router {
   domain() {
@@ -38,6 +38,9 @@ export default class Router {
   }
 
   async photo(uri, data) {
+    if (!existsSync('media')) {
+      mkdirSync('media', 0o744);
+    }
     await writeFile(`media/${uri}.png`, data, 'base64');
   }
 

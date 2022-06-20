@@ -18,10 +18,4 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 - **backend** node
 - **database** postgres
 
-## 🦆 tasks
-
-- [ ] admin panel
-- [ ] save edited image
-- [ ] export photos as csv's
-
 ![jwt](https://jwt.io/img/badge-compatible.svg)
