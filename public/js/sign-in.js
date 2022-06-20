@@ -1,13 +1,15 @@
 async function signIn() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
+  const remember = document.getElementById('checkbox').classList.contains('fa-square-check');
 
   if (email === '') return alert('you must fill in the email');
   if (password === '') return alert('you must fill in the password');
 
   const ans = await call('GET', '/sign-in', {
     email,
-    password
+    password,
+    remember
   });
   ans.error == null
     ? location.href = '/my-photos'

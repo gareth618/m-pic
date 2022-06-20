@@ -76,9 +76,7 @@ export default function controllerUnsplash(router) {
       })).json();
       const photos = [];
       collections.forEach(collection => {
-        console.log(collection);
         collection.preview_photos.forEach(photo => {
-          console.log(photo);
           photos.push({
             platform: 'unsplash',
             url: photo.urls.regular,

@@ -42,8 +42,10 @@ window.onload = () => {
   const modal = document.getElementById('modal');
   const image = document.getElementById('image');
   const caption = document.getElementById('caption');
-  const span = document.getElementsByClassName('close')[0];
-  span.onclick = () => modal.style.display = 'none';
+  const span1 = document.getElementsByClassName('close')[0];
+  span1.onclick = () => modal.style.display = 'none';
+  const span2 = document.getElementsByClassName('close')[1];
+  span2.onclick = () => modal.style.display = 'none';
 
   const gallery = document.getElementById('gallery');
   for (const photo of [...gallery.children]) {
@@ -149,6 +151,7 @@ resetAll.addEventListener('click', () => {
 });
 
 savePhoto.addEventListener('click', () => {
+  updateFilters();
   const canvas = document.getElementById('canvas');
   canvas.width = img.width;
   canvas.height = img.height;

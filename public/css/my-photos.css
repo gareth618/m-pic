@@ -43,6 +43,7 @@
   left: 0;
   overflow: auto;
   background-color: var(--black-transparent);
+  backdrop-filter: blur(5px);
 }
 
 #modal .content {

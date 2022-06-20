@@ -10,7 +10,7 @@ export default function controllerInternal(router) {
     }
     else {
       res.code(200);
-      res.cook(user_id);
+      res.cook(user_id, req.body.remember === 'true');
       res.json({ });
     }
   });
@@ -26,6 +26,7 @@ export default function controllerInternal(router) {
     }
     else {
       res.code(200);
+      res.cook(user_id, req.body.remember === 'true');
       res.json({ });
     }
   });

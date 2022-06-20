@@ -90,7 +90,7 @@ export default class Router {
           const token = req.headers.cookie?.split(';')?.find(cookie => cookie.startsWith('token='))?.slice('token='.length);
           if (token == null) return;
           const info = jwt.decode(token);
-          if (Date.parse(new Date()) / 1000 - info.iat > 3600) return;
+          if (Date.parse(new Date()) / 1000 - info.iat > (info.remember ? 3600 : 60)) return;
           return info.user_id;
         })(),
         body: route.method === 'GET'
@@ -118,8 +118,8 @@ export default class Router {
           res.statusCode = code;
           res.setHeader('Content-Type', 'application/json');
         },
-        cook: user_id => {
-          const token = jwt.sign({ user_id }, process.env.JWT_SECRET_KEY);
+        cook: (user_id, remember) => {
+          const token = jwt.sign({ user_id, remember }, process.env.JWT_SECRET_KEY);
           res.setHeader('access-control-expose-headers', 'Set-Cookie');
           res.setHeader('Set-Cookie', `token=${token}; Path=/`);
         },
