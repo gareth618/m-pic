@@ -1,6 +1,6 @@
 # M-PIC ⛵
 
-M-PIC is an aggregator-type app that helps you organize your photos from various photo-**sharing** platforms, such as facebook, instagram, twitter, reddit and unsplash
+M-PIC is an aggregator-type app that helps you organize your photos from various photo-**sharing** platforms, such as facebook, twitter and unsplash
 
 it was built by two students from their passion for quality **photography**, tired of wasting time by manually organizing their photos and sharing them on so many social platforms
 
