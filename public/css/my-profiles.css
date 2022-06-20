@@ -1,3 +1,75 @@
+#add {
+  --radius: 35px;
+  position: fixed;
+  left: calc(75px - var(--radius));
+  bottom: calc(75px - var(--radius));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(2 * var(--radius));
+  height: calc(2 * var(--radius));
+  background: var(--add);
+  border-radius: 50%;
+  transition-duration: .3s;
+  transition-property: left, bottom, width, height;
+}
+
+#add > button:not(:first-child) {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  line-height: 1;
+  background: var(--edit-border);
+  border-radius: 50%;
+  transition-duration: .3s;
+  transition-property: visibility, transform;
+  visibility: hidden;
+  z-index: 6;
+}
+
+#add.active {
+  --radius: 115px;
+}
+
+#add.active > button:not(:first-child) {
+  visibility: visible;
+}
+
+#add i {
+  color: var(--darker-bg);
+}
+
+.plus {
+  --radius: 35px;
+  position: relative;
+  width: calc(2 * var(--radius));
+  height: calc(2 * var(--radius));
+  border-radius: 50%;
+  background: var(--edit-border);
+  outline: none !important;
+  transition: transform .3s;
+  z-index: 7;
+}
+
+.plus span {
+  display: block;
+  position: absolute;
+  top: calc(var(--radius) - 1px);
+  left: calc(var(--radius) - 20px);
+  width: 40px;
+  height: 2px;
+  background: var(--darker-bg);
+  border-radius: 100vh;
+}
+
+.plus span:first-child {
+  transform: rotate(90deg);
+}
+
+#add.active .plus {
+  transform: rotate(-135deg);
+}
+
 #add.profile > button:not(:first-child) {
   padding-top: .11em;
   font-size: 2.25rem;

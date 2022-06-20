@@ -12,7 +12,7 @@
         <h2>my photos</h2>
         <FilterMenu>
         <SortMenu metrics="['date', 'likes', 'shares']">
-        <AddPhoto>
+        <button type="button" id="export"><i class="fa-solid fa-file-arrow-down" onclick="exportPhotos()"></i></button>
       </aside>
       <div class="scroller">
         <div class="container">
@@ -69,17 +69,5 @@
       >
       <p id="{{$effect}}Value">{{$value}}</p>
     </div>
-  </div>
-</component>
-
-<component name="AddPhoto">
-  <div id="add" class="photo">
-    <button type="button" class="plus" onclick="toggleActiveOn('add')">
-      <span></span>
-      <span></span>
-    </button>
-    <button type="button"><i class="fa-solid fa-camera"></i></button>
-    <button type="button"><i class="fa-solid fa-upload"></i></button>
-    <button type="button"><i class="fa-solid fa-link"></i></button>
   </div>
 </component>

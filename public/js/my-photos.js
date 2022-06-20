@@ -167,3 +167,11 @@ savePhoto.addEventListener('click', () => {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   console.log(ctx);
 });
+
+function exportPhotos() {
+  let csvFile = 'data:text/csv;charset=utf-8,date,platform,tags,likes,shares,url\n';
+  for (const photo of photos) {
+    csvFile += `${photo.date},${photo.platform},${photo.tags.join('|')},${photo.likes},${photo.shares},${photo.node.src}\n`;
+  }
+  window.open(csvFile);
+}

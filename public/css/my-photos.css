@@ -1,11 +1,21 @@
-#add.photo > button:not(:first-child) {
-  padding-top: .05em;
-  font-size: 1.75rem;
+#export {
+  --radius: 35px;
+  position: fixed;
+  left: calc(75px - var(--radius));
+  bottom: calc(75px - var(--radius));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(2 * var(--radius));
+  height: calc(2 * var(--radius));
+  background: var(--edit-border);
+  border-radius: 50%;
 }
 
-#add.photo.active > button:nth-child(2) { transform: rotate(-75deg) translate(var(--radius)) rotate(75deg); }
-#add.photo.active > button:nth-child(3) { transform: rotate(-45deg) translate(var(--radius)) rotate(47deg); }
-#add.photo.active > button:nth-child(4) { transform: rotate(-15deg) translate(var(--radius)) rotate(15deg); }
+#export i {
+  font-size: 2.5rem;
+  color: var(--add);
+}
 
 #gallery {
   gap: 1rem;
