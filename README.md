@@ -20,7 +20,6 @@ M-PIC is the all-in-one platform you’ll ever need in order to save the time ne
 
 ## 🦆 tasks
 
-- [ ] remember me
 - [ ] admin panel
 - [ ] save edited image
 - [ ] export photos as csv's
