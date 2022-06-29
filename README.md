@@ -1,6 +1,12 @@
 # M-PIC ⛵
 
-[**demo on youtube**](https://www.youtube.com/watch?v=XYHqjYKyZYc)
+M-PIC is an aggregator-type app that helps you organize your photos from various photo-**sharing** platforms, such as Facebook, Twitter and Unsplash.
+
+It was built by two students from their passion for quality **photography**, tired of wasting time by manually organizing their photos and sharing them on so many social platforms.
+
+M-PIC is the all-in-one platform you'll ever need in order to save the time needed to organize your photo collection, letting you create more wonderful **memories** with your loved ones.
+
+The website is live on [Heroku](https://m-p1c.herokuapp.com/). Also, check out the demo on [YouTube](https://www.youtube.com/watch?v=XYHqjYKyZYc)!
 
 ## 🚀 team
 
@@ -18,27 +24,19 @@
 
 # 1. app description
 
-M-PIC is an aggregator-type app that helps you organize your photos from various photo-**sharing** platforms, such as Facebook, Twitter and Unsplash.
-
-It was built by two students from their passion for quality **photography**, tired of wasting time by manually organizing their photos and sharing them on so many social platforms.
-
-M-PIC is the all-in-one platform you'll ever need in order to save the time needed to organize your photo collection, letting you create more wonderful **memories** with your loved ones.
-
-## 1.1. introduction
-
 M-PIC lets users manage their photos posted on various social media platforms and get various information about each photo like the hashtags associated and the numbers of shares and likes. It is also possible to perform multi-criteria search on their photo collection and to apply filters.
 
-## 1.2. app structure
+## 1.1. app structure
 
-### 1.2.1. home page
+### 1.1.1. home page
 
 The home page contains a sign-in form alongside a link to the sign-up page designed for users with no M-PIC account. The only fields the user must fill in order to access the app are email and password. They can also check whether they want the browser to keep them logged in. Under the form there is a brief description of the app that hightlights its main features.
 
-### 1.2.2. sign up
+### 1.1.2. sign up
 
 The sign up page contains only a form that requires the users to provide their email address and a password in case they have no M-PIC account. If they already have an account, they can click the sign-in button and will be redirected to the **home page** where they can enter their credentials.
 
-### 1.2.3. my photos
+### 1.1.3. my photos
 
 After the user has managed to sign in, they are welcomed by the main page of the app, where all the photos the user has posted on the social media accounts saved in M-PIC are displayed in a chronological order. Here it is possible to search for certain photos based on the platforms they were posted on and sort them by the number of shares, likes and date of the post.
 
@@ -48,13 +46,13 @@ On the upper right corner of the page, there is a navigation button that has thr
 
 The app provides the option to download information about all displayed photos as a CSV file when the user clicks the icon on the lower left corner of the page. This mode can be exited in two different ways: either with the "x" sign on the right that simply returns to the main page or with the check sign next to it that also saves the edited photo in the user's collection.
 
-### 1.2.4. my profiles
+### 1.1.4. my profiles
 
 On this page, the user can see all the linked profiles and view or delete them. For every profile M-PIC displays three main social engagement indicators: number of posted photos, followers and total number of likes received. The user can also add a new profile on a certain platform using the "+" sign on the lower left corner.
 
 On the upper right corner of the page, there is the same navigation button except for the first option which redirects the user to the **my photos** page.
 
-## 1.3. app architecture
+## 1.2. app architecture
 
 The UI/UX mockup of the app was designed in Figma. The frontend was written in vanilla HTML, CSS and JavaScript. The backend is mainly built in Node.js with the help of the APIs provided by the social media platforms: Graph API (from Facebook), Twitter API and Unplash API.
 
@@ -89,7 +87,7 @@ The files located in `src` are ued directly by the **backend** and are organized
 
 ## 2.3 controllers
 
-`Router` is the class which manages the application routes. These include the regular pages (`sign-in`, `sign-up`, `my-photos`, `my-profiles`), the resources in the `public` directory and the internal and external API's. The main methods of this class are the following:
+`Router` is the class which manages the application routes. These include the regular pages (`sign-in`, `sign-up`, `my-photos`, `my-profiles`), the resources in the `public` directory and the internal and external APIs. The main methods of this class are the following:
 
 - `mime(dir, type)` adds routes for each file of `dir` in the given MIME-`type`
 - `page404(file)` sets the 404 page as the HTML code inside `file`
@@ -188,9 +186,9 @@ The tables are:
 
 In this section we will discuss about how certain features of M-PIC were implemented.
 
-## 3.1. internal API's
+## 3.1. internal APIs
 
-The internal API's communicate directly with the database and are called client-side through the **AJAX** `fetch` function.
+The internal APIs communicate directly with the database and are called client-side through the **AJAX** `fetch` function.
 
 - **GET** `/api/sign-in` validates credentials
 - **POST** `/api/sign-up` creates an account
@@ -198,16 +196,16 @@ The internal API's communicate directly with the database and are called client-
 - **POST** `/api/upload` uploads an edited photo of a user
 - **GET** `/api/photos` returns the edited photos of a user
 
-## 3.2. external API's
+## 3.2. external APIs
 
 Those are used for authorizing Facebook, Twitter or Unsplash apps.
 
 - **POST** `/api/{{platform}}/authorize` creates the profile in the database and sets its `code` – the value returned through the URL params of the corresponding authorization page
 - **PUT** `/api/{{platform}}/token` generates the authorization `token` for the given profile
-- **GET** `/api/{{platform}}/profile` returns profile-metadata by calling many platform-specific API's alongside the `/photos` route
-- **GET** `/api/{{platform}}/photos` returns photos-metadata by calling many platform-specific API's
+- **GET** `/api/{{platform}}/profile` returns profile-metadata by calling many platform-specific APIs alongside the `/photos` route
+- **GET** `/api/{{platform}}/photos` returns photos-metadata by calling many platform-specific APIs
 
-## 3.3. user sessions and JWT's
+## 3.3. user sessions and JWTs
 
 The user sessions are stored in **JSON Web Tokens** like this:
 
@@ -225,7 +223,7 @@ The tokens are set in the client and send to the server using **cookies**. It va
 
 ## 3.4. sorting, filtering and searching photos
 
-The photos are aggregated using the external API's when the user accesses the `/my-photos` route. They are rendered server-side with `data-` attributes. When the client receives the page, it clones the `img` nodes. After that, the sorting, filtering and searching features become just some operations on an array.
+The photos are aggregated using the external APIs when the user accesses the `/my-photos` route. They are rendered server-side with `data-` attributes. When the client receives the page, it clones the `img` nodes. After that, the sorting, filtering and searching features become just some operations on an array.
 
 The search is based on giving a set of tags. A score is calculated for each photo based on how similar its tags are to the search tags and how many they match. An **Edit-Distance** algorithm was used, namely the **Levenshtein Distance**.
 
